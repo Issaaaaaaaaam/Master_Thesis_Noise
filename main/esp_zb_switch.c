@@ -1,90 +1,44 @@
-#include <stdio.h>
-#include <string.h>
-#include "noise/protocol.h"
+#include "string.h"
+#include <noise/protocol.h>
+#include <sodium.h> 
+#include "esp_log.h"
+#include "nvs_flash.h"
+#include "esp_zb_switch.h"
+#include "ha/esp_zigbee_ha_standard.h"
+#include "freertos/task.h"
+#include "freertos/FreeRTOS.h"
 
 #define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
-#define MESSAGE_BUFFER_SIZE 128
 
-// Function to translate Noise error codes into readable messages
-void explain_error(int result) {
-    switch (result) {
-        case NOISE_ERROR_NONE:
-            printf("✅ No error.\n");
-            break;
-        case NOISE_ERROR_INVALID_PARAM:
-            printf("❌ Error: Invalid parameter passed to function.\n");
-            break;
-        case NOISE_ERROR_UNKNOWN_NAME:
-            printf("❌ Error: Unknown algorithm name.\n");
-            break;
-        case NOISE_ERROR_NO_MEMORY:
-            printf("❌ Error: Memory allocation failed.\n");
-            break;
-        case NOISE_ERROR_MAC_FAILURE:
-            printf("❌ Error: MAC verification failed (decryption issue).\n");
-            break;
-        case NOISE_ERROR_INVALID_LENGTH:
-            printf("❌ Error: Invalid buffer size.\n");
-            break;
-        case NOISE_ERROR_INVALID_STATE:
-            printf("❌ Error: Function called in an invalid state.\n");
-            break;
-        case NOISE_ERROR_INVALID_NONCE:
-            printf("❌ Error: Nonce has overflowed (too many messages sent).\n");
-            break;
-        default:
-            printf("❌ Error: Unknown error code (%d).\n", result);
-    }
+static const char *TAG = "ESP32_NOISE_TEST";
+
+static void handle_error(const char *msg, int err)
+{
+    char err_buf[256];
+    noise_strerror(err, err_buf, sizeof(err_buf));
+    fprintf(stderr, "%s failed! ❌ Error: %s\n", msg, err_buf);
+    exit(EXIT_FAILURE);
 }
 
-// Function to check results and print explanations
-void check_result(int result, const char *msg) {
-    if (result != NOISE_ERROR_NONE) {
-        printf("%s failed! ", msg);
-        explain_error(result);
-    } else {
-        printf("%s succeeded ✅\n", msg);
-    }
-}
+void noise_esp32_test()
+{
+    NoiseHandshakeState *handshake;
+    int err;
 
-void app_main(void) {
-    int result;
-    NoiseHandshakeState *initiator = NULL;
-    NoiseHandshakeState *responder = NULL;
-    uint8_t message_data[MESSAGE_BUFFER_SIZE];
-    NoiseBuffer message_buf;
+    ESP_LOGI(TAG, "Starting Noise ESP32 Test...");
 
-    // ✅ Create Handshake States
-    result = noise_handshakestate_new_by_name(&initiator, HANDSHAKE_PATTERN, NOISE_ROLE_INITIATOR);
-    check_result(result, "Initiator HandshakeState creation");
+    // Step 1: Initialize the Noise framework
+    err = noise_init_framework();
+    if (err != NOISE_ERROR_NONE)
+        handle_error("Noise framework init", err);
+
+    ESP_LOGI(TAG, "Noise framework initialized.");
+
     
-    result = noise_handshakestate_new_by_name(&responder, HANDSHAKE_PATTERN, NOISE_ROLE_RESPONDER);
-    check_result(result, "Responder HandshakeState creation");
+}
 
-    // ✅ Initiator writes first message
-    noise_buffer_set_output(message_buf, message_data, MESSAGE_BUFFER_SIZE);
-    result = noise_handshakestate_write_message(initiator, &message_buf, NULL);
-    check_result(result, "Initiator writes first message");
-
-    // ✅ Responder reads first message
-    noise_buffer_set_input(message_buf, message_buf.data, message_buf.size);
-    result = noise_handshakestate_read_message(responder, &message_buf, NULL);
-    check_result(result, "Responder reads first message");
-
-    // ✅ Responder writes second message
-    noise_buffer_set_output(message_buf, message_data, MESSAGE_BUFFER_SIZE);
-    result = noise_handshakestate_write_message(responder, &message_buf, NULL);
-    check_result(result, "Responder writes second message");
-
-    // ✅ Initiator reads second message
-    noise_buffer_set_input(message_buf, message_buf.data, message_buf.size);
-    result = noise_handshakestate_read_message(initiator, &message_buf, NULL);
-    check_result(result, "Initiator reads second message");
-
-    // ✅ Handshake Complete
-    printf("\n🚀 HANDSHAKE SUCCESSFUL! 🎉\n");
-
-    // Cleanup
-    noise_handshakestate_free(initiator);
-    noise_handshakestate_free(responder);
+void app_main()
+{
+    ESP_LOGI(TAG, "Starting ESP32 Noise Protocol Test...");
+    noise_esp32_test();
 }
