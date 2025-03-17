@@ -20,25 +20,10 @@ static void handle_error(const char *msg, int err)
     exit(EXIT_FAILURE);
 }
 
-void noise_esp32_test()
-{
-    NoiseHandshakeState *handshake;
-    int err;
 
-    ESP_LOGI(TAG, "Starting Noise ESP32 Test...");
-
-    // Step 1: Initialize the Noise framework
-    err = noise_init_framework();
-    if (err != NOISE_ERROR_NONE)
-        handle_error("Noise framework init", err);
-
-    ESP_LOGI(TAG, "Noise framework initialized.");
-
-    
-}
 
 void app_main()
 {
     ESP_LOGI(TAG, "Starting ESP32 Noise Protocol Test...");
-    noise_esp32_test();
+    sodium_init();
 }

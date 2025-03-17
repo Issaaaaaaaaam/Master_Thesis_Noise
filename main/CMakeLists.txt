@@ -4,4 +4,4 @@ idf_component_register(
     INCLUDE_DIRS "."
                 "${IDF_PATH}/examples/zigbee/common/zcl_utility/include"
 )
-set(EXTRA_COMPONENT_DIRS components/noise-c components/libsodium)
+set(EXTRA_COMPONENT_DIRS components/noise-c )
