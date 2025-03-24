@@ -9,8 +9,9 @@
 #include "freertos/FreeRTOS.h"
 #include "aps/esp_zigbee_aps.h"
 
-#define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
-#define MAX_NOISE_MESSAGE_SIZE 256
+#define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
+#define MAX_NOISE_MESSAGE_SIZE 1024
+
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
 static NoiseCipherState *initiator_send_cipher = NULL;
@@ -62,7 +63,7 @@ void start_noise_handshake()
 
     int err;
     NoiseBuffer message_buf;
-    uint8_t message[256];
+    uint8_t message[MAX_NOISE_MESSAGE_SIZE];
 
     // **Initialize Noise framework (if not done already)**
     err = noise_init_framework();
@@ -74,7 +75,9 @@ void start_noise_handshake()
     // **Create initiator handshake state (Global)**
     err = noise_handshakestate_new_by_name(&initiator, HANDSHAKE_PATTERN, NOISE_ROLE_INITIATOR);
     if (err != NOISE_ERROR_NONE) {
-        ESP_LOGE(TAG, "Failed to create initiator handshake state: %d", err);
+        char err_str[64];
+        noise_strerror(err, err_str, sizeof(err_str));
+        ESP_LOGE(TAG, "Failed to initiator handshake state: %s (code=%d)", err_str, err);
         return;
     }
 
@@ -89,7 +92,9 @@ void start_noise_handshake()
     noise_buffer_set_output(message_buf, message, sizeof(message));
     err = noise_handshakestate_write_message(initiator, &message_buf, NULL);
     if (err != NOISE_ERROR_NONE) {
-        ESP_LOGE(TAG, "Failed to generate first handshake message: %d", err);
+        char err_str[64];
+        noise_strerror(err, err_str, sizeof(err_str));
+        ESP_LOGE(TAG, "Failed to generate first handshake message: %s (code=%d)", err_str, err);
         return;
     }
 
@@ -497,5 +502,5 @@ void app_main(void)
     switch_driver_init(button_func_pair, PAIR_SIZE(button_func_pair), esp_zb_buttons_handler);
 
     // Start Zigbee in a FreeRTOS task
-    xTaskCreate(esp_zb_task, "Zigbee_main", 4096, NULL, 5, NULL);
+    xTaskCreate(esp_zb_task, "Zigbee_main", 16384, NULL, 5, NULL);
 }
