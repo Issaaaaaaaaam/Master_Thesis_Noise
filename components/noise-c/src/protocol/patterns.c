@@ -441,6 +441,330 @@ static uint8_t const noise_pattern_IX[] = {
     NOISE_TOKEN_END
 };
 
+/* PQNoise Patterns */
+/**
+ * \brief Token sequence for handshake pattern "PQ_NN".
+ *
+ * @code
+ * Noise_NN():
+ *   -> e
+ *   <- ekem
+ * @endcode
+ */
+static uint8_t const noise_pattern_NN_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_NK".
+*
+* @code
+* Noise_NK(rs):
+*   <- s
+*   ...
+*   -> skem, e
+*   <- ekem
+* @endcode
+*/
+static uint8_t const noise_pattern_NK_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_REMOTE_STATIC |
+            NOISE_PAT_FLAG_REMOTE_REQUIRED
+    ),
+
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_NX".
+*
+* @code
+* Noise_NX(rs):
+*   -> e
+*   <- ekem, s
+*   -> skem
+* @endcode
+*/
+static uint8_t const noise_pattern_NX_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_REMOTE_STATIC
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_XN".
+*
+* @code
+* Noise_XN(s):
+*   -> e
+*   <- ekem
+*   -> s
+*   <- skem
+* @endcode
+*/
+static uint8_t const noise_pattern_XN_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_XK".
+*
+* @code
+* Noise_XK(s, rs):
+*   <- s
+*   ...
+*   -> skem, e
+*   <- ekem
+*   -> s
+*   <- skem
+* @endcode
+*/
+static uint8_t const noise_pattern_XK_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_REMOTE_STATIC |
+            NOISE_PAT_FLAG_REMOTE_REQUIRED
+    ),
+
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_XX".
+*
+* @code
+* Noise_XX(s, rs):
+*   -> e
+*   <- ekem, s
+*   -> skem, s
+*   <- skem
+* @endcode
+*/
+static uint8_t const noise_pattern_XX_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_REMOTE_STATIC
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_KN".
+*
+* @code
+* Noise_KN(s):
+*   -> s
+*   ...
+*   -> e
+*   <- ekem, skem
+* @endcode
+*/
+static uint8_t const noise_pattern_KN_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_LOCAL_REQUIRED
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_KK".
+*
+* @code
+* Noise_KK(s, rs):
+*   -> s
+*   <- s
+*   ...
+*   -> skem, e
+*   <- ekem, skem
+* @endcode
+*/
+static uint8_t const noise_pattern_KK_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_LOCAL_REQUIRED |
+            NOISE_PAT_FLAG_REMOTE_STATIC |
+            NOISE_PAT_FLAG_REMOTE_REQUIRED
+    ),
+
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_KX".
+*
+* @code
+* Noise_KX(s, rs):
+*   -> s
+*   ...
+*   -> e
+*   <- ekem, skem, s
+*   -> skem
+* @endcode
+*/
+static uint8_t const noise_pattern_KX_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_LOCAL_REQUIRED |
+            NOISE_PAT_FLAG_REMOTE_STATIC
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_IN".
+*
+* @code
+* Noise_IN(s):
+*   -> e, s
+*   <- ekem, skem
+* @endcode
+*/
+static uint8_t const noise_pattern_IN_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_IK".
+*
+* @code
+* Noise_IK(s, rs):
+*   <- s
+*   ...
+*   -> skem, e, s
+*   <- ekem, skem
+* @endcode
+*/
+static uint8_t const noise_pattern_IK_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_REMOTE_STATIC |
+            NOISE_PAT_FLAG_REMOTE_REQUIRED
+    ),
+
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+/**
+* \brief Token sequence for handshake pattern "PQ_IX".
+*
+* @code
+* Noise_IX(s, rs):
+*   -> e, s
+*   <- ekem, skem, s
+*   -> skem
+* @endcode
+*/
+static uint8_t const noise_pattern_IX_PQ[] = {
+    FLAGS(
+            NOISE_PAT_FLAG_LOCAL_STATIC |
+            NOISE_PAT_FLAG_LOCAL_EPHEMERAL |
+            NOISE_PAT_FLAG_REMOTE_STATIC
+    ),
+
+    NOISE_TOKEN_E,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_EKEM,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_S,
+    NOISE_TOKEN_FLIP_DIR,
+    NOISE_TOKEN_SKEM,
+    NOISE_TOKEN_END
+};
+
+
 /**
  * \brief Looks up a specific handshake pattern.
  *
@@ -470,6 +794,18 @@ const uint8_t *noise_pattern_lookup(int id)
     case NOISE_PATTERN_IN:              return noise_pattern_IN;
     case NOISE_PATTERN_IK:              return noise_pattern_IK;
     case NOISE_PATTERN_IX:              return noise_pattern_IX;
+    case NOISE_PATTERN_NN_PQ:           return noise_pattern_NN_PQ;
+    case NOISE_PATTERN_NK_PQ:           return noise_pattern_NK_PQ;
+    case NOISE_PATTERN_NX_PQ:           return noise_pattern_NX_PQ;
+    case NOISE_PATTERN_XN_PQ:           return noise_pattern_XN_PQ;
+    case NOISE_PATTERN_XK_PQ:           return noise_pattern_XK_PQ;
+    case NOISE_PATTERN_XX_PQ:           return noise_pattern_XX_PQ;
+    case NOISE_PATTERN_KN_PQ:           return noise_pattern_KN_PQ;
+    case NOISE_PATTERN_KK_PQ:           return noise_pattern_KK_PQ;
+    case NOISE_PATTERN_KX_PQ:           return noise_pattern_KX_PQ;
+    case NOISE_PATTERN_IN_PQ:           return noise_pattern_IN_PQ;
+    case NOISE_PATTERN_IK_PQ:           return noise_pattern_IK_PQ;
+    case NOISE_PATTERN_IX_PQ:           return noise_pattern_IX_PQ;
     default:                            return 0;
     }
 }

@@ -91,6 +91,12 @@ int noise_dhstate_new_by_id(NoiseDHState **state, int id)
         break;
 #endif
 
+#if NOISE_USE_KYBER
+    case NOISE_DH_KYBER:
+        *state = pqnoise_kyber_new();
+        break;
+#endif
+
     default:
         return NOISE_ERROR_UNKNOWN_ID;
     }

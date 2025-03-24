@@ -71,6 +71,10 @@ extern "C" {
 #if NOISE_USE_NEWHOPE
 #define NOISE_DH_NEWHOPE                NOISE_ID('D', 3)
 #endif
+#if NOISE_USE_KYBER
+#define NOISE_DH_KYBER                  NOISE_ID('D', 4)
+#endif
+
 
 /* Handshake patterns */
 #define NOISE_PATTERN_NONE              0
@@ -90,6 +94,18 @@ extern "C" {
 #define NOISE_PATTERN_IN                NOISE_ID('P', 13)
 #define NOISE_PATTERN_IK                NOISE_ID('P', 14)
 #define NOISE_PATTERN_IX                NOISE_ID('P', 15)
+#define NOISE_PATTERN_NN_PQ             NOISE_ID('P', 100)
+#define NOISE_PATTERN_NK_PQ             NOISE_ID('P', 101)
+#define NOISE_PATTERN_NX_PQ             NOISE_ID('P', 102)
+#define NOISE_PATTERN_XN_PQ             NOISE_ID('P', 103)
+#define NOISE_PATTERN_XK_PQ             NOISE_ID('P', 104)
+#define NOISE_PATTERN_XX_PQ             NOISE_ID('P', 105)
+#define NOISE_PATTERN_KN_PQ             NOISE_ID('P', 106)
+#define NOISE_PATTERN_KK_PQ             NOISE_ID('P', 107)
+#define NOISE_PATTERN_KX_PQ             NOISE_ID('P', 108)
+#define NOISE_PATTERN_IN_PQ             NOISE_ID('P', 109)
+#define NOISE_PATTERN_IK_PQ             NOISE_ID('P', 110)
+#define NOISE_PATTERN_IX_PQ             NOISE_ID('P', 111)
 
 /* Handshake pattern modifiers */
 #define NOISE_MODIFIER_NONE             0

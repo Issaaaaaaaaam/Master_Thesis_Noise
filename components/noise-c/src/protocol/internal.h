@@ -245,6 +245,9 @@ struct NoiseDHState_s
     /** \brief Length of the shared key for this algorithm in bytes */
     uint16_t shared_key_len;
 
+    /** \brief Length of the cipher for this algorithm in bytes (used for PQNoise) */
+    uint16_t cipher_len;
+
     /** \brief Points to the private key in the subclass state */
     uint8_t *private_key;
 
@@ -336,6 +339,35 @@ struct NoiseDHState_s
         (const NoiseDHState *private_key_state,
          const NoiseDHState *public_key_state,
          uint8_t *shared_key);
+
+    /**
+     * \brief Encapsulates a shared secret, used for the pqNoise patterns.
+     *
+     * \param state Points to the DHState.
+     * \param cipher Points to the buffer where the ciphertext will be written.
+     * \param shared Points to the buffer where the shared secret will be written.
+     *
+     * \return NOISE_ERROR_NONE if everything went alright.
+     * \return Otherwise probably an error idk.
+     * Can be null since it is only needed for pqNoise patterns.
+     */
+    int (*encaps)
+            (const NoiseDHState *state, uint8_t *cipher, uint8_t *shared);
+
+    /**
+     * \brief Decapsulates a shared secret, used for the pqNoise patterns.
+     *
+     * \param state Points to the DHState.
+     * \param cipher Points to the ciphertext.
+     * \param shared Points to the buffer where the shared secret will be written.
+     *
+     * \return NOISE_ERROR_NONE if everything went alright.
+     * \return Otherwise probably an error idk.
+     * Can be null since it is only needed for pqNoise patterns.
+     */
+    int (*decaps)
+            (const NoiseDHState *state, const uint8_t *cipher, uint8_t *shared);
+
 
     /**
      * \brief Changes the role for this object.
@@ -567,6 +599,9 @@ struct NoiseHandshakeState_s
 
     /** \brief Points to the DHState object for local hybrid forward secrecy key */
     NoiseDHState *dh_local_hybrid;
+    
+    /** \brief Points to the DHState object for local static hybrid key (used by the regular+PQNoise combination patterns) */
+    NoiseDHState *dh_local_hybrid_static;
 
     /** \brief Points to the DHState object for remote static key */
     NoiseDHState *dh_remote_static;
@@ -576,6 +611,9 @@ struct NoiseHandshakeState_s
 
     /** \brief Points to the DHState object for remote hybrid forward secrecy key */
     NoiseDHState *dh_remote_hybrid;
+
+    /** \brief Points to the DHState object for remote static hybrid key (used by the regular+PQNoise combination patterns) */
+    NoiseDHState *dh_remote_hybrid_static;
 
     /** \brief Points to the object for the fixed ephemeral test key */
     NoiseDHState *dh_fixed_ephemeral;
@@ -613,6 +651,9 @@ struct NoiseHandshakeState_s
 #define NOISE_TOKEN_F           7   /**< "f" token (hybrid forward secrecy) */
 #define NOISE_TOKEN_FF          8   /**< "ff" token (hybrid forward secrecy) */
 #define NOISE_TOKEN_PSK         9   /**< "psk" token */
+#define NOISE_TOKEN_EKEM        10   /**< "ekem" token, for PQ_Noise */
+#define NOISE_TOKEN_SKEM        11  /**< "skem" token, for PQ_Noise */
+
 #define NOISE_TOKEN_FLIP_DIR    255 /**< Flip the handshake direction */
 
 /** Pattern requires a local static keypair */
@@ -632,7 +673,8 @@ struct NoiseHandshakeState_s
 /** Pattern requires that the local hybrid key be provided
     ahead of time to start the protocol (for XXfallback) */
 #define NOISE_PAT_FLAG_LOCAL_HYBRID_REQ (1 << 5)
-
+/** Pattern requires a local hybrid static keypair */
+#define NOISE_PAT_FLAG_LOCAL_HYBRID_STATIC  (1 << 6)
 /** Pattern requires a remote static public key */
 #define NOISE_PAT_FLAG_REMOTE_STATIC    (1 << 8)
 /** Pattern requires a remote ephemeral public key */
@@ -650,6 +692,8 @@ struct NoiseHandshakeState_s
 /** Pattern requires that the remote hybrid key be provided
     ahead of time to start the protocol (for XXfallback) */
 #define NOISE_PAT_FLAG_REMOTE_HYBRID_REQ (1 << 13)
+/** Pattern requires a remote hybrid static public key */
+#define NOISE_PAT_FLAG_REMOTE_HYBRID_STATIC (1 << 14)
 
 /** Local static keypair is required for the handshake */
 #define NOISE_REQ_LOCAL_REQUIRED        (1 << 0)
@@ -681,6 +725,8 @@ NoiseHashState *noise_sha512_new(void);
 NoiseDHState *noise_curve25519_new(void);
 NoiseDHState *noise_curve448_new(void);
 NoiseDHState *noise_newhope_new(void);
+/*Working here to include PQNoise*/
+NoiseDHState *pqnoise_kyber_new(void);
 
 #if NOISE_USE_ED25519
 NoiseSignState *noise_ed25519_new(void);

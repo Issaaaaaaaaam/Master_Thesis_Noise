@@ -86,6 +86,10 @@ static NoiseIdMapping const algorithm_names[] = {
 #if NOISE_USE_NEWHOPE
     {NOISE_DH_NEWHOPE,          "NewHope",       7},
 #endif
+#if NOISE_USE_KYBER 
+    {NOISE_DH_KYBER,            "Kyber512",         8},
+#endif
+
 
     /* Handshake patterns */
     {NOISE_PATTERN_N,           "N",             1},
@@ -103,7 +107,17 @@ static NoiseIdMapping const algorithm_names[] = {
     {NOISE_PATTERN_IN,          "IN",            2},
     {NOISE_PATTERN_IK,          "IK",            2},
     {NOISE_PATTERN_IX,          "IX",            2},
-
+    {NOISE_PATTERN_NN_PQ,       "KEMNN",          5},
+    {NOISE_PATTERN_NK_PQ,       "KEMNK",          5},
+    {NOISE_PATTERN_NX_PQ,       "KEMNX",          5},
+    {NOISE_PATTERN_XN_PQ,       "KEMXN",          5},
+    {NOISE_PATTERN_XK_PQ,       "KEMXK",          5},
+    {NOISE_PATTERN_XX_PQ,       "KEMXX",          5},
+    {NOISE_PATTERN_KN_PQ,       "KEMKN",          5},
+    {NOISE_PATTERN_KK_PQ,       "KEMKK",          5},
+    {NOISE_PATTERN_KX_PQ,       "KEMKX",          5},
+    {NOISE_PATTERN_IN_PQ,       "KEMIN",          5},
+    {NOISE_PATTERN_IK_PQ,       "KEMIK",          5},
     /* Handshake pattern modifiers */
     {NOISE_MODIFIER_FALLBACK,   "fallback",      8},
     {NOISE_MODIFIER_HFS,        "hfs",           3},

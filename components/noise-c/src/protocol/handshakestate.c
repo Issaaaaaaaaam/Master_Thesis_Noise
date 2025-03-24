@@ -1191,6 +1191,9 @@ static int noise_handshakestate_write
     NoiseBuffer rest;
     size_t len;
     size_t mac_len;
+    size_t shared_len;
+    uint8_t *cipher;
+    uint8_t *shared;
     uint8_t token;
     int err;
 
@@ -1354,6 +1357,68 @@ static int noise_handshakestate_write
                 err = NOISE_ERROR_PSK_REQUIRED;
             }
             break;
+            case NOISE_TOKEN_EKEM:
+            /*EKEM token for PQNoise*/
+            if (!state->dh_remote_ephemeral)
+                return NOISE_ERROR_INVALID_STATE;
+            len = state->dh_remote_ephemeral->cipher_len;
+            shared_len = state->dh_remote_ephemeral->shared_key_len;
+            cipher = alloca(len);
+            shared = alloca(shared_len);
+
+            err = state->dh_remote_ephemeral->encaps(state->dh_remote_ephemeral, cipher, shared);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            if (rest.max_size < len)
+                return NOISE_ERROR_INVALID_LENGTH;
+
+            memcpy(rest.data, cipher, len);
+
+            // Mix the resulting cipher into the hash
+            noise_symmetricstate_mix_hash(state->symmetric, cipher, len);
+            rest.size += len;
+
+            // Mix the resulting shared secret into the chaining key
+            err = noise_symmetricstate_mix_key(state->symmetric, shared, shared_len);
+            noise_clean(cipher, len);
+            noise_clean(shared, shared_len);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            break;
+        case NOISE_TOKEN_SKEM:
+            /*SKEM token for PQNoise*/
+            if (!state->dh_remote_static)
+                return NOISE_ERROR_INVALID_STATE;
+            len = state->dh_remote_static->cipher_len;
+            shared_len = state->dh_remote_static->shared_key_len;
+            cipher = alloca(len);
+            shared = alloca(shared_len);
+
+            err = state->dh_remote_static->encaps(state->dh_remote_static, cipher, shared);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            /* Encrypt the resulting cipher and add it to the message */
+            mac_len = noise_symmetricstate_get_mac_length(state->symmetric);
+            if (rest.max_size < (len + mac_len))
+                return NOISE_ERROR_INVALID_LENGTH;
+            memcpy(rest.data, cipher, len);
+            rest.size += len;
+            err = noise_symmetricstate_encrypt_and_hash(state->symmetric, &rest);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            // Mix the resulting shared secret into the chaining key
+            err = noise_symmetricstate_mix_key(state->symmetric, shared, shared_len);
+            noise_clean(cipher, len);
+            noise_clean(shared, shared_len);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            break;
+
         default:
             /* Unknown token code in the pattern.  This shouldn't happen.
                If it does, then abort immediately. */
@@ -1452,6 +1517,33 @@ int noise_handshakestate_write_message
         state->action = NOISE_ACTION_FAILED;
         message->size = 0;
     }
+    return err;
+}
+
+/**
+ * \brief Decapsulates a kem cipher and mixes the resulting shared key into
+ * the chaining key.
+ * Used only for pqNoise patterns, this function does not have an encaps equivalent since the order of adding the shared
+ * key and hashing the final cipher did not allow for it.
+ *
+ * \param state The HandshakeState object.
+ * \param cipher Pointer to the ciphertext
+ * \param secret_key Points to the secret key DHState object.
+ *
+ * \return NOISE_ERROR_NONE on success.
+ */
+static int noise_handshake_mix_kem_decaps
+        (NoiseHandshakeState *state, const NoiseDHState *secret_key, const uint8_t *cipher)
+{
+    size_t len = secret_key->shared_key_len;
+    uint8_t *shared = alloca(len);
+    int err;
+    // No extra function in dhstate.c for now, just perform the encapsulation directly
+    secret_key->decaps(secret_key, cipher, shared);
+
+    // Mix the resulting shared secret into the chaining key
+    err = noise_symmetricstate_mix_key(state->symmetric, shared, len);
+    noise_clean(shared, len);
     return err;
 }
 
@@ -1646,6 +1738,59 @@ static int noise_handshakestate_read
                 err = NOISE_ERROR_PSK_REQUIRED;
             }
             break;
+            case NOISE_TOKEN_EKEM:
+            /*EKEM token for PQNoise*/
+            if (!state->dh_local_ephemeral)
+                return NOISE_ERROR_INVALID_STATE;
+            len = state->dh_local_ephemeral->cipher_len;
+            if (msg.size < len)
+                return NOISE_ERROR_INVALID_LENGTH;
+
+            /*Mix the received message into the hash*/
+            err = noise_symmetricstate_mix_hash
+                    (state->symmetric, msg.data, len);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            /*Decapsulate the message and include the shared key into the chaining key*/
+            err = noise_handshake_mix_kem_decaps
+                    (state, state->dh_local_ephemeral, msg.data);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            msg.data += len;
+            msg.size -= len;
+            msg.max_size -= len;
+            break;
+        case NOISE_TOKEN_SKEM:
+            /*SKEM token for PQNoise*/
+            if (!state->dh_local_static)
+                return NOISE_ERROR_INVALID_STATE;
+            mac_len = noise_symmetricstate_get_mac_length(state->symmetric);
+            len = state->dh_local_static->cipher_len + mac_len;
+            if (msg.size < len)
+                return NOISE_ERROR_INVALID_LENGTH;
+            msg2.data = msg.data;
+            msg2.size = len;
+            msg2.max_size = len;
+
+            /*Decrypt and include the message into the hash, probably not in that order*/
+            err = noise_symmetricstate_decrypt_and_hash
+                    (state->symmetric, &msg2);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            /*Decapsulate the message and include the shared key into the chaining key*/
+            err = noise_handshake_mix_kem_decaps
+                    (state, state->dh_local_static, msg2.data);
+            if (err != NOISE_ERROR_NONE)
+                break;
+
+            msg.data += len;
+            msg.size -= len;
+            msg.max_size -= len;
+            break;
+            
         default:
             /* Unknown token code in the pattern.  This shouldn't happen.
                If it does, then abort immediately. */
