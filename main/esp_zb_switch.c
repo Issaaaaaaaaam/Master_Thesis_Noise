@@ -8,7 +8,8 @@
 #include "freertos/task.h"
 #include "freertos/FreeRTOS.h"
 #include "aps/esp_zigbee_aps.h"
-
+#include "esp_timer.h"
+#include <inttypes.h>
 #define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 1024
 
@@ -21,7 +22,10 @@ static bool handshake_complete = false;
 #if defined ZB_ED_ROLE
 #error Define ZB_COORDINATOR_ROLE in idf.py menuconfig to compile light switch source code.
 #endif
-
+static uint32_t benchmark_start_cycles = 0;
+static uint32_t benchmark_end_cycles = 0;
+static uint64_t benchmark_start_time_us = 0;
+static uint64_t benchmark_end_time_us = 0;
 
 const char* noise_action_to_string(int action)
 {
@@ -60,7 +64,8 @@ static switch_func_pair_t button_func_pair[] = {
 void start_noise_handshake()
 {
     ESP_LOGI(TAG, "Starting Noise handshake as Initiator...");
-
+    benchmark_start_cycles = esp_cpu_get_cycle_count();
+    benchmark_start_time_us = esp_timer_get_time();
     int err;
     NoiseBuffer message_buf;
     uint8_t message[MAX_NOISE_MESSAGE_SIZE];
@@ -71,7 +76,6 @@ void start_noise_handshake()
         noise_log_error(TAG, "Failed to initialize Noise framework:", err);
         return; 
     }
-
     // **Create initiator handshake state (Global)**
     err = noise_handshakestate_new_by_name(&initiator, HANDSHAKE_PATTERN, NOISE_ROLE_INITIATOR);
     if (err != NOISE_ERROR_NONE) {
@@ -233,7 +237,14 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                     noise_log_error(TAG, "Failed to split cipher states:", err);
                     return false;
                 }
+                benchmark_end_cycles = esp_cpu_get_cycle_count();
+                benchmark_end_time_us = esp_timer_get_time();
                 ESP_LOGI(TAG, "Cipher states created. Secure communication ready.");
+                uint32_t elapsed_cycles = benchmark_end_cycles - benchmark_start_cycles;
+                uint64_t elapsed_us = benchmark_end_time_us - benchmark_start_time_us;
+
+                ESP_LOGW(TAG, "Handshake took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
+
                 return true;
             }
 
