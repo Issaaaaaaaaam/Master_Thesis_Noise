@@ -31,7 +31,7 @@ extern "C" {
 
 void noise_perror(const char *s, int err);
 int noise_strerror(int err, char *buf, size_t size);
-
+void noise_log_error(const char *tag, const char *context, int err); 
 #ifdef __cplusplus
 };
 #endif

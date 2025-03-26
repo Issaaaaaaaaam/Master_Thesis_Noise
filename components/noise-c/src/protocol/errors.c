@@ -19,7 +19,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
+#include "esp_log.h"
 #include "protocol/internal.h"
 #include <stdio.h>
 #include <string.h>
@@ -124,6 +124,30 @@ int noise_strerror(int err, char *buf, size_t size)
         snprintf(buf, size, "Unknown error 0x%x", err);
     buf[size - 1] = '\0';
     return 0;
+}
+
+/**
+ * \brief Logs a descriptive error message using ESP_LOGE().
+ *
+ * \param tag The logging tag (usually the module name).
+ * \param context A short description of where or why the error occurred.
+ * \param err The Noise error code to describe.
+ *
+ * This function converts a Noise error code into a human-readable string
+ * and logs it to the ESP32 error console using ESP_LOGE(), including the
+ * context and the numeric code. If the error code is unknown or the buffer
+ * is too small, a fallback message is printed.
+ */
+void noise_log_error(const char *tag, const char *context, int err)
+{
+    char err_buf[64];
+    if (!tag) tag = "NOISE_ERROR";
+    if (!context) context = "(no context)";
+    if (noise_strerror(err, err_buf, sizeof(err_buf)) == 0) {
+        ESP_LOGE(tag, "%s: %s (code=%d)", context, err_buf, err);
+    } else {
+        ESP_LOGE(tag, "%s: Unknown error (code=%d)", context, err);
+    }
 }
 
 /**@}*/

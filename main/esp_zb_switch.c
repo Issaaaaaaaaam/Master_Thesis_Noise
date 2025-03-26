@@ -68,35 +68,32 @@ void start_noise_handshake()
     // **Initialize Noise framework (if not done already)**
     err = noise_init_framework();
     if (err != NOISE_ERROR_NONE) {
-        ESP_LOGE(TAG, "Failed to initialize Noise framework: %d", err);
-        return;
+        noise_log_error(TAG, "Failed to initialize Noise framework:", err);
+        return; 
     }
 
     // **Create initiator handshake state (Global)**
     err = noise_handshakestate_new_by_name(&initiator, HANDSHAKE_PATTERN, NOISE_ROLE_INITIATOR);
     if (err != NOISE_ERROR_NONE) {
-        char err_str[64];
-        noise_strerror(err, err_str, sizeof(err_str));
-        ESP_LOGE(TAG, "Failed to initiator handshake state: %s (code=%d)", err_str, err);
-        return;
+        noise_log_error(TAG, "Failed to create initiator handshake:", err);
+        return; 
     }
 
     // **Start the handshake process**
     err = noise_handshakestate_start(initiator);
     if (err != NOISE_ERROR_NONE) {
-        ESP_LOGE(TAG, "Failed to start initiator handshake: %d", err);
-        return;
+        noise_log_error(TAG, "Failed to start initiator handshake:", err);
+        return; 
     }
 
     // **Generate first handshake message**
     noise_buffer_set_output(message_buf, message, sizeof(message));
     err = noise_handshakestate_write_message(initiator, &message_buf, NULL);
     if (err != NOISE_ERROR_NONE) {
-        char err_str[64];
-        noise_strerror(err, err_str, sizeof(err_str));
-        ESP_LOGE(TAG, "Failed to generate first handshake message: %s (code=%d)", err_str, err);
-        return;
+        noise_log_error(TAG, "Failed to generate first handshake message:", err);
+        return; 
     }
+    
 
     // **Send handshake message over Zigbee APS layer**
     esp_zb_apsde_data_req_t req;
@@ -139,7 +136,6 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
     
         const char *plaintext = "Hello World!";
         uint8_t message[MAX_NOISE_MESSAGE_SIZE]; 
-        size_t message_size;
         NoiseBuffer mbuf;
         int err;
     
@@ -150,8 +146,8 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         // **Encrypt the message**
         err = noise_cipherstate_encrypt(initiator_send_cipher, &mbuf);
         if (err != NOISE_ERROR_NONE) {
-            ESP_LOGE(TAG, "Encryption failed: %d", err);
-            return;
+            noise_log_error(TAG, "Encryption failed:", err);
+            return; 
         }
     
     
@@ -217,8 +213,9 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             ESP_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
             ESP_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
 
-            if ((err = noise_handshakestate_read_message(initiator, &message_buf, NULL)) != NOISE_ERROR_NONE) {
-                noise_perror("Failed to process handshake response", err);
+            err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
+            if (err != NOISE_ERROR_NONE) {
+                noise_log_error(TAG, "Failed to process handshake response:", err);
                 return false;
             }
 
@@ -231,11 +228,11 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 handshake_complete = true;
 
                 // **Split cipher states for encryption/decryption**
-                if ((err =  noise_handshakestate_split(initiator, &initiator_send_cipher, &initiator_recv_cipher)) != NOISE_ERROR_NONE) {
-                    noise_perror("Failed to split cipher states:", err);
+                err =  noise_handshakestate_split(initiator, &initiator_send_cipher, &initiator_recv_cipher); 
+                if (err != NOISE_ERROR_NONE) {
+                    noise_log_error(TAG, "Failed to split cipher states:", err);
                     return false;
                 }
-
                 ESP_LOGI(TAG, "Cipher states created. Secure communication ready.");
                 return true;
             }
@@ -244,8 +241,9 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             ESP_LOGI(TAG, "Sending next handshake message...");
 
             noise_buffer_set_output(message_buf, data_ind.asdu, sizeof(data_ind.asdu));
-            if ((err =  noise_handshakestate_write_message(initiator, &message_buf, NULL)) != NOISE_ERROR_NONE) {
-                noise_perror("Failed to generate handshake message:", err);
+            err =  noise_handshakestate_write_message(initiator, &message_buf, NULL); 
+            if (err != NOISE_ERROR_NONE){
+                noise_log_error(TAG, "Decryption failed:", err);
                 return false;
             }
             
@@ -283,8 +281,9 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
 
             // Decrypt message
-            if ((err =  noise_cipherstate_decrypt(initiator_recv_cipher, &message_buf)) != NOISE_ERROR_NONE) {
-                noise_perror("Decryption failed:", err);
+            err =  noise_cipherstate_decrypt(initiator_recv_cipher, &message_buf); 
+            if (err != NOISE_ERROR_NONE){
+                noise_log_error(TAG, "Decryption failed:", err);
                 return false;
             }
 
