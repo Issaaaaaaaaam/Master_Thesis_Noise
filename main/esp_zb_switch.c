@@ -312,9 +312,9 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 
                 ESP_LOGW(TAG, "Handshake took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
                 #ifdef BENCHMARKLOOP 
+                i--;
                     if (i>0) { 
                         reset_noise_state(); 
-                        i--;
                         ESP_LOGW("LOOP COUNTER", "next handshake is %d", i);
                         start_noise_handshake(); 
                         
