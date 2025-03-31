@@ -26,7 +26,7 @@ static uint32_t benchmark_start_cycles = 0;
 static uint32_t benchmark_end_cycles = 0;
 static uint64_t benchmark_start_time_us = 0;
 static uint64_t benchmark_end_time_us = 0;
-
+#define BENCHMARKLOOP
 #define CONFIG_ENABLE_NOISE_BENCHMARK
 #ifdef CONFIG_ENABLE_NOISE_BENCHMARK
 
@@ -55,6 +55,25 @@ void bench_end(const char *label) {
 void bench_start(const char *label) {}
 void bench_end(const char *label) {}
 
+#endif
+
+#ifdef BENCHMARKLOOP
+static uint8_t i = 10; 
+void reset_noise_state() {
+    if (initiator != NULL) {
+        noise_handshakestate_free(initiator);
+        initiator = NULL;
+    }
+    if (initiator_send_cipher != NULL) {
+        noise_cipherstate_free(initiator_send_cipher);
+        initiator_send_cipher = NULL;
+    }
+    if (initiator_recv_cipher != NULL) {
+        noise_cipherstate_free(initiator_recv_cipher);
+        initiator_recv_cipher = NULL;
+    }
+    handshake_complete = false;
+}
 #endif
 
 
@@ -196,6 +215,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
             noise_log_error(TAG, "Encryption failed:", err);
             return; 
         }
+
     
     
         ESP_LOGI(TAG, "Encrypted Message (Hex):");
@@ -291,6 +311,15 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 uint64_t elapsed_us = benchmark_end_time_us - benchmark_start_time_us;
 
                 ESP_LOGW(TAG, "Handshake took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
+                #ifdef BENCHMARKLOOP 
+                    if (i>0) { 
+                        reset_noise_state(); 
+                        i--;
+                        ESP_LOGW("LOOP COUNTER", "next handshake is %d", i);
+                        start_noise_handshake(); 
+                        
+                    }
+                #endif
 
                 return true;
             }
