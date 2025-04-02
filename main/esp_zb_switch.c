@@ -10,7 +10,7 @@
 #include "aps/esp_zigbee_aps.h"
 #include "esp_timer.h"
 #include <inttypes.h>
-#define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
+#define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 1024
 
 #define TAG "ESP32_NOISE_TEST"
@@ -310,7 +310,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 uint32_t elapsed_cycles = benchmark_end_cycles - benchmark_start_cycles;
                 uint64_t elapsed_us = benchmark_end_time_us - benchmark_start_time_us;
 
-                ESP_LOGW(TAG, "Handshake took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
+                ESP_LOGW("BENCH", "[Handshake] Took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
                 #ifdef BENCHMARKLOOP 
                 i--;
                     if (i>0) { 

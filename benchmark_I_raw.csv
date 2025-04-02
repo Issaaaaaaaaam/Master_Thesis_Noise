@@ -1,0 +1,81 @@
+label,time_us,cycles
+Framework Init,307,49042
+Handshake creation,321,51322
+Handshake start,425,68002
+Handshake first message write,3,402
+APS zigbee sending first message,293,46807
+Read message,30010,4801363
+Handshake split,695,111178
+Handshake,798112,28361969
+Framework Init,11,1866
+Handshake creation,288,46110
+Handshake start,158,25310
+Handshake first message write,2,402
+APS zigbee sending first message,294,46842
+Read message,30010,4801442
+Handshake split,695,111330
+Handshake,794909,26803398
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,159,25310
+Handshake first message write,2,402
+APS zigbee sending first message,294,46943
+Read message,30011,4801563
+Handshake split,696,111370
+Handshake,797385,26883781
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,158,25310
+Handshake first message write,3,402
+APS zigbee sending first message,294,46943
+Read message,30010,4801410
+Handshake split,696,111370
+Handshake,797581,26930635
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,158,25310
+Handshake first message write,2,402
+APS zigbee sending first message,294,46959
+Read message,30010,4801599
+Handshake split,696,111370
+Handshake,797586,26852857
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,158,25310
+Handshake first message write,2,402
+APS zigbee sending first message,295,46959
+Read message,30010,4801411
+Handshake split,696,111370
+Handshake,797114,26789310
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,158,25310
+Handshake first message write,3,402
+APS zigbee sending first message,294,46959
+Read message,30180,4828646
+Handshake split,698,111706
+Handshake,797589,26848944
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,122,19590
+Handshake first message write,2,402
+APS zigbee sending first message,294,46959
+Read message,30011,4801535
+Handshake split,696,111370
+Handshake,797325,26850441
+Framework Init,12,1866
+Handshake creation,288,45966
+Handshake start,158,25310
+Handshake first message write,3,402
+APS zigbee sending first message,294,46959
+Read message,30010,4801602
+Handshake split,696,111370
+Handshake,798127,26891290
+Framework Init,12,1866
+Handshake creation,287,45966
+Handshake start,158,25310
+Handshake first message write,2,402
+APS zigbee sending first message,294,46959
+Read message,30011,4801599
+Handshake split,696,111370
+Handshake,778310,27469320
