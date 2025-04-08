@@ -113,6 +113,7 @@ static switch_func_pair_t button_func_pair[] = {
 
 void start_noise_handshake()
 {
+    ESP_LOGI(TAG, "SETUP: Initiator_%s", HANDSHAKE_PATTERN);
     ESP_LOGI(TAG, "Starting Noise handshake as Initiator...");
     benchmark_start_cycles = esp_cpu_get_cycle_count();
     benchmark_start_time_us = esp_timer_get_time();
@@ -147,10 +148,10 @@ void start_noise_handshake()
     }
 
     // **Generate first handshake message**
-    bench_start("Handshake first message write");
     noise_buffer_set_output(message_buf, message, sizeof(message));
-    bench_end("Handshake first message write");
+    bench_start("message write");
     err = noise_handshakestate_write_message(initiator, &message_buf, NULL);
+    bench_end("message write");
     if (err != NOISE_ERROR_NONE) {
         noise_log_error(TAG, "Failed to generate first handshake message:", err);
         return; 
@@ -171,11 +172,11 @@ void start_noise_handshake()
     req.radius = 10; // You can increase if multi-hop
     req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
     req.use_alias = false;
-    bench_start("APS zigbee sending first message");
+    bench_start("Zigbee Packet TX");
     esp_zb_lock_acquire(portMAX_DELAY);
     esp_zb_aps_data_request(&req);
     esp_zb_lock_release();
-    bench_end("APS zigbee sending first message");
+    bench_end("Zigbee Packet TX");
 
     ESP_LOGI(TAG, "Sent first handshake message.");
 }
@@ -238,11 +239,11 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         req.radius = 10;
         req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
         req.use_alias = false;
-        bench_start("zigbee APS sending hello world");
+        bench_start("Hello Packet TX");
         esp_zb_lock_acquire(portMAX_DELAY);
         esp_zb_aps_data_request(&req);
         esp_zb_lock_release();
-        bench_end("zigbee APS sending hello world");
+        bench_end("Hello Packet TX");
     
         ESP_LOGI(TAG, "Encrypted message sent.");
         }
@@ -328,9 +329,9 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             ESP_LOGI(TAG, "Sending next handshake message...");
 
             noise_buffer_set_output(message_buf, data_ind.asdu, sizeof(data_ind.asdu));
-            bench_start("Write next message");
+            bench_start("Write message");
             err =  noise_handshakestate_write_message(initiator, &message_buf, NULL); 
-            bench_end("Write next message");
+            bench_end("Write message");
             if (err != NOISE_ERROR_NONE){
                 noise_log_error(TAG, "Decryption failed:", err);
                 return false;
@@ -351,11 +352,11 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             req.radius = 10; // You can increase if multi-hop
             req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
             req.use_alias = false;
-            bench_start("Sending aps message");
+            bench_start("Zigbee Packet TX");
             esp_zb_lock_acquire(portMAX_DELAY);
             esp_zb_aps_data_request(&req);
             esp_zb_lock_release();
-            bench_end("Sending aps message");
+            bench_end("Zigbee Packet TX");
             ESP_LOGI(TAG, "Sent handshake message.");
         }
 
