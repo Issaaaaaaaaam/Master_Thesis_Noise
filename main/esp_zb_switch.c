@@ -12,6 +12,7 @@
 #include <inttypes.h>
 #define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 1024
+#define LOOP_AMOUNT_BENCHMARK 100
 
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
@@ -58,7 +59,7 @@ void bench_end(const char *label) {}
 #endif
 
 #ifdef BENCHMARKLOOP
-static uint8_t i = 10; 
+static uint8_t i = LOOP_AMOUNT_BENCHMARK; 
 void reset_noise_state() {
     if (initiator != NULL) {
         noise_handshakestate_free(initiator);
