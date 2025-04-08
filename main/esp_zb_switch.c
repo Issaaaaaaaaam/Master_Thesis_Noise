@@ -10,7 +10,7 @@
 #include "aps/esp_zigbee_aps.h"
 #include "esp_timer.h"
 #include <inttypes.h>
-#define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
+#define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 1024
 #define LOOP_AMOUNT_BENCHMARK 100
 
