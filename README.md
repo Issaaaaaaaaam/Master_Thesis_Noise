@@ -13,3 +13,4 @@
   - Added clean kybe rimplementation from https://github.com/PQClean/PQClean 
   - Wrote code to simulate a key exchange relying on ZIGBEES and benchmark it 
   - script to calculate interesting metrics using the console output. 
+  - Added logic in our benchmark for other handshake patterns. All of the basic noise patterns should work now. 
