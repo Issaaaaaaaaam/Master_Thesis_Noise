@@ -10,9 +10,11 @@
 #include "aps/esp_zigbee_aps.h"
 #include "esp_timer.h"
 #include <inttypes.h>
-#define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
-#define MAX_NOISE_MESSAGE_SIZE 1024
-#define LOOP_AMOUNT_BENCHMARK 100
+#include "keys.h"
+#define HANDSHAKE_PATTERN "Noise_KEMNK_Kyber512_ChaChaPoly_SHA256"
+#define MAX_NOISE_MESSAGE_SIZE 2048
+#define LOOP_AMOUNT_BENCHMARK 1
+#define USE_KYBER_KEYS 1 
 
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
@@ -30,6 +32,7 @@ static uint64_t benchmark_end_time_us = 0;
 #define BENCHMARKLOOP
 #define CONFIG_ENABLE_NOISE_BENCHMARK
 #ifdef CONFIG_ENABLE_NOISE_BENCHMARK
+uint8_t enc_message[MAX_NOISE_MESSAGE_SIZE]; 
 
 typedef struct {
     uint64_t start_us;
@@ -105,7 +108,6 @@ typedef struct light_bulb_device_params_s {
 
 // We store the remote short address here once discovered.
 static uint16_t g_remote_short_addr = 0xFFFF;
-
 static switch_func_pair_t button_func_pair[] = {
     { GPIO_INPUT_IO_TOGGLE_SWITCH, SWITCH_ONOFF_TOGGLE_CONTROL }
 };
@@ -139,6 +141,40 @@ void start_noise_handshake()
         return; 
     }
 
+    if (noise_handshakestate_needs_local_keypair(initiator)) {
+        NoiseDHState *local_dh = noise_handshakestate_get_local_keypair_dh(initiator);
+    
+        #if USE_KYBER_KEYS
+        err = noise_dhstate_set_keypair(local_dh,
+                                            local_private_pq, sizeof(local_private_pq),
+                                            local_public_pq, sizeof(local_public_pq));
+        #else
+        err = noise_dhstate_set_keypair(local_dh,
+                                        local_private, sizeof(local_private),
+                                        local_public, sizeof(local_public));
+        #endif
+    
+        if (err != NOISE_ERROR_NONE) {
+            noise_log_error(TAG, "Failed to set local static keypair", err);
+            return;
+        }
+    }
+
+    if (noise_handshakestate_needs_remote_public_key(initiator)) {
+        NoiseDHState *remote_dh = noise_handshakestate_get_remote_public_key_dh(initiator);
+    
+        #if USE_KYBER_KEYS
+        err = noise_dhstate_set_public_key(remote_dh, remote_public_pq, sizeof(remote_public_pq));
+        #else
+        err = noise_dhstate_set_public_key(remote_dh, remote_public, sizeof(remote_public));
+        #endif
+    
+        if (err != NOISE_ERROR_NONE) {
+            noise_log_error(TAG, "Failed to set remote public key", err);
+            return;
+        }
+    }
+
     // **Start the handshake process**
     bench_start("Handshake start");
     err = noise_handshakestate_start(initiator);
@@ -147,6 +183,12 @@ void start_noise_handshake()
         noise_log_error(TAG, "Failed to start initiator handshake:", err);
         return; 
     }
+
+    ESP_LOGI(TAG, "local_private_pq size: %d", sizeof(local_private_pq));
+    ESP_LOGI(TAG, "local_public_pq size: %d", sizeof(local_public_pq));
+    ESP_LOGI(TAG, "remote_public_pq size: %d", sizeof(remote_public_pq));
+    ESP_LOG_BUFFER_HEX("REMOTE_PUB_PQ", remote_public_pq, 32);
+
 
     // **Generate first handshake message**
     noise_buffer_set_output(message_buf, message, sizeof(message));
@@ -157,7 +199,8 @@ void start_noise_handshake()
         noise_log_error(TAG, "Failed to generate first handshake message:", err);
         return; 
     }
-    
+    ESP_LOGI(TAG, "Handshake message size: %zu", message_buf.size);
+
 
     // **Send handshake message over Zigbee APS layer**
     esp_zb_apsde_data_req_t req;
@@ -171,13 +214,15 @@ void start_noise_handshake()
     req.asdu_length = message_buf.size;
     req.asdu = message_buf.data;
     req.radius = 10; // You can increase if multi-hop
-    req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+    req.tx_options = ( ESP_ZB_APSDE_TX_OPT_ACK_TX |ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
     req.use_alias = false;
+    ESP_LOGI(TAG, "Sending APS data of length: %" PRIu32 , req.asdu_length);
     bench_start("Zigbee Packet TX");
     esp_zb_lock_acquire(portMAX_DELAY);
     esp_zb_aps_data_request(&req);
     esp_zb_lock_release();
     bench_end("Zigbee Packet TX");
+    vTaskDelay(pdMS_TO_TICKS(1000));
 
     ESP_LOGI(TAG, "Sent first handshake message.");
 }
@@ -201,13 +246,12 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         ESP_LOGI(TAG, "Sending encrypted 'Hello World'...");
     
         const char *plaintext = "Hello World!";
-        uint8_t message[MAX_NOISE_MESSAGE_SIZE]; 
         NoiseBuffer mbuf;
         int err;
     
         // **Prepare buffer for encryption**
-        noise_buffer_set_inout(mbuf, message, strlen(plaintext), sizeof(message) );
-        memcpy(message, plaintext, strlen(plaintext));
+        noise_buffer_set_inout(mbuf, enc_message, strlen(plaintext), sizeof(enc_message) );
+        memcpy(enc_message, plaintext, strlen(plaintext));
     
         // **Encrypt the message**
         bench_start("Encrypting hello world");
@@ -222,7 +266,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
     
         ESP_LOGI(TAG, "Encrypted Message (Hex):");
         for (size_t i = 0; i < mbuf.size; i++) {
-            printf("%02X ", message[i]); // Print encrypted payload
+            printf("%02X ", enc_message[i]); // Print encrypted payload
         }
         printf("\n");
     
@@ -236,7 +280,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         req.cluster_id = 0xFFC0;
         req.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
         req.asdu_length = mbuf.size; // Include the length header
-        req.asdu = message;
+        req.asdu = enc_message;
         req.radius = 10;
         req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
         req.use_alias = false;
@@ -424,7 +468,6 @@ static void user_find_cb(esp_zb_zdp_status_t zdo_status, uint16_t addr, uint8_t 
         light->endpoint = endpoint;
         light->short_addr = addr;
         esp_zb_ieee_address_by_short(light->short_addr, light->ieee_addr);
-
         // Fill out the bind request
         esp_zb_get_long_address(bind_req.src_address);
         bind_req.src_endp = HA_ONOFF_SWITCH_ENDPOINT;
@@ -570,7 +613,6 @@ static void esp_zb_task(void *pvParameters)
     esp_zb_aps_data_confirm_handler_register(zb_apsde_data_confirm_handler);
     // Register APS receiving callback
     esp_zb_aps_data_indication_handler_register(zb_apsde_data_indication_handler_switch);
-
     // Choose channel(s) and start
     esp_zb_set_primary_network_channel_set(ESP_ZB_PRIMARY_CHANNEL_MASK);
     ESP_ERROR_CHECK(esp_zb_start(false));
@@ -585,16 +627,28 @@ static void esp_zb_task(void *pvParameters)
 void app_main(void)
 {
     // Basic initialization
+    esp_err_t ret = esp_zb_io_buffer_size_set(160);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
+    } else {
+        ESP_LOGI(TAG, "Successfully set Zigbee IO buffer size");
+    }
+    ret = esp_zb_scheduler_queue_size_set(160);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
+    } else {
+        ESP_LOGI(TAG, "Successfully set Zigbee IO buffer size");
+    }
+    // Basic initialization
     esp_zb_platform_config_t config = {
         .radio_config = ESP_ZB_DEFAULT_RADIO_CONFIG(),
         .host_config  = ESP_ZB_DEFAULT_HOST_CONFIG(),
     };
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_zb_platform_config(&config));
-
     // Initialize button(s) and pass our button handler
     switch_driver_init(button_func_pair, PAIR_SIZE(button_func_pair), esp_zb_buttons_handler);
 
     // Start Zigbee in a FreeRTOS task
-    xTaskCreate(esp_zb_task, "Zigbee_main", 16384, NULL, 5, NULL);
+    xTaskCreate(esp_zb_task, "Zigbee_main", 65536, NULL, 5, NULL);
 }
