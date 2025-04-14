@@ -11,73 +11,48 @@
 #include "esp_timer.h"
 #include <inttypes.h>
 #include "keys.h"
+#include "noise_log.h"
+///////////////////////////////// Noise parameters /////////////////////////////////////
 #define HANDSHAKE_PATTERN "Noise_KEMNK_Kyber512_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 2048
-#define LOOP_AMOUNT_BENCHMARK 1
 #define USE_KYBER_KEYS 1 
-
+////////////////////////////////////Benchmark parameters///////////////////////////////////////////////////
+#define LOOP_AMOUNT_BENCHMARK 0
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
 static NoiseCipherState *initiator_send_cipher = NULL;
 static NoiseCipherState *initiator_recv_cipher = NULL;
+static uint64_t benchmark_start_time_us = 0;
+static uint64_t benchmark_end_time_us = 0;
+static uint32_t benchmark_start_cycles = 0;
+static uint32_t benchmark_end_cycles = 0;
+static uint8_t enc_message[MAX_NOISE_MESSAGE_SIZE]; 
 static bool handshake_complete = false;
+
 // This ensures we are building as a Coordinator (ZB_COORDINATOR_ROLE)
 #if defined ZB_ED_ROLE
 #error Define ZB_COORDINATOR_ROLE in idf.py menuconfig to compile light switch source code.
 #endif
-static uint32_t benchmark_start_cycles = 0;
-static uint32_t benchmark_end_cycles = 0;
-static uint64_t benchmark_start_time_us = 0;
-static uint64_t benchmark_end_time_us = 0;
-#define BENCHMARKLOOP
-#define CONFIG_ENABLE_NOISE_BENCHMARK
-#ifdef CONFIG_ENABLE_NOISE_BENCHMARK
-uint8_t enc_message[MAX_NOISE_MESSAGE_SIZE]; 
 
-typedef struct {
-    uint64_t start_us;
-    uint32_t start_cycles;
-} benchmark_entry_t;
 
-static benchmark_entry_t current;
-
-void bench_start(const char *label) {
-    current.start_us = esp_timer_get_time();
-    current.start_cycles = esp_cpu_get_cycle_count();
-    ESP_LOGD("BENCH", "[%s] Benchmark started", label);
-}
-
-void bench_end(const char *label) {
-    uint64_t end_us = esp_timer_get_time();
-    uint32_t end_cycles = esp_cpu_get_cycle_count();
-    ESP_LOGW("BENCH", "[%s] Took %" PRIu64 " us and %" PRIu32 " cycles",
-                label, end_us - current.start_us, end_cycles - current.start_cycles);
-}
-
-#else
-
-void bench_start(const char *label) {}
-void bench_end(const char *label) {}
-
-#endif
-
-#ifdef BENCHMARKLOOP
-static uint8_t i = LOOP_AMOUNT_BENCHMARK; 
-void reset_noise_state() {
-    if (initiator != NULL) {
-        noise_handshakestate_free(initiator);
-        initiator = NULL;
+#if ENABLE_NOISE_BENCHMARK
+    static uint8_t i = LOOP_AMOUNT_BENCHMARK; 
+    void reset_noise_state() {
+        if (initiator != NULL) {
+            noise_handshakestate_free(initiator);
+            initiator = NULL;
+        }
+        if (initiator_send_cipher != NULL) {
+            noise_cipherstate_free(initiator_send_cipher);
+            initiator_send_cipher = NULL;
+        }
+        if (initiator_recv_cipher != NULL) {
+            noise_cipherstate_free(initiator_recv_cipher);
+            initiator_recv_cipher = NULL;
+        }
+        handshake_complete = false;
     }
-    if (initiator_send_cipher != NULL) {
-        noise_cipherstate_free(initiator_send_cipher);
-        initiator_send_cipher = NULL;
-    }
-    if (initiator_recv_cipher != NULL) {
-        noise_cipherstate_free(initiator_recv_cipher);
-        initiator_recv_cipher = NULL;
-    }
-    handshake_complete = false;
-}
 #endif
 
 
@@ -96,7 +71,7 @@ const char* noise_action_to_string(int action)
 
 static void log_handshake_state(NoiseHandshakeState *hs, const char *role)
 {
-    ESP_LOGI(TAG, "%s handshake state: %s", role, noise_action_to_string(noise_handshakestate_get_action(hs)));
+    NOISE_LOGI(TAG, "%s handshake state: %s", role, noise_action_to_string(noise_handshakestate_get_action(hs)));
 }
 
 
@@ -116,8 +91,8 @@ static switch_func_pair_t button_func_pair[] = {
 
 void start_noise_handshake()
 {
-    ESP_LOGI(TAG, "SETUP: Initiator_%s", HANDSHAKE_PATTERN);
-    ESP_LOGI(TAG, "Starting Noise handshake as Initiator...");
+    NOISE_LOGI(TAG, "SETUP: Initiator_%s", HANDSHAKE_PATTERN);
+    NOISE_LOGI(TAG, "Starting Noise handshake as Initiator...");
     benchmark_start_cycles = esp_cpu_get_cycle_count();
     benchmark_start_time_us = esp_timer_get_time();
     int err;
@@ -184,10 +159,10 @@ void start_noise_handshake()
         return; 
     }
 
-    ESP_LOGI(TAG, "local_private_pq size: %d", sizeof(local_private_pq));
-    ESP_LOGI(TAG, "local_public_pq size: %d", sizeof(local_public_pq));
-    ESP_LOGI(TAG, "remote_public_pq size: %d", sizeof(remote_public_pq));
-    ESP_LOG_BUFFER_HEX("REMOTE_PUB_PQ", remote_public_pq, 32);
+    NOISE_LOGI(TAG, "local_private_pq size: %d", sizeof(local_private_pq));
+    NOISE_LOGI(TAG, "local_public_pq size: %d", sizeof(local_public_pq));
+    NOISE_LOGI(TAG, "remote_public_pq size: %d", sizeof(remote_public_pq));
+    NOISE_LOG_BUFFER_HEX("REMOTE_PUB_PQ", remote_public_pq, 32);
 
 
     // **Generate first handshake message**
@@ -199,7 +174,7 @@ void start_noise_handshake()
         noise_log_error(TAG, "Failed to generate first handshake message:", err);
         return; 
     }
-    ESP_LOGI(TAG, "Handshake message size: %zu", message_buf.size);
+    NOISE_LOGI(TAG, "Handshake message size: %zu", message_buf.size);
 
 
     // **Send handshake message over Zigbee APS layer**
@@ -216,7 +191,7 @@ void start_noise_handshake()
     req.radius = 10; // You can increase if multi-hop
     req.tx_options = ( ESP_ZB_APSDE_TX_OPT_ACK_TX |ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
     req.use_alias = false;
-    ESP_LOGI(TAG, "Sending APS data of length: %" PRIu32 , req.asdu_length);
+    NOISE_LOGI(TAG, "Sending APS data of length: %" PRIu32 , req.asdu_length);
     bench_start("Zigbee Packet TX");
     esp_zb_lock_acquire(portMAX_DELAY);
     esp_zb_aps_data_request(&req);
@@ -224,7 +199,7 @@ void start_noise_handshake()
     bench_end("Zigbee Packet TX");
     vTaskDelay(pdMS_TO_TICKS(1000));
 
-    ESP_LOGI(TAG, "Sent first handshake message.");
+    NOISE_LOGI(TAG, "Sent first handshake message.");
 }
 
 // ────────────────────────────────────────────────────────────────────────────────
@@ -235,15 +210,15 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
     if (button_func_pair->func == SWITCH_ONOFF_TOGGLE_CONTROL) {
         if (g_remote_short_addr == 0xFFFF) {
             // We haven't found or stored the remote device's address yet
-            ESP_LOGW(TAG, "Remote device short address not set. Press button again after device is discovered.");
+            NOISE_LOGW(TAG, "Remote device short address not set. Press button again after device is discovered.");
             return;
         }
         if (!handshake_complete) {
-            ESP_LOGW(TAG, "Handshake not complete. Cannot send encrypted message.");
+            NOISE_LOGW(TAG, "Handshake not complete. Cannot send encrypted message.");
             return;
         }
     
-        ESP_LOGI(TAG, "Sending encrypted 'Hello World'...");
+        NOISE_LOGI(TAG, "Sending encrypted 'Hello World'...");
     
         const char *plaintext = "Hello World!";
         NoiseBuffer mbuf;
@@ -264,7 +239,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
 
     
     
-        ESP_LOGI(TAG, "Encrypted Message (Hex):");
+        NOISE_LOGI(TAG, "Encrypted Message (Hex):");
         for (size_t i = 0; i < mbuf.size; i++) {
             printf("%02X ", enc_message[i]); // Print encrypted payload
         }
@@ -290,7 +265,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         esp_zb_lock_release();
         bench_end("Hello Packet TX");
     
-        ESP_LOGI(TAG, "Encrypted message sent.");
+        NOISE_LOGI(TAG, "Encrypted message sent.");
         }
     return;
 }
@@ -303,29 +278,29 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
 
 bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 {
-    ESP_LOGI(TAG, "Received APS Data Indication");
+    NOISE_LOGI(TAG, "Received APS Data Indication");
     if (data_ind.dst_endpoint == HA_ONOFF_SWITCH_ENDPOINT &&
         data_ind.profile_id == ESP_ZB_AF_HA_PROFILE_ID &&
         data_ind.cluster_id == 0xFFC0)
     {
         if (data_ind.status || data_ind.asdu_length < 1) {
-            ESP_LOGE(TAG, "Invalid APS message");
+            NOISE_LOGE(TAG, "Invalid APS message");
             return false;
         }
 
         int handshake_state = noise_handshakestate_get_action(initiator);
-        ESP_LOGI(TAG, "Current handshake state: %s", noise_action_to_string(handshake_state));
+        NOISE_LOGI(TAG, "Current handshake state: %s", noise_action_to_string(handshake_state));
 
         NoiseBuffer message_buf;
         int err;
 
         // **If handshake is still in progress**
         if (handshake_state != NOISE_ACTION_COMPLETE) {
-            ESP_LOGI(TAG, "Processing handshake response...");
+            NOISE_LOGI(TAG, "Processing handshake response...");
             log_handshake_state(initiator, "Initiator");
             noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
-            ESP_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
-            ESP_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
+            NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
+            NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
             bench_start("Read message");
             err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
             bench_end("Read message");
@@ -334,12 +309,12 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 return false;
             }
 
-            ESP_LOGI(TAG, "Processed handshake response successfully.");
+            NOISE_LOGI(TAG, "Processed handshake response successfully.");
 
             // **Check if handshake is complete after this step**
             handshake_state = noise_handshakestate_get_action(initiator);
             if (handshake_state == NOISE_ACTION_SPLIT) {
-                ESP_LOGI(TAG, "Handshake complete! Switching to encrypted mode.");
+                NOISE_LOGI(TAG, "Handshake complete! Switching to encrypted mode.");
                 handshake_complete = true;
 
                 // **Split cipher states for encryption/decryption**
@@ -352,16 +327,16 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 }
                 benchmark_end_cycles = esp_cpu_get_cycle_count();
                 benchmark_end_time_us = esp_timer_get_time();
-                ESP_LOGI(TAG, "Cipher states created. Secure communication ready.");
+                NOISE_LOGI(TAG, "Cipher states created. Secure communication ready.");
                 uint32_t elapsed_cycles = benchmark_end_cycles - benchmark_start_cycles;
                 uint64_t elapsed_us = benchmark_end_time_us - benchmark_start_time_us;
 
-                ESP_LOGW("BENCH", "[Handshake] Took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
-                #ifdef BENCHMARKLOOP 
+                NOISE_LOGW("BENCH", "[Handshake] Took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
+                #if ENABLE_NOISE_BENCHMARK 
                 i--;
                     if (i>0) { 
                         reset_noise_state(); 
-                        ESP_LOGW("LOOP COUNTER", "next handshake is %d", i);
+                        NOISE_LOGW("LOOP COUNTER", "next handshake is %d", i);
                         start_noise_handshake(); 
                         
                     }
@@ -371,7 +346,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             }
 
             // **If handshake is not yet complete, send the next handshake message**
-            ESP_LOGI(TAG, "Sending next handshake message...");
+            NOISE_LOGI(TAG, "Sending next handshake message...");
 
             noise_buffer_set_output(message_buf, data_ind.asdu, sizeof(data_ind.asdu));
             bench_start("Write message");
@@ -402,15 +377,15 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             esp_zb_aps_data_request(&req);
             esp_zb_lock_release();
             bench_end("Zigbee Packet TX");
-            ESP_LOGI(TAG, "Sent handshake message.");
+            NOISE_LOGI(TAG, "Sent handshake message.");
         }
 
         // **If handshake is complete, process encrypted messages**
         else {
-            ESP_LOGI(TAG, "Processing Encrypted Noise message...");
+            NOISE_LOGI(TAG, "Processing Encrypted Noise message...");
 
             if (!initiator_recv_cipher) {
-                ESP_LOGE(TAG, "Cipher state is NULL. Handshake may not be complete.");
+                NOISE_LOGE(TAG, "Cipher state is NULL. Handshake may not be complete.");
                 return false;
             }
 
@@ -426,7 +401,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 return false;
             }
 
-            ESP_LOGI(TAG, "Decrypted Message: %.*s", message_buf.size, (char *)message_buf.data);
+            NOISE_LOGI(TAG, "Decrypted Message: %.*s", message_buf.size, (char *)message_buf.data);
         }
     }
     return false;
@@ -434,14 +409,15 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 // ────────────────────────────────────────────────────────────────────────────────
 // 2) Binding & Discovery Callbacks
 // ────────────────────────────────────────────────────────────────────────────────
+static bool device_bound = false;
 static void bind_cb(esp_zb_zdp_status_t zdo_status, void *user_ctx)
 {
     if (zdo_status == ESP_ZB_ZDP_STATUS_SUCCESS) {
-        ESP_LOGI(TAG, "Bound successfully!");
+        NOISE_LOGI(TAG, "Bound successfully!");
         
         if (user_ctx) {
             light_bulb_device_params_t *light = (light_bulb_device_params_t *)user_ctx;
-            ESP_LOGI(TAG, "Bound device at short_addr=0x%04x, endpoint=%d", light->short_addr, light->endpoint);
+            NOISE_LOGI(TAG, "Bound device at short_addr=0x%04x, endpoint=%d", light->short_addr, light->endpoint);
             g_remote_short_addr = light->short_addr; // Save the bound device address
             
             // **Start the Noise Handshake immediately**
@@ -454,8 +430,9 @@ static void bind_cb(esp_zb_zdp_status_t zdo_status, void *user_ctx)
 static void user_find_cb(esp_zb_zdp_status_t zdo_status, uint16_t addr, uint8_t endpoint, void *user_ctx)
 {
     if (zdo_status == ESP_ZB_ZDP_STATUS_SUCCESS) {
-        ESP_LOGI(TAG, "Found light with short_addr=0x%04hx, endpoint=%d", addr, endpoint);
-
+        NOISE_LOGI(TAG, "Found light with short_addr=0x%04hx, endpoint=%d", addr, endpoint);
+        device_bound = true;
+        esp_zb_bdb_close_network(); // Stop joins
         // Save the remote short address in our global var so we can use it in the button handler
         g_remote_short_addr = addr;
 
@@ -477,7 +454,7 @@ static void user_find_cb(esp_zb_zdp_status_t zdo_status, uint16_t addr, uint8_t 
         bind_req.dst_endp = endpoint;
         bind_req.req_dst_addr = esp_zb_get_short_address();
 
-        ESP_LOGI(TAG, "Try to bind On/Off cluster");
+        NOISE_LOGI(TAG, "Try to bind On/Off cluster");
         esp_zb_zdo_device_bind_req(&bind_req, bind_cb, (void *)light);
     }
 }
@@ -493,15 +470,15 @@ static void bdb_start_top_level_commissioning_cb(uint8_t mode_mask)
 void zb_apsde_data_confirm_handler(esp_zb_apsde_data_confirm_t confirm)
 {
     if (confirm.status == 0x00) {
-        ESP_LOGI("APSDE CONFIRM",
+        NOISE_LOGI("APSDE CONFIRM",
                 "Sent successfully from endpoint %d (short=0x%04hx) to endpoint %d (short=0x%04hx)",
                 confirm.src_endpoint, esp_zb_get_short_address(),
                 confirm.dst_endpoint, confirm.dst_addr.addr_short);
 
         // Optionally print the data we sent again
-        ESP_LOG_BUFFER_HEX_LEVEL("APSDE CONFIRM", confirm.asdu, confirm.asdu_length, ESP_LOG_INFO);
+        NOISE_LOG_BUFFER_HEX_LEVEL("APSDE CONFIRM", confirm.asdu, confirm.asdu_length, ESP_LOG_INFO);
     } else {
-        ESP_LOGE("APSDE CONFIRM", "Failed to send APSDE-DATA request, error code: %d", confirm.status);
+        NOISE_LOGE("APSDE CONFIRM", "Failed to send APSDE-DATA request, error code: %d", confirm.status);
     }
 }
 
@@ -517,23 +494,23 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
 
     switch (sig_type) {
     case ESP_ZB_ZDO_SIGNAL_SKIP_STARTUP:
-        ESP_LOGI(TAG, "Zigbee stack initialized");
+        NOISE_LOGI(TAG, "Zigbee stack initialized");
         esp_zb_bdb_start_top_level_commissioning(ESP_ZB_BDB_MODE_INITIALIZATION);
         break;
 
     case ESP_ZB_BDB_SIGNAL_DEVICE_FIRST_START:
     case ESP_ZB_BDB_SIGNAL_DEVICE_REBOOT:
         if (err_status == ESP_OK) {
-            ESP_LOGI(TAG, "Device started up in %s factory-reset mode", esp_zb_bdb_is_factory_new() ? "" : "non");
+            NOISE_LOGI(TAG, "Device started up in %s factory-reset mode", esp_zb_bdb_is_factory_new() ? "" : "non");
             if (esp_zb_bdb_is_factory_new()) {
-                ESP_LOGI(TAG, "Start network formation");
+                NOISE_LOGI(TAG, "Start network formation");
                 esp_zb_bdb_start_top_level_commissioning(ESP_ZB_BDB_MODE_NETWORK_FORMATION);
             } else {
                 esp_zb_bdb_start_top_level_commissioning(ESP_ZB_BDB_MODE_NETWORK_FORMATION);
-                ESP_LOGI(TAG, "Device rebooted, already part of a network");
+                NOISE_LOGI(TAG, "Device rebooted, already part of a network");
             }
         } else {
-            ESP_LOGE(TAG, "Failed to initialize Zigbee stack (status: %s)", esp_err_to_name(err_status));
+            NOISE_LOGE(TAG, "Failed to initialize Zigbee stack (status: %s)", esp_err_to_name(err_status));
         }
         break;
 
@@ -541,7 +518,7 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
         if (err_status == ESP_OK) {
             esp_zb_ieee_addr_t extended_pan_id;
             esp_zb_get_extended_pan_id(extended_pan_id);
-            ESP_LOGI(TAG, "Formed network successfully (Ext PAN ID: %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x, "
+            NOISE_LOGI(TAG, "Formed network successfully (Ext PAN ID: %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x, "
                         "PAN ID: 0x%04hx, Channel:%d, Short Address: 0x%04hx)",
                     extended_pan_id[7], extended_pan_id[6], extended_pan_id[5], extended_pan_id[4],
                     extended_pan_id[3], extended_pan_id[2], extended_pan_id[1], extended_pan_id[0],
@@ -550,7 +527,7 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
             // After forming, start steering so other devices can join
             esp_zb_bdb_start_top_level_commissioning(ESP_ZB_BDB_MODE_NETWORK_STEERING);
         } else {
-            ESP_LOGI(TAG, "Restart network formation (status: %s)", esp_err_to_name(err_status));
+            NOISE_LOGI(TAG, "Restart network formation (status: %s)", esp_err_to_name(err_status));
             esp_zb_scheduler_alarm((esp_zb_callback_t)bdb_start_top_level_commissioning_cb,
                                 ESP_ZB_BDB_MODE_NETWORK_FORMATION, 1000);
         }
@@ -558,13 +535,17 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
 
     case ESP_ZB_BDB_SIGNAL_STEERING:
         if (err_status == ESP_OK) {
-            ESP_LOGI(TAG, "Network steering started");
+            NOISE_LOGI(TAG, "Network steering started");
         }
         break;
 
     case ESP_ZB_ZDO_SIGNAL_DEVICE_ANNCE:
+        if (device_bound) {
+            NOISE_LOGI(TAG, "Already bound. Ignoring new device announcement.");
+            break;
+        }
         dev_annce_params = (esp_zb_zdo_signal_device_annce_params_t *)esp_zb_app_signal_get_params(p_sg_p);
-        ESP_LOGI(TAG, "New device commissioned or rejoined (short: 0x%04hx)", dev_annce_params->device_short_addr);
+        NOISE_LOGI(TAG, "New device commissioned or rejoined (short: 0x%04hx)", dev_annce_params->device_short_addr);
 
         // Attempt to find a device that supports On/Off cluster (e.g. a light)
         {
@@ -579,15 +560,15 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
         if (err_status == ESP_OK) {
             uint8_t *permit_time = (uint8_t *)esp_zb_app_signal_get_params(p_sg_p);
             if (*permit_time) {
-                ESP_LOGI(TAG, "Network(0x%04hx) is open for %d seconds", esp_zb_get_pan_id(), *permit_time);
+                NOISE_LOGI(TAG, "Network(0x%04hx) is open for %d seconds", esp_zb_get_pan_id(), *permit_time);
             } else {
-                ESP_LOGW(TAG, "Network(0x%04hx) closed, no longer permitting joins", esp_zb_get_pan_id());
+                NOISE_LOGW(TAG, "Network(0x%04hx) closed, no longer permitting joins", esp_zb_get_pan_id());
             }
         }
         break;
 
     default:
-        ESP_LOGI(TAG, "ZDO signal: %s (0x%x), status: %s",
+        NOISE_LOGI(TAG, "ZDO signal: %s (0x%x), status: %s",
                  esp_zb_zdo_signal_to_string(sig_type), sig_type, esp_err_to_name(err_status));
         break;
     }
@@ -629,15 +610,15 @@ void app_main(void)
     // Basic initialization
     esp_err_t ret = esp_zb_io_buffer_size_set(160);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
+        NOISE_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
     } else {
-        ESP_LOGI(TAG, "Successfully set Zigbee IO buffer size");
+        NOISE_LOGI(TAG, "Successfully set Zigbee IO buffer size");
     }
     ret = esp_zb_scheduler_queue_size_set(160);
     if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
+        NOISE_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
     } else {
-        ESP_LOGI(TAG, "Successfully set Zigbee IO buffer size");
+        NOISE_LOGI(TAG, "Successfully set Zigbee IO buffer size");
     }
     // Basic initialization
     esp_zb_platform_config_t config = {
