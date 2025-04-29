@@ -197,8 +197,6 @@ void start_noise_handshake()
     esp_zb_aps_data_request(&req);
     esp_zb_lock_release();
     bench_end("Zigbee Packet TX");
-    vTaskDelay(pdMS_TO_TICKS(1000));
-
     NOISE_LOGI(TAG, "Sent first handshake message.");
 }
 
