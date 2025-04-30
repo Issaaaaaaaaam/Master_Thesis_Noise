@@ -27,6 +27,8 @@
 #include "protocol/internal.h"
 #include <sodium.h>
 #include <string.h>
+#include "esp_cpu.h"
+#include <noise_log.h>
 
 typedef struct
 {
@@ -93,10 +95,12 @@ static int noise_curve25519_calculate
      const NoiseDHState *public_key_state,
      uint8_t *shared_key)
 {
+    bench_start_ed25519("ED25519_scalar_mult"); 
     int ret = crypto_scalarmult_curve25519(
         shared_key, private_key_state->private_key,
         public_key_state->public_key
     );
+    bench_end_ed25519("ED25519_scalar_mult");
     if (ret != 0) {
         // return value is always 0; return value only used
         // to ensure constant timing
