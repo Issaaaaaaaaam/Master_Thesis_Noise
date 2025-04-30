@@ -113,6 +113,7 @@ def main():
     avg_img = os.path.join(output_dir, f"benchmark_{setup_info}_averages.png")
     median_csv = os.path.join(output_dir, f"benchmark_{setup_info}_medians.csv")
     median_img = os.path.join(output_dir, f"benchmark_{setup_info}_medians.png")
+    copied_log = os.path.join(output_dir, f"log_{setup_info}.txt")
 
     write_csv(raw_csv, ['label', 'time_us', 'cycles'], benchmarks)
 
@@ -136,6 +137,14 @@ def main():
     csv_to_table_image(avg_csv, avg_img, setup_info)
     csv_to_table_image(median_csv, median_img, f"{setup_info} (Median Only)")
 
+    with open(LOG_FILE, 'r', encoding='utf-16le', errors='ignore') as original, \
+            open(copied_log, 'w', encoding='utf-8') as copy:
+            for line in original:
+                clean_line = remove_ansi_codes(line)
+                copy.write(clean_line)
+
+    
+    print(f"Copied original log file to {copied_log}")
     print(f"Parsed {len(benchmarks)} benchmark entries.")
     print(f"Saved raw data to {raw_csv}")
     print(f"Saved stats to {avg_csv}")

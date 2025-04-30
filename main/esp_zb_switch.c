@@ -13,16 +13,18 @@
 #include "keys.h"
 #include "noise_log.h"
 ///////////////////////////////// Noise parameters /////////////////////////////////////
-#define HANDSHAKE_PATTERN "Noise_XN_25519_ChaChaPoly_SHA256"
+#define HANDSHAKE_PATTERN "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 2048
-#define USE_KYBER_KEYS 0 
+#define USE_KYBER_KEYS 1 
 ////////////////////////////////////Benchmark parameters///////////////////////////////////////////////////
-#define LOOP_AMOUNT_BENCHMARK 1
+#define LOOP_AMOUNT_BENCHMARK 100
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
 static NoiseCipherState *initiator_send_cipher = NULL;
 static NoiseCipherState *initiator_recv_cipher = NULL;
+static volatile bool waiting_for_last_confirm = false;
+static volatile bool last_confirm_received = false;
 static uint64_t benchmark_start_time_us = 0;
 static uint64_t benchmark_end_time_us = 0;
 static uint32_t benchmark_start_cycles = 0;
@@ -167,9 +169,9 @@ void start_noise_handshake()
 
     // **Generate first handshake message**
     noise_buffer_set_output(message_buf, message, sizeof(message));
-    bench_start("message write");
+    bench_start("Write message");
     err = noise_handshakestate_write_message(initiator, &message_buf, NULL);
-    bench_end("message write");
+    bench_end("Write message");
     if (err != NOISE_ERROR_NONE) {
         noise_log_error(TAG, "Failed to generate first handshake message:", err);
         return; 
@@ -299,7 +301,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 log_handshake_state(initiator, "Initiator");
                 noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
                 NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
-                NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
+                //NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
                 bench_start("Read message");
                 err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
                 bench_end("Read message");
@@ -340,6 +342,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 req.radius = 10; // You can increase if multi-hop
                 req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
                 req.use_alias = false;
+                NOISE_LOGI(TAG, "Sending APS data of length: %" PRIu32 , req.asdu_length);
                 bench_start("Zigbee Packet TX");
                 esp_zb_lock_acquire(portMAX_DELAY);
                 esp_zb_aps_data_request(&req);
@@ -478,7 +481,7 @@ void zb_apsde_data_confirm_handler(esp_zb_apsde_data_confirm_t confirm)
                 confirm.dst_endpoint, confirm.dst_addr.addr_short);
 
         // Optionally print the data we sent again
-        NOISE_LOG_BUFFER_HEX_LEVEL("APSDE CONFIRM", confirm.asdu, confirm.asdu_length, ESP_LOG_INFO);
+        //NOISE_LOG_BUFFER_HEX_LEVEL("APSDE CONFIRM", confirm.asdu, confirm.asdu_length, ESP_LOG_INFO);
     } else {
         NOISE_LOGE("APSDE CONFIRM", "Failed to send APSDE-DATA request, error code: %d", confirm.status);
     }
@@ -610,7 +613,7 @@ static void esp_zb_task(void *pvParameters)
 void app_main(void)
 {
     // Basic initialization
-    esp_err_t ret = esp_zb_io_buffer_size_set(160);
+    esp_err_t ret = esp_zb_io_buffer_size_set(240);
     if (ret != ESP_OK) {
         NOISE_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
     } else {
