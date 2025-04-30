@@ -4,6 +4,7 @@ from collections import defaultdict
 from statistics import median
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 LOG_FILE = "clean_log.txt"
 
@@ -91,12 +92,28 @@ def main():
         raw_lines = f.readlines()
     clean_lines = [remove_ansi_codes(line).strip() for line in raw_lines]
 
-    setup_info = extract_setup_info(clean_lines)
-    raw_csv = f"benchmark_{setup_info}_raw.csv"
-    avg_csv = f"benchmark_{setup_info}_averages.csv"
-    avg_img = f"benchmark_{setup_info}_averages.png"
+    setup_info = extract_setup_info(clean_lines) 
+    role, pattern = setup_info.split("_", 1)
+    all_benchmarks = parse_benchmarks(clean_lines)
 
-    benchmarks = parse_benchmarks(clean_lines)
+    scalar_mult_only = any("scalar_mult" in entry['label'] for entry in all_benchmarks)
+
+    if scalar_mult_only:
+        benchmarks = [entry for entry in all_benchmarks if "scalar_mult" in entry['label']]
+        output_dir = os.path.join("results", "X25519")
+        setup_info += "_scalar_mult_only"
+    else:
+        benchmarks = all_benchmarks
+        output_dir = os.path.join("results", pattern)
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    raw_csv = os.path.join(output_dir, f"benchmark_{setup_info}_raw.csv")
+    avg_csv = os.path.join(output_dir, f"benchmark_{setup_info}_averages.csv")
+    avg_img = os.path.join(output_dir, f"benchmark_{setup_info}_averages.png")
+    median_csv = os.path.join(output_dir, f"benchmark_{setup_info}_medians.csv")
+    median_img = os.path.join(output_dir, f"benchmark_{setup_info}_medians.png")
+
     write_csv(raw_csv, ['label', 'time_us', 'cycles'], benchmarks)
 
     stats = compute_stats(benchmarks)
@@ -106,11 +123,23 @@ def main():
         'avg_cycles', 'median_cycles', 'min_cycles', 'max_cycles'
     ], stats)
 
+    medians = [
+        {
+            'label': s['label'],
+            'count': s['count'],
+            'median_time_us': s['median_time_us'],
+            'median_cycles': s['median_cycles'],
+        } for s in stats
+    ]
+    write_csv(median_csv, ['label', 'count', 'median_time_us', 'median_cycles'], medians)
+
     csv_to_table_image(avg_csv, avg_img, setup_info)
+    csv_to_table_image(median_csv, median_img, f"{setup_info} (Median Only)")
 
     print(f"Parsed {len(benchmarks)} benchmark entries.")
     print(f"Saved raw data to {raw_csv}")
     print(f"Saved stats to {avg_csv}")
+    print(f"Saved median-only stats to {median_csv}")
 
 if __name__ == "__main__":
     main()
