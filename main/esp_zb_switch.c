@@ -13,11 +13,11 @@
 #include "keys.h"
 #include "noise_log.h"
 ///////////////////////////////// Noise parameters /////////////////////////////////////
-#define HANDSHAKE_PATTERN "Noise_KEMNK_Kyber512_ChaChaPoly_SHA256"
+#define HANDSHAKE_PATTERN "Noise_XN_25519_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 2048
-#define USE_KYBER_KEYS 1 
+#define USE_KYBER_KEYS 0 
 ////////////////////////////////////Benchmark parameters///////////////////////////////////////////////////
-#define LOOP_AMOUNT_BENCHMARK 0
+#define LOOP_AMOUNT_BENCHMARK 1
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
@@ -159,10 +159,10 @@ void start_noise_handshake()
         return; 
     }
 
-    NOISE_LOGI(TAG, "local_private_pq size: %d", sizeof(local_private_pq));
-    NOISE_LOGI(TAG, "local_public_pq size: %d", sizeof(local_public_pq));
-    NOISE_LOGI(TAG, "remote_public_pq size: %d", sizeof(remote_public_pq));
-    NOISE_LOG_BUFFER_HEX("REMOTE_PUB_PQ", remote_public_pq, 32);
+    //NOISE_LOGI(TAG, "local_private_pq size: %d", sizeof(local_private_pq));
+    //NOISE_LOGI(TAG, "local_public_pq size: %d", sizeof(local_public_pq));
+    //NOISE_LOGI(TAG, "remote_public_pq size: %d", sizeof(remote_public_pq));
+    //NOISE_LOG_BUFFER_HEX("REMOTE_PUB_PQ", remote_public_pq, 32);
 
 
     // **Generate first handshake message**
@@ -294,23 +294,62 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 
         // **If handshake is still in progress**
         if (handshake_state != NOISE_ACTION_COMPLETE) {
-            NOISE_LOGI(TAG, "Processing handshake response...");
-            log_handshake_state(initiator, "Initiator");
-            noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
-            NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
-            NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
-            bench_start("Read message");
-            err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
-            bench_end("Read message");
-            if (err != NOISE_ERROR_NONE) {
-                noise_log_error(TAG, "Failed to process handshake response:", err);
-                return false;
+            if (handshake_state == NOISE_ACTION_READ_MESSAGE) { 
+                NOISE_LOGI(TAG, "Processing handshake response...");
+                log_handshake_state(initiator, "Initiator");
+                noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
+                NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
+                NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
+                bench_start("Read message");
+                err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
+                bench_end("Read message");
+                if (err != NOISE_ERROR_NONE) {
+                    noise_log_error(TAG, "Failed to process handshake response:", err);
+                    return false;
+                }
+                NOISE_LOGI(TAG, "Processed handshake response successfully.");
+                handshake_state = noise_handshakestate_get_action(initiator);
+                log_handshake_state(initiator, "Initiator");
+            } 
+
+            if (handshake_state == NOISE_ACTION_WRITE_MESSAGE) {  
+                // **If handshake is not yet complete, send the next handshake message**
+                NOISE_LOGI(TAG, "Sending next handshake message...");
+                uint8_t message[MAX_NOISE_MESSAGE_SIZE];
+                noise_buffer_set_output(message_buf, message, sizeof(message));
+                bench_start("Write message");
+                err =  noise_handshakestate_write_message(initiator, &message_buf, NULL); 
+                bench_end("Write message");
+                if (err != NOISE_ERROR_NONE){
+                    noise_log_error(TAG, "Failed to generate handshake response:", err);
+                    return false;
+                }
+                
+
+                // **Send handshake message over Zigbee**
+                esp_zb_apsde_data_req_t req;
+                memset(&req, 0, sizeof(req));
+                req.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+                req.dst_addr.addr_short = data_ind.src_short_addr;
+                req.dst_endpoint = data_ind.src_endpoint;
+                req.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+                req.cluster_id = 0xFFC0;
+                req.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
+                req.asdu_length = message_buf.size;
+                req.asdu = message_buf.data;
+                req.radius = 10; // You can increase if multi-hop
+                req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+                req.use_alias = false;
+                bench_start("Zigbee Packet TX");
+                esp_zb_lock_acquire(portMAX_DELAY);
+                esp_zb_aps_data_request(&req);
+                esp_zb_lock_release();
+                bench_end("Zigbee Packet TX");
+                NOISE_LOGI(TAG, "Sent handshake message.");
+                handshake_state = noise_handshakestate_get_action(initiator);
+                log_handshake_state(initiator, "Initiator");
             }
-
-            NOISE_LOGI(TAG, "Processed handshake response successfully.");
-
             // **Check if handshake is complete after this step**
-            handshake_state = noise_handshakestate_get_action(initiator);
             if (handshake_state == NOISE_ACTION_SPLIT) {
                 NOISE_LOGI(TAG, "Handshake complete! Switching to encrypted mode.");
                 handshake_complete = true;
@@ -331,53 +370,17 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 
                 NOISE_LOGW("BENCH", "[Handshake] Took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
                 #if ENABLE_NOISE_BENCHMARK 
-                i--;
-                    if (i>0) { 
-                        reset_noise_state(); 
-                        NOISE_LOGW("LOOP COUNTER", "next handshake is %d", i);
-                        start_noise_handshake(); 
-                        
-                    }
+                    i--;
+                        if (i>0) { 
+                            reset_noise_state(); 
+                            NOISE_LOGW("LOOP COUNTER", "next handshake is %d", i);
+                            start_noise_handshake(); 
+                            
+                        }
                 #endif
-
-                return true;
             }
-
-            // **If handshake is not yet complete, send the next handshake message**
-            NOISE_LOGI(TAG, "Sending next handshake message...");
-
-            noise_buffer_set_output(message_buf, data_ind.asdu, sizeof(data_ind.asdu));
-            bench_start("Write message");
-            err =  noise_handshakestate_write_message(initiator, &message_buf, NULL); 
-            bench_end("Write message");
-            if (err != NOISE_ERROR_NONE){
-                noise_log_error(TAG, "Decryption failed:", err);
-                return false;
-            }
-            
-
-            // **Send handshake message over Zigbee**
-            esp_zb_apsde_data_req_t req;
-            memset(&req, 0, sizeof(req));
-            req.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
-            req.dst_addr.addr_short = data_ind.src_short_addr;
-            req.dst_endpoint = data_ind.src_endpoint;
-            req.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
-            req.cluster_id = 0xFFC0;
-            req.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
-            req.asdu_length = message_buf.size;
-            req.asdu = message_buf.data;
-            req.radius = 10; // You can increase if multi-hop
-            req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
-            req.use_alias = false;
-            bench_start("Zigbee Packet TX");
-            esp_zb_lock_acquire(portMAX_DELAY);
-            esp_zb_aps_data_request(&req);
-            esp_zb_lock_release();
-            bench_end("Zigbee Packet TX");
-            NOISE_LOGI(TAG, "Sent handshake message.");
+            return true; 
         }
-
         // **If handshake is complete, process encrypted messages**
         else {
             NOISE_LOGI(TAG, "Processing Encrypted Noise message...");
@@ -400,6 +403,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             }
 
             NOISE_LOGI(TAG, "Decrypted Message: %.*s", message_buf.size, (char *)message_buf.data);
+            return true; 
         }
     }
     return false;

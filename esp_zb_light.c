@@ -11,13 +11,17 @@
 #include "esp_check.h"
 #include "esp_timer.h"
 #include <inttypes.h>
-
+#include "keys.h"
+#include "noise_log.h"
 #if !defined ZB_ED_ROLE
 #error Define ZB_ED_ROLE in idf.py menuconfig to compile light (End Device) source code.
 #endif
 
-#define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
-#define MAX_NOISE_MESSAGE_SIZE 1024
+#define HANDSHAKE_PATTERN "Noise_XN_25519_ChaChaPoly_SHA256"
+#define MAX_NOISE_MESSAGE_SIZE 2048
+#define LOOP_AMOUNT_BENCHMARK 1
+#define USE_KYBER_KEYS 0 
+
 #define TAG "ESP32_NOISE_RECEIVER"
 static NoiseHandshakeState *responder = NULL;
 static NoiseCipherState *responder_send_cipher = NULL;
@@ -25,39 +29,14 @@ static NoiseCipherState *responder_recv_cipher = NULL;
 static bool handshake_complete = false;
 static volatile bool waiting_for_last_confirm = false;
 static volatile bool last_confirm_received = false;
-#define BENCHMARKLOOP
-#define CONFIG_ENABLE_NOISE_BENCHMARK
-#ifdef CONFIG_ENABLE_NOISE_BENCHMARK
+static uint32_t benchmark_start_cycles = 0;
+static uint32_t benchmark_end_cycles = 0;
+static uint64_t benchmark_start_time_us = 0;
+static uint64_t benchmark_end_time_us = 0;
 
-typedef struct {
-    uint64_t start_us;
-    uint32_t start_cycles;
-} benchmark_entry_t;
 
-static benchmark_entry_t current;
-
-void bench_start(const char *label) {
-    current.start_us = esp_timer_get_time();
-    current.start_cycles = esp_cpu_get_cycle_count();
-    ESP_LOGD("BENCH", "[%s] Benchmark started", label);
-}
-
-void bench_end(const char *label) {
-    uint64_t end_us = esp_timer_get_time();
-    uint32_t end_cycles = esp_cpu_get_cycle_count();
-    ESP_LOGW("BENCH", "[%s] Took %" PRIu64 " us and %" PRIu32 " cycles",
-                label, end_us - current.start_us, end_cycles - current.start_cycles);
-}
-
-#else
-
-void bench_start(const char *label) {}
-void bench_end(const char *label) {}
-
-#endif
-
-#ifdef BENCHMARKLOOP
-static uint8_t i = 10; 
+#if ENABLE_NOISE_BENCHMARK
+static uint8_t i = LOOP_AMOUNT_BENCHMARK; 
 void reset_noise_state() {
     if (responder != NULL) {
         noise_handshakestate_free(responder);
@@ -97,8 +76,10 @@ static void log_handshake_state(NoiseHandshakeState *hs, const char *role)
 /********************* Start Noise Handshake (Responder) **************************/
 
 void start_noise_handshake() {
+    ESP_LOGI(TAG, "SETUP: Receiver_%s", HANDSHAKE_PATTERN);
     ESP_LOGI(TAG, "Starting Noise handshake as Responder...");
-
+    benchmark_start_cycles = esp_cpu_get_cycle_count();
+    benchmark_start_time_us = esp_timer_get_time();
     int err;
 
     // **Initialize Noise Framework**
@@ -119,6 +100,40 @@ void start_noise_handshake() {
         return; 
     }
 
+    if (noise_handshakestate_needs_local_keypair(responder)) {
+        NoiseDHState *local_dh = noise_handshakestate_get_local_keypair_dh(responder);
+    
+        #if USE_KYBER_KEYS
+        err = noise_dhstate_set_keypair(local_dh,
+                                            local_private_pq, sizeof(local_private_pq),
+                                            local_public_pq, sizeof(local_public_pq));
+        #else
+        err = noise_dhstate_set_keypair(local_dh,
+                                        local_private, sizeof(local_private),
+                                        local_public, sizeof(local_public));
+        #endif
+    
+        if (err != NOISE_ERROR_NONE) {
+            noise_log_error(TAG, "Failed to set local static keypair", err);
+            return;
+        }
+    }
+
+    if (noise_handshakestate_needs_remote_public_key(responder)) {
+        NoiseDHState *remote_dh = noise_handshakestate_get_remote_public_key_dh(responder);
+    
+        #if USE_KYBER_KEYS
+        err = noise_dhstate_set_public_key(remote_dh, remote_public_pq, sizeof(remote_public_pq));
+        #else
+        err = noise_dhstate_set_public_key(remote_dh, remote_public, sizeof(remote_public));
+        #endif
+    
+        if (err != NOISE_ERROR_NONE) {
+            noise_log_error(TAG, "Failed to set remote public key", err);
+            return;
+        }
+    }
+
     // **Start the handshake process**
     bench_start("Handshake start");
     err = noise_handshakestate_start(responder);
@@ -134,7 +149,7 @@ void start_noise_handshake() {
 /********************* APS Data Indication Handler (Receiver) **************************/
 
 bool zb_apsde_data_indication_handler(esp_zb_apsde_data_ind_t data_ind) {
-    ESP_LOGI(TAG, "Received APS Data Indication");
+    ESP_LOGI(TAG, "Received APS fragment of length: %"PRId32, data_ind.asdu_length);
 
     if (data_ind.dst_endpoint == HA_ESP_LIGHT_ENDPOINT &&
         data_ind.profile_id == ESP_ZB_AF_HA_PROFILE_ID &&
@@ -146,89 +161,98 @@ bool zb_apsde_data_indication_handler(esp_zb_apsde_data_ind_t data_ind) {
         }
 
         int handshake_state = noise_handshakestate_get_action(responder);
-        ESP_LOGI(TAG, "Current handshake state: %s", noise_action_to_string(handshake_state));
+        log_handshake_state(responder, "Responder");
 
         NoiseBuffer message_buf;
         int err;
 
         // **Process Handshake Message**
         if (handshake_state != NOISE_ACTION_COMPLETE) {
-            ESP_LOGI(TAG, "Processing handshake message...");
+            if (handshake_state == NOISE_ACTION_READ_MESSAGE) { 
+                ESP_LOGI(TAG, "Processing handshake message...");
 
-            noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
-            bench_start("Read Message");
-            err = noise_handshakestate_read_message(responder, &message_buf, NULL);
-            bench_end("Read Message");
-            if (err != NOISE_ERROR_NONE) {
-                noise_log_error(TAG, "Failed to process handshake message:", err);
-                return false;
+                noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
+                bench_start("Read Message");
+                err = noise_handshakestate_read_message(responder, &message_buf, NULL);
+                bench_end("Read Message");
+                if (err != NOISE_ERROR_NONE) {
+                    noise_log_error(TAG, "Failed to process handshake message:", err);
+                    return false;
+                }
+
+                ESP_LOGI(TAG, "Processed handshake message successfully.");
+                handshake_state = noise_handshakestate_get_action(responder);
+                log_handshake_state(responder, "Responder");
             }
-
-            ESP_LOGI(TAG, "Processed handshake message successfully.");
 
             // **Check if handshake is complete**
-            handshake_state = noise_handshakestate_get_action(responder);
-            ESP_LOGI(TAG, "Current handshake state: %s", noise_action_to_string(handshake_state));
-            // **Send handshake response**
-            ESP_LOGI(TAG, "Sending handshake response...");
-            uint8_t message[MAX_NOISE_MESSAGE_SIZE];
-            noise_buffer_set_output(message_buf, message, sizeof(message));
-            bench_start("Write message");
-            err = noise_handshakestate_write_message(responder, &message_buf, NULL);
-            bench_end("Write message");
-            if (err != NOISE_ERROR_NONE) {
-                noise_log_error(TAG, "Failed to generate handshake response:", err);
-                return false;
-            }
-
-            // **Send response via Zigbee**
-            esp_zb_apsde_data_req_t req;
-            memset(&req, 0, sizeof(req));
-            req.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
-            req.dst_addr.addr_short = data_ind.src_short_addr;
-            req.dst_endpoint = data_ind.src_endpoint;
-            req.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
-            req.cluster_id = 0xFFC0;
-            req.src_endpoint = HA_ESP_LIGHT_ENDPOINT;
-            req.asdu_length = message_buf.size;
-            req.asdu = message_buf.data;
-            req.radius = 10;
-            req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
-            req.use_alias = false;
-            waiting_for_last_confirm = true;
-            last_confirm_received = false;
-            bench_start("Zigbee APS send message");
-            esp_zb_lock_acquire(portMAX_DELAY);
-            esp_zb_aps_data_request(&req);
-            esp_zb_lock_release();
-            bench_end("Zigbee APS send message");
-            ESP_LOGI(TAG, "Sent handshake response.");
-            log_handshake_state(responder, "responder");
-        
-            ESP_LOGI(TAG, "Handshake complete! Switching to encrypted mode.");
-            handshake_complete = true;
-
-            // **Split cipher states for encryption/decryption**
-            bench_start("Handshake split");
-            err = noise_handshakestate_split(responder, &responder_send_cipher, &responder_recv_cipher);
-            bench_end("Handshake split");
-            if (err != NOISE_ERROR_NONE) {
-                noise_log_error(TAG, "Failed to split cipher states:", err);
-                return false;
-            }
-
-            ESP_LOGI(TAG, "Cipher states created. Secure communication ready.");
-            #ifdef BENCHMARKLOOP
-                vTaskDelay(pdMS_TO_TICKS(500));
-                reset_noise_state();
-                i--; 
-                if (i == 0) {
-                    return true; 
+            if (handshake_state == NOISE_ACTION_WRITE_MESSAGE) { 
+                // **Send handshake response**
+                ESP_LOGI(TAG, "Sending handshake response...");
+                uint8_t message[MAX_NOISE_MESSAGE_SIZE];
+                noise_buffer_set_output(message_buf, message, sizeof(message));
+                bench_start("Write message");
+                err = noise_handshakestate_write_message(responder, &message_buf, NULL);
+                bench_end("Write message");
+                if (err != NOISE_ERROR_NONE) {
+                    noise_log_error(TAG, "Failed to generate handshake response:", err);
+                    return false;
                 }
-                start_noise_handshake(); 
-            #endif
-            return true;
-        
+
+                // **Send response via Zigbee**
+                esp_zb_apsde_data_req_t req;
+                memset(&req, 0, sizeof(req));
+                req.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+                req.dst_addr.addr_short = data_ind.src_short_addr;
+                req.dst_endpoint = data_ind.src_endpoint;
+                req.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+                req.cluster_id = 0xFFC0;
+                req.src_endpoint = HA_ESP_LIGHT_ENDPOINT;
+                req.asdu_length = message_buf.size;
+                req.asdu = message_buf.data;
+                req.radius = 10;
+                req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+                req.use_alias = false;
+                waiting_for_last_confirm = true;
+                last_confirm_received = false;
+                bench_start("Zigbee Packet TX");
+                esp_zb_lock_acquire(portMAX_DELAY);
+                esp_zb_aps_data_request(&req);
+                esp_zb_lock_release();
+                bench_end("Zigbee Packet TX");
+                ESP_LOGI(TAG, "Sent handshake response.");
+                handshake_state = noise_handshakestate_get_action(responder);
+                log_handshake_state(responder, "Responder");
+            }
+
+            if (handshake_state == NOISE_ACTION_SPLIT) { 
+                ESP_LOGI(TAG, "Handshake complete! Switching to encrypted mode.");
+                handshake_complete = true;
+
+                // **Split cipher states for encryption/decryption**
+                bench_start("Handshake split");
+                err = noise_handshakestate_split(responder, &responder_send_cipher, &responder_recv_cipher);
+                bench_end("Handshake split");
+                if (err != NOISE_ERROR_NONE) {
+                    noise_log_error(TAG, "Failed to split cipher states:", err);
+                    return false;
+                }
+                benchmark_end_cycles = esp_cpu_get_cycle_count();
+                benchmark_end_time_us = esp_timer_get_time();
+                ESP_LOGI(TAG, "Cipher states created. Secure communication ready.");
+                uint32_t elapsed_cycles = benchmark_end_cycles - benchmark_start_cycles;
+                uint64_t elapsed_us = benchmark_end_time_us - benchmark_start_time_us;
+                ESP_LOGW("BENCH", "[Handshake] Took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
+                #if ENABLE_NOISE_BENCHMARK
+                    i--; 
+                    if (i == 0) {
+                        return true; 
+                    }
+                    reset_noise_state();
+                    start_noise_handshake(); 
+                #endif
+            }
+            return true; 
         }
 
         // **Process Encrypted Message**
@@ -358,16 +382,30 @@ static void esp_zb_task(void *pvParameters)
 /********************* ESP-IDF Entry Point **************************/
 
 void app_main(void) {
+    // Basic initialization
+    esp_err_t ret = esp_zb_io_buffer_size_set(160);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
+    } else {
+        ESP_LOGI(TAG, "Successfully set Zigbee IO buffer size");
+    }
+    ret = esp_zb_scheduler_queue_size_set(160);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
+    } else {
+        ESP_LOGI(TAG, "Successfully set Zigbee IO buffer size");
+    }
     // Basic setup
     esp_zb_platform_config_t config = {
         .radio_config = ESP_ZB_DEFAULT_RADIO_CONFIG(),
         .host_config = ESP_ZB_DEFAULT_HOST_CONFIG(),
     };
+    
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_zb_platform_config(&config));
-
+    
     // Create the Zigbee task
-    xTaskCreate(esp_zb_task, "Zigbee_main", 16384, NULL, 5, NULL);
+    xTaskCreate(esp_zb_task, "Zigbee_main", 65536, NULL, 5, NULL);
 
     // Start Noise Protocol handshake
     start_noise_handshake();
