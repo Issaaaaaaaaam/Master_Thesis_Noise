@@ -12,12 +12,17 @@
 #include <inttypes.h>
 #include "keys.h"
 #include "noise_log.h"
+
+// This ensures we are building as a Coordinator (ZB_COORDINATOR_ROLE)
+#if defined ZB_ED_ROLE
+#error Define ZB_COORDINATOR_ROLE in idf.py menuconfig to compile light switch source code.
+#endif
+
+
 ///////////////////////////////// Noise parameters /////////////////////////////////////
 #define HANDSHAKE_PATTERN "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
 #define MAX_NOISE_MESSAGE_SIZE 2048
-#define USE_KYBER_KEYS 1 
 ////////////////////////////////////Benchmark parameters///////////////////////////////////////////////////
-#define LOOP_AMOUNT_BENCHMARK 100
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
@@ -32,14 +37,43 @@ static uint32_t benchmark_end_cycles = 0;
 static uint8_t enc_message[MAX_NOISE_MESSAGE_SIZE]; 
 static bool handshake_complete = false;
 
-// This ensures we are building as a Coordinator (ZB_COORDINATOR_ROLE)
-#if defined ZB_ED_ROLE
-#error Define ZB_COORDINATOR_ROLE in idf.py menuconfig to compile light switch source code.
-#endif
-
-
 #if ENABLE_NOISE_BENCHMARK
-    static uint8_t i = LOOP_AMOUNT_BENCHMARK; 
+    #define LOOP_AMOUNT_BENCHMARK 100
+    #if PQ_BENCHMARK 
+        #define NUM_PATTERNS 10
+        #define USE_KYBER_KEYS 1 
+            static const char *noise_patterns[NUM_PATTERNS] = {
+                "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMNK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMNX_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMXN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMXK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMKN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMKK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMIN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMIK_Kyber512_ChaChaPoly_SHA256"
+            };
+    #endif 
+    #if REG_BENCHMARK
+        #define NUM_PATTERNS 11
+        #define USE_KYBER_KEYS 0
+        static const char *noise_patterns[NUM_PATTERNS] = {
+            "Noise_NN_25519_ChaChaPoly_SHA256",
+            "Noise_NK_25519_ChaChaPoly_SHA256",
+            "Noise_NX_25519_ChaChaPoly_SHA256",
+            "Noise_XN_25519_ChaChaPoly_SHA256",
+            "Noise_XK_25519_ChaChaPoly_SHA256",
+            "Noise_XX_25519_ChaChaPoly_SHA256",
+            "Noise_KN_25519_ChaChaPoly_SHA256",
+            "Noise_KK_25519_ChaChaPoly_SHA256",
+            "Noise_KX_25519_ChaChaPoly_SHA256",
+            "Noise_IN_25519_ChaChaPoly_SHA256",
+            "Noise_IK_25519_ChaChaPoly_SHA256"
+        };
+    #endif 
+    static uint8_t pattern_index = 0;
+    static uint8_t loop_counter = LOOP_AMOUNT_BENCHMARK;
     void reset_noise_state() {
         if (initiator != NULL) {
             noise_handshakestate_free(initiator);
@@ -93,7 +127,6 @@ static switch_func_pair_t button_func_pair[] = {
 
 void start_noise_handshake()
 {
-    NOISE_LOGI(TAG, "SETUP: Initiator_%s", HANDSHAKE_PATTERN);
     NOISE_LOGI(TAG, "Starting Noise handshake as Initiator...");
     benchmark_start_cycles = esp_cpu_get_cycle_count();
     benchmark_start_time_us = esp_timer_get_time();
@@ -102,16 +135,21 @@ void start_noise_handshake()
     uint8_t message[MAX_NOISE_MESSAGE_SIZE];
 
     // **Initialize Noise framework (if not done already)**
-    bench_start("Framework Init");
     err = noise_init_framework();
-    bench_end("Framework Init");
     if (err != NOISE_ERROR_NONE) {
         noise_log_error(TAG, "Failed to initialize Noise framework:", err);
         return; 
     }
-    // **Create initiator handshake state (Global)**
-    bench_start("Handshake creation");
-    err = noise_handshakestate_new_by_name(&initiator, HANDSHAKE_PATTERN, NOISE_ROLE_INITIATOR);
+    // **Create initiator handshake state (Global)** 
+    #if ENABLE_NOISE_BENCHMARK
+        NOISE_LOGI(TAG, "SETUP: Initiator_%s", noise_patterns[pattern_index]);
+        bench_start("Handshake creation");
+        err = noise_handshakestate_new_by_name(&initiator, noise_patterns[pattern_index], NOISE_ROLE_INITIATOR);
+    #else
+        NOISE_LOGI(TAG, "SETUP: Initiator_%s", HANDSHAKE_PATTERN);
+        bench_start("Handshake creation");
+        err = noise_handshakestate_new_by_name(&initiator, HANDSHAKE_PATTERN, NOISE_ROLE_INITIATOR);
+    #endif
     bench_end("Handshake creation");
     if (err != NOISE_ERROR_NONE) {
         noise_log_error(TAG, "Failed to create initiator handshake:", err);
@@ -372,14 +410,25 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 uint64_t elapsed_us = benchmark_end_time_us - benchmark_start_time_us;
 
                 NOISE_LOGW("BENCH", "[Handshake] Took %" PRIu64 " us and %" PRIu32 " cycles",elapsed_us, elapsed_cycles);
-                #if ENABLE_NOISE_BENCHMARK 
-                    i--;
-                        if (i>0) { 
-                            reset_noise_state(); 
-                            NOISE_LOGW("LOOP COUNTER", "next handshake is %d", i);
-                            start_noise_handshake(); 
-                            
+                #if ENABLE_NOISE_BENCHMARK
+                    loop_counter--;
+                    if (loop_counter > 0) {
+                        reset_noise_state();
+                        NOISE_LOGW("LOOP COUNTER", "Remaining handshakes for current pattern: %d", loop_counter);
+                        start_noise_handshake();
+                    } 
+                    else {
+                        pattern_index++;
+                        if (pattern_index < NUM_PATTERNS) {
+                            loop_counter = LOOP_AMOUNT_BENCHMARK;
+                            reset_noise_state();
+                            NOISE_LOGW("BENCH", "Switching to next pattern: %s", noise_patterns[pattern_index]);
+                            start_noise_handshake();
+                        } 
+                        else {
+                            NOISE_LOGW("BENCH", "Benchmark complete for all patterns.");
                         }
+                    }
                 #endif
             }
             return true; 
@@ -574,7 +623,7 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
 
     default:
         NOISE_LOGI(TAG, "ZDO signal: %s (0x%x), status: %s",
-                 esp_zb_zdo_signal_to_string(sig_type), sig_type, esp_err_to_name(err_status));
+                    esp_zb_zdo_signal_to_string(sig_type), sig_type, esp_err_to_name(err_status));
         break;
     }
 }
@@ -613,7 +662,7 @@ static void esp_zb_task(void *pvParameters)
 void app_main(void)
 {
     // Basic initialization
-    esp_err_t ret = esp_zb_io_buffer_size_set(240);
+    esp_err_t ret = esp_zb_io_buffer_size_set(253);
     if (ret != ESP_OK) {
         NOISE_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
     } else {

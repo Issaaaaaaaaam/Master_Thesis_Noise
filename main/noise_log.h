@@ -20,7 +20,16 @@
 
 #ifndef ENABLE_ED25519_BENCHMARK
 #define ENABLE_ED25519_BENCHMARK 0 
+#endif
+
+#ifndef REG_BENCHMARK 
+#define REG_BENCHMARK 1 
 #endif 
+
+#ifndef PQ_BENCHMARK 
+#define PQ_BENCHMARK 0 
+#endif 
+
 
 
 // ─────────────────────────────────────────────────────────────
