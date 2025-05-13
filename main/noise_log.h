@@ -23,11 +23,11 @@
 #endif
 
 #ifndef REG_BENCHMARK 
-#define REG_BENCHMARK 1 
+#define REG_BENCHMARK 0 
 #endif 
 
 #ifndef PQ_BENCHMARK 
-#define PQ_BENCHMARK 0 
+#define PQ_BENCHMARK 1 
 #endif 
 
 

@@ -21,7 +21,7 @@
 
 ///////////////////////////////// Noise parameters /////////////////////////////////////
 #define HANDSHAKE_PATTERN "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
-#define MAX_NOISE_MESSAGE_SIZE 2048
+#define MAX_NOISE_MESSAGE_SIZE 4096
 ////////////////////////////////////Benchmark parameters///////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define TAG "ESP32_NOISE_TEST"
@@ -34,28 +34,33 @@ static uint64_t benchmark_start_time_us = 0;
 static uint64_t benchmark_end_time_us = 0;
 static uint32_t benchmark_start_cycles = 0;
 static uint32_t benchmark_end_cycles = 0;
-static uint8_t enc_message[MAX_NOISE_MESSAGE_SIZE]; 
+static uint8_t flex_buffer[MAX_NOISE_MESSAGE_SIZE]; 
 static bool handshake_complete = false;
 
 #if ENABLE_NOISE_BENCHMARK
     #define LOOP_AMOUNT_BENCHMARK 100
-    #if PQ_BENCHMARK 
-        #define NUM_PATTERNS 10
-        #define USE_KYBER_KEYS 1 
+    #if PQ_BENCHMARK
+        #define MAX_NOISE_MESSAGE_SIZE 4096
+        #define NUM_PATTERNS 1
+        #define USE_KYBER_KEYS 1
+        static bool frag_step = false; 
+        static size_t reassembly_offset = 0; 
             static const char *noise_patterns[NUM_PATTERNS] = {
-                "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMNK_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMNX_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMXN_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMXK_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMKN_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMKK_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMIN_Kyber512_ChaChaPoly_SHA256",
-                "Noise_KEMIK_Kyber512_ChaChaPoly_SHA256"
+                //"Noise_KEMNN_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMNK_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMNX_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMXN_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMXK_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMKN_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMKK_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMKX_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMIN_Kyber512_ChaChaPoly_SHA256",
+                //"Noise_KEMIK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
             };
     #endif 
     #if REG_BENCHMARK
+        #define MAX_NOISE_MESSAGE_SIZE 2056
         #define NUM_PATTERNS 11
         #define USE_KYBER_KEYS 0
         static const char *noise_patterns[NUM_PATTERNS] = {
@@ -216,7 +221,57 @@ void start_noise_handshake()
     }
     NOISE_LOGI(TAG, "Handshake message size: %zu", message_buf.size);
 
+    if (message_buf.size > 1603) {
+        NOISE_LOGW(TAG, "Message too large for APS, splitting and sending in 2 parts...");
 
+        size_t half = message_buf.size / 2;
+        size_t remaining = message_buf.size - half;
+
+        esp_zb_apsde_data_req_t req1;
+        memset(&req1, 0, sizeof(req1));
+        req1.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+        req1.dst_addr.addr_short = g_remote_short_addr;
+        req1.dst_endpoint = 10;
+        req1.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+        req1.cluster_id = 0xFFC0;
+        req1.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
+        req1.asdu_length = half;
+        req1.asdu = message_buf.data;
+        req1.radius = 10;
+        req1.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+        req1.use_alias = false;
+
+        NOISE_LOGI(TAG, "Sending APS fragment 1 of length: %" PRIu32, req1.asdu_length);
+        bench_start("Zigbee Packet TX");
+        esp_zb_lock_acquire(portMAX_DELAY);
+        esp_zb_aps_data_request(&req1);
+        esp_zb_lock_release();
+        bench_end("Zigbee Packet TX");
+
+        esp_zb_apsde_data_req_t req2;
+        memset(&req2, 0, sizeof(req2));
+        req2.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+        req2.dst_addr.addr_short = g_remote_short_addr;
+        req2.dst_endpoint = 10;
+        req2.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+        req2.cluster_id = 0xFFC0;
+        req2.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
+        req2.asdu_length = remaining;
+        req2.asdu = message_buf.data + half;
+        req2.radius = 10;
+        req2.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+        req2.use_alias = false;
+
+        NOISE_LOGI(TAG, "Sending APS fragment 2 of length: %" PRIu32, req2.asdu_length);
+        bench_start("Zigbee Packet TX");
+        esp_zb_lock_acquire(portMAX_DELAY);
+        esp_zb_aps_data_request(&req2);
+        esp_zb_lock_release();
+        bench_end("Zigbee Packet TX");
+
+        NOISE_LOGI(TAG, "Sent fragmented handshake message.");
+        return;
+    }
     // **Send handshake message over Zigbee APS layer**
     esp_zb_apsde_data_req_t req;
     memset(&req, 0, sizeof(req));
@@ -238,6 +293,7 @@ void start_noise_handshake()
     esp_zb_lock_release();
     bench_end("Zigbee Packet TX");
     NOISE_LOGI(TAG, "Sent first handshake message.");
+    return; 
 }
 
 // ────────────────────────────────────────────────────────────────────────────────
@@ -263,8 +319,8 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         int err;
     
         // **Prepare buffer for encryption**
-        noise_buffer_set_inout(mbuf, enc_message, strlen(plaintext), sizeof(enc_message) );
-        memcpy(enc_message, plaintext, strlen(plaintext));
+        noise_buffer_set_inout(mbuf, flex_buffer, strlen(plaintext), sizeof(flex_buffer) );
+        memcpy(flex_buffer, plaintext, strlen(plaintext));
     
         // **Encrypt the message**
         bench_start("Encrypting hello world");
@@ -279,7 +335,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
     
         NOISE_LOGI(TAG, "Encrypted Message (Hex):");
         for (size_t i = 0; i < mbuf.size; i++) {
-            printf("%02X ", enc_message[i]); // Print encrypted payload
+            printf("%02X ", flex_buffer[i]); // Print encrypted payload
         }
         printf("\n");
     
@@ -293,7 +349,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
         req.cluster_id = 0xFFC0;
         req.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
         req.asdu_length = mbuf.size; // Include the length header
-        req.asdu = enc_message;
+        req.asdu = flex_buffer;
         req.radius = 10;
         req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
         req.use_alias = false;
@@ -325,7 +381,6 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             NOISE_LOGE(TAG, "Invalid APS message");
             return false;
         }
-
         int handshake_state = noise_handshakestate_get_action(initiator);
         NOISE_LOGI(TAG, "Current handshake state: %s", noise_action_to_string(handshake_state));
 
@@ -337,8 +392,45 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             if (handshake_state == NOISE_ACTION_READ_MESSAGE) { 
                 NOISE_LOGI(TAG, "Processing handshake response...");
                 log_handshake_state(initiator, "Initiator");
-                noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
-                NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
+                #if  ENABLE_NOISE_BENCHMARK && PQ_BENCHMARK
+                    if (strcmp(noise_patterns[pattern_index], "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0) {
+                        if (!frag_step) {
+                            NOISE_LOGI(TAG, "Received First Part APS Message Length: %d", (int)data_ind.asdu_length);
+                            memcpy(flex_buffer, data_ind.asdu, data_ind.asdu_length);
+                            reassembly_offset = data_ind.asdu_length;
+                            frag_step = true;
+                            return true;
+                        } 
+                        else {
+                            NOISE_LOGI(TAG, "Received Final Part APS Message Length: %d", (int)data_ind.asdu_length);
+                            memcpy(&flex_buffer[reassembly_offset], data_ind.asdu, data_ind.asdu_length);
+                            noise_buffer_set_input(message_buf, flex_buffer, reassembly_offset + data_ind.asdu_length);
+                        }
+                    }
+                    else{
+                        noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
+                        NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
+                    }
+                #else
+                    if (strcmp(HANDSHAKE_PATTERN, "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0 || strcmp(HANDSHAKE_PATTERN, "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256") == 0){
+                        if (!frag_step) {
+                            NOISE_LOGI(TAG, "Received First Part APS Message Length: %d", (int)data_ind.asdu_length);
+                            memcpy(flex_buffer, data_ind.asdu, data_ind.asdu_length);
+                            reassembly_offset = data_ind.asdu_length;
+                            frag_step = true;
+                            return true;
+                        } 
+                        else {
+                            NOISE_LOGI(TAG, "Received Final Part APS Message Length: %d", (int)data_ind.asdu_length);
+                            memcpy(&flex_buffer[reassembly_offset], data_ind.asdu, data_ind.asdu_length);
+                            noise_buffer_set_input(message_buf, flex_buffer, reassembly_offset + data_ind.asdu_length);
+                        }
+                    }
+                    else{
+                        noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
+                        NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
+                    }
+                #endif
                 //NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
                 bench_start("Read message");
                 err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
@@ -367,26 +459,80 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                 
 
                 // **Send handshake message over Zigbee**
-                esp_zb_apsde_data_req_t req;
-                memset(&req, 0, sizeof(req));
-                req.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
-                req.dst_addr.addr_short = data_ind.src_short_addr;
-                req.dst_endpoint = data_ind.src_endpoint;
-                req.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
-                req.cluster_id = 0xFFC0;
-                req.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
-                req.asdu_length = message_buf.size;
-                req.asdu = message_buf.data;
-                req.radius = 10; // You can increase if multi-hop
-                req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
-                req.use_alias = false;
-                NOISE_LOGI(TAG, "Sending APS data of length: %" PRIu32 , req.asdu_length);
-                bench_start("Zigbee Packet TX");
-                esp_zb_lock_acquire(portMAX_DELAY);
-                esp_zb_aps_data_request(&req);
-                esp_zb_lock_release();
-                bench_end("Zigbee Packet TX");
-                NOISE_LOGI(TAG, "Sent handshake message.");
+                if (message_buf.size > 1603) {
+                    NOISE_LOGW(TAG, "Message too large for APS, splitting and sending in 2 parts...");
+
+                    size_t half = message_buf.size / 2;
+                    size_t remaining = message_buf.size - half;
+
+                    esp_zb_apsde_data_req_t req1;
+                    memset(&req1, 0, sizeof(req1));
+                    req1.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+                    req1.dst_addr.addr_short = g_remote_short_addr;
+                    req1.dst_endpoint = 10;
+                    req1.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+                    req1.cluster_id = 0xFFC0;
+                    req1.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
+                    req1.asdu_length = half;
+                    req1.asdu = message_buf.data;
+                    req1.radius = 10;
+                    req1.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+                    req1.use_alias = false;
+
+                    NOISE_LOGI(TAG, "Sending APS fragment 1 of length: %" PRIu32, req1.asdu_length);
+                    bench_start("Zigbee Packet TX");
+                    esp_zb_lock_acquire(portMAX_DELAY);
+                    esp_zb_aps_data_request(&req1);
+                    esp_zb_lock_release();
+                    bench_end("Zigbee Packet TX");
+
+                    esp_zb_apsde_data_req_t req2;
+                    memset(&req2, 0, sizeof(req2));
+                    req2.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+                    req2.dst_addr.addr_short = g_remote_short_addr;
+                    req2.dst_endpoint = 10;
+                    req2.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+                    req2.cluster_id = 0xFFC0;
+                    req2.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
+                    req2.asdu_length = remaining;
+                    req2.asdu = message_buf.data + half;
+                    req2.radius = 10;
+                    req2.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+                    req2.use_alias = false;
+
+                    NOISE_LOGI(TAG, "Sending APS fragment 2 of length: %" PRIu32, req2.asdu_length);
+                    bench_start("Zigbee Packet TX");
+                    esp_zb_lock_acquire(portMAX_DELAY);
+                    esp_zb_aps_data_request(&req2);
+                    esp_zb_lock_release();
+                    bench_end("Zigbee Packet TX");
+                    NOISE_LOGI(TAG, "Sent fragmented handshake message.");
+                } 
+                else {
+                    // Send normally
+                    esp_zb_apsde_data_req_t req;
+                    memset(&req, 0, sizeof(req));
+                    req.dst_addr_mode = ESP_ZB_APS_ADDR_MODE_16_ENDP_PRESENT;
+                    req.dst_addr.addr_short = data_ind.src_short_addr;
+                    req.dst_endpoint = data_ind.src_endpoint;
+                    req.profile_id = ESP_ZB_AF_HA_PROFILE_ID;
+                    req.cluster_id = 0xFFC0;
+                    req.src_endpoint = HA_ONOFF_SWITCH_ENDPOINT;
+                    req.asdu_length = message_buf.size;
+                    req.asdu = message_buf.data;
+                    req.radius = 10;
+                    req.tx_options = (ESP_ZB_APSDE_TX_OPT_ACK_TX | ESP_ZB_APSDE_TX_OPT_FRAG_PERMITTED);
+                    req.use_alias = false;
+                    NOISE_LOGI(TAG, "Sending APS data of length: %" PRIu32 , req.asdu_length);
+                    waiting_for_last_confirm = true;
+                    last_confirm_received = false;
+                    bench_start("Zigbee Packet TX");
+                    esp_zb_lock_acquire(portMAX_DELAY);
+                    esp_zb_aps_data_request(&req);
+                    esp_zb_lock_release();
+                    bench_end("Zigbee Packet TX");
+                    ESP_LOGI(TAG, "Sent handshake response.");
+                }
                 handshake_state = noise_handshakestate_get_action(initiator);
                 log_handshake_state(initiator, "Initiator");
             }
@@ -415,20 +561,23 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                     if (loop_counter > 0) {
                         reset_noise_state();
                         NOISE_LOGW("LOOP COUNTER", "Remaining handshakes for current pattern: %d", loop_counter);
-                        start_noise_handshake();
                     } 
                     else {
                         pattern_index++;
                         if (pattern_index < NUM_PATTERNS) {
                             loop_counter = LOOP_AMOUNT_BENCHMARK;
                             reset_noise_state();
-                            NOISE_LOGW("BENCH", "Switching to next pattern: %s", noise_patterns[pattern_index]);
-                            start_noise_handshake();
+                            NOISE_LOGW("BENCH", "Switching to next pattern: %s", noise_patterns[pattern_index]); 
                         } 
                         else {
                             NOISE_LOGW("BENCH", "Benchmark complete for all patterns.");
+                            return true; 
                         }
                     }
+                    if (strcmp(noise_patterns[pattern_index], "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0) {
+                        frag_step = false; 
+                    }
+                    esp_zb_scheduler_alarm((esp_zb_callback_t)start_noise_handshake, 0, 100);  // 10 ms delay
                 #endif
             }
             return true; 
