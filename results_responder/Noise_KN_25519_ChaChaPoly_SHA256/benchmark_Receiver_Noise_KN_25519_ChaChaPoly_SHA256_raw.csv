@@ -1,0 +1,701 @@
+label,time_us,cycles
+Handshake creation,7497,1199439
+Handshake start,266,42680
+Read Message,466,74599
+Write message,44477,7116240
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,180478,22494550
+Handshake creation,7505,1200715
+Handshake start,297,47436
+Read Message,489,78227
+Write message,44479,7116592
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401280,23867834
+Handshake creation,7510,1201639
+Handshake start,297,47436
+Read Message,484,77434
+Write message,44469,7114916
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401813,23639009
+Handshake creation,7510,1201631
+Handshake start,296,47436
+Read Message,480,76811
+Write message,44474,7115640
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401936,23652103
+Handshake creation,7511,1201835
+Handshake start,296,47436
+Read Message,474,75758
+Write message,44476,7116080
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401783,23640209
+Handshake creation,7512,1201827
+Handshake start,312,49932
+Read Message,472,75423
+Write message,44498,7119527
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401872,23647655
+Handshake creation,7511,1201747
+Handshake start,296,47436
+Read Message,480,76866
+Write message,44467,7114544
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401924,23650521
+Handshake creation,7512,1201839
+Handshake start,297,47436
+Read Message,491,78542
+Write message,44470,7115092
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401851,23672691
+Handshake creation,7512,1201835
+Handshake start,297,47436
+Read Message,483,77206
+Write message,44471,7115264
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401813,23789268
+Handshake creation,7511,1201679
+Handshake start,296,47436
+Read Message,490,78530
+Write message,44471,7115204
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401995,23688920
+Handshake creation,7511,1201835
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44481,7116836
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401693,23639662
+Handshake creation,7510,1201655
+Handshake start,297,47436
+Read Message,474,75758
+Write message,44469,7114996
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401864,23638003
+Handshake creation,7512,1201819
+Handshake start,312,49932
+Read Message,479,76539
+Write message,44471,7115284
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401914,23654753
+Handshake creation,7512,1201835
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44475,7115916
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401802,23640519
+Handshake creation,7512,1201775
+Handshake start,296,47436
+Read Message,494,79018
+Write message,44473,7115472
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401884,23669701
+Handshake creation,7511,1201803
+Handshake start,296,47436
+Read Message,489,78227
+Write message,44476,7116040
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,401923,23823369
+Handshake creation,7511,1201835
+Handshake start,296,47436
+Read Message,491,78483
+Write message,44466,7114520
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401830,23671433
+Handshake creation,7512,1201835
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44473,7115652
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401788,23640343
+Handshake creation,7510,1201655
+Handshake start,297,47436
+Read Message,481,76870
+Write message,44468,7114720
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401929,23651093
+Handshake creation,7511,1201835
+Handshake start,312,49932
+Read Message,479,76531
+Write message,44475,7115832
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401818,23642859
+Handshake creation,7511,1201831
+Handshake start,297,47436
+Read Message,480,76775
+Write message,44474,7115788
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401832,23664224
+Handshake creation,7511,1201671
+Handshake start,297,47436
+Read Message,493,78955
+Write message,44481,7116764
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401984,23685595
+Handshake creation,7511,1201835
+Handshake start,297,47436
+Read Message,481,77087
+Write message,44469,7114812
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401894,23789005
+Handshake creation,7535,1205639
+Handshake start,296,47436
+Read Message,490,78362
+Write message,44472,7115456
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401775,23670124
+Handshake creation,7512,1201819
+Handshake start,296,47436
+Read Message,481,76874
+Write message,44467,7114556
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401843,23650845
+Handshake creation,7511,1201823
+Handshake start,296,47436
+Read Message,486,77850
+Write message,44473,7115472
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401826,23640831
+Handshake creation,7509,1201455
+Handshake start,312,49932
+Read Message,477,76346
+Write message,44480,7116688
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,402174,23697569
+Handshake creation,7504,1200715
+Handshake start,297,47436
+Read Message,474,75758
+Write message,44469,7114920
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401505,23805514
+Handshake creation,7511,1201683
+Handshake start,297,47436
+Read Message,494,79018
+Write message,44470,7115096
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401888,23669773
+Handshake creation,7510,1201655
+Handshake start,297,47436
+Read Message,482,77022
+Write message,44479,7116560
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,402065,23802742
+Handshake creation,7505,1200715
+Handshake start,297,47436
+Read Message,494,79127
+Write message,44471,7115092
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,411691,23783924
+Handshake creation,7511,1201807
+Handshake start,296,47436
+Read Message,474,75758
+Write message,44469,7114920
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,409116,23664072
+Handshake creation,7497,1199603
+Handshake start,297,47436
+Read Message,481,76874
+Write message,44598,7135592
+Zigbee Packet TX,176,28091
+Handshake split,483,77282
+Handshake,404714,23671073
+Handshake creation,7501,1200191
+Handshake start,294,46980
+Read Message,482,77086
+Write message,44473,7115656
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401707,23640937
+Handshake creation,7512,1201803
+Handshake start,296,47436
+Read Message,480,76775
+Write message,44468,7114712
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401819,23648744
+Handshake creation,7510,1201711
+Handshake start,297,47436
+Read Message,493,78859
+Write message,44479,7116560
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401988,23683943
+Handshake creation,7511,1201835
+Handshake start,297,47436
+Read Message,476,76099
+Write message,44467,7114564
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401747,23788761
+Handshake creation,7510,1201655
+Handshake start,297,47436
+Read Message,490,78358
+Write message,44478,7116408
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401925,23673619
+Handshake creation,7512,1201835
+Handshake start,296,47436
+Read Message,481,76874
+Write message,44472,7115456
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401934,23651965
+Handshake creation,7512,1201819
+Handshake start,296,47436
+Read Message,480,76775
+Write message,44638,7142004
+Zigbee Packet TX,176,28091
+Handshake split,474,75818
+Handshake,411864,23723816
+Handshake creation,7507,1201055
+Handshake start,294,47100
+Read Message,480,76835
+Write message,44474,7115640
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401729,23638206
+Handshake creation,7511,1201743
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44482,7116948
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,405773,23654615
+Handshake creation,7505,1200715
+Handshake start,297,47436
+Read Message,494,78894
+Write message,44469,7114916
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,397935,23644444
+Handshake creation,7510,1201655
+Handshake start,297,47436
+Read Message,476,76099
+Write message,44472,7115468
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401852,23789250
+Handshake creation,7511,1201639
+Handshake start,296,47436
+Read Message,491,78555
+Write message,44476,7115928
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,402007,23687613
+Handshake creation,7511,1201839
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44469,7114900
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401681,23638272
+Handshake creation,7512,1201803
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44637,7141924
+Zigbee Packet TX,176,28091
+Handshake split,474,75818
+Handshake,404287,23666273
+Handshake creation,7500,1199935
+Handshake start,294,47100
+Read Message,480,76874
+Write message,44471,7115124
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,399516,23650059
+Handshake creation,7511,1201823
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44468,7114644
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401776,23639309
+Handshake creation,7510,1201647
+Handshake start,296,47436
+Read Message,492,78870
+Write message,44468,7114752
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401887,23669311
+Handshake creation,7510,1201631
+Handshake start,297,47436
+Read Message,481,77022
+Write message,44467,7114744
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401921,23800632
+Handshake creation,7512,1201839
+Handshake start,296,47436
+Read Message,484,77434
+Write message,44470,7114976
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,403456,23672615
+Handshake creation,7504,1200715
+Handshake start,296,47436
+Read Message,474,75758
+Write message,44477,7116280
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,400173,23639345
+Handshake creation,7512,1201835
+Handshake start,296,47436
+Read Message,480,76871
+Write message,44702,7152252
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,402163,23689163
+Handshake creation,7504,1200703
+Handshake start,297,47436
+Read Message,474,75758
+Write message,44469,7114888
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,401550,23638289
+Handshake creation,7510,1201663
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44472,7115544
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401860,23640191
+Handshake creation,7511,1201647
+Handshake start,296,47436
+Read Message,493,78834
+Write message,44474,7115672
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401982,23684749
+Handshake creation,7511,1201835
+Handshake start,296,47436
+Read Message,476,76099
+Write message,44481,7116780
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401773,23791159
+Handshake creation,7510,1201751
+Handshake start,296,47436
+Read Message,490,78411
+Write message,44477,7116216
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,402260,23730801
+Handshake creation,7505,1200715
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44468,7114752
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401409,23638531
+Handshake creation,7511,1201831
+Handshake start,296,47436
+Read Message,474,75758
+Write message,44464,7114172
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401855,23638969
+Handshake creation,7511,1201655
+Handshake start,296,47436
+Read Message,481,76875
+Write message,44473,7115492
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,401948,23652251
+Handshake creation,7511,1201835
+Handshake start,296,47436
+Read Message,474,75758
+Write message,44482,7116944
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401767,23813069
+Handshake creation,7511,1201751
+Handshake start,296,47436
+Read Message,487,77907
+Write message,44472,7115468
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401895,23669953
+Handshake creation,7510,1201631
+Handshake start,296,47436
+Read Message,482,77115
+Write message,44473,7115656
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401932,23801386
+Handshake creation,7512,1201807
+Handshake start,296,47436
+Read Message,492,78726
+Write message,44478,7116396
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401860,23698485
+Handshake creation,7512,1201819
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44482,7116880
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,406615,23642447
+Handshake creation,7504,1200715
+Handshake start,296,47436
+Read Message,481,76874
+Write message,44476,7116020
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,397081,23628112
+Handshake creation,7511,1201803
+Handshake start,297,47436
+Read Message,474,75758
+Write message,44473,7115556
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401781,23640299
+Handshake creation,7510,1201671
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44477,7116192
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401861,23640617
+Handshake creation,7511,1201675
+Handshake start,296,47436
+Read Message,494,78903
+Write message,44478,7116408
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401938,23656583
+Handshake creation,7512,1201835
+Handshake start,296,47436
+Read Message,476,76099
+Write message,44472,7115356
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,405650,23790128
+Handshake creation,7504,1200719
+Handshake start,296,47436
+Read Message,491,78550
+Write message,44464,7114180
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,398049,23646886
+Handshake creation,7511,1201711
+Handshake start,297,47436
+Read Message,480,76807
+Write message,44472,7115472
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401921,23651957
+Handshake creation,7512,1201823
+Handshake start,296,47436
+Read Message,491,78547
+Write message,44477,7116200
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401781,23640500
+Handshake creation,7510,1201679
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44468,7114752
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401800,23639097
+Handshake creation,7511,1201655
+Handshake start,296,47436
+Read Message,480,76875
+Write message,44473,7115468
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401940,23652127
+Handshake creation,7511,1201823
+Handshake start,297,47436
+Read Message,486,77787
+Write message,44475,7115840
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401781,23643225
+Handshake creation,7511,1201799
+Handshake start,296,47436
+Read Message,476,76099
+Write message,44465,7114368
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401874,23788986
+Handshake creation,7511,1201695
+Handshake start,296,47436
+Read Message,491,78550
+Write message,44472,7115468
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,402008,23685169
+Handshake creation,7512,1201823
+Handshake start,296,47436
+Read Message,473,75758
+Write message,44482,7117132
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401684,23640420
+Handshake creation,7511,1201763
+Handshake start,296,47436
+Read Message,484,77434
+Write message,44474,7115728
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,411181,23697398
+Handshake creation,7504,1200707
+Handshake start,297,47436
+Read Message,480,76875
+Write message,44476,7116036
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,402629,23630032
+Handshake creation,7511,1201835
+Handshake start,296,47436
+Read Message,479,76775
+Write message,44486,7117528
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,411789,23701754
+Handshake creation,7511,1201835
+Handshake start,312,49932
+Read Message,472,75423
+Write message,44477,7116220
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,401847,23641347
+Handshake creation,7511,1201783
+Handshake start,297,47436
+Read Message,475,76099
+Write message,44481,7116760
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,405497,23803168
+Handshake creation,7504,1200715
+Handshake start,303,48484
+Read Message,487,77907
+Write message,44475,7115848
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,398244,23669267
+Handshake creation,7511,1201775
+Handshake start,296,47436
+Read Message,481,76879
+Write message,44471,7115264
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,402015,23640013
+Handshake creation,7512,1201835
+Handshake start,296,47436
+Read Message,491,78555
+Write message,44465,7114352
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401833,23685280
+Handshake creation,7511,1201835
+Handshake start,297,47436
+Read Message,473,75758
+Write message,44468,7114740
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,401691,23638466
+Handshake creation,7511,1201783
+Handshake start,296,47436
+Read Message,474,75758
+Write message,44478,7116368
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,406713,23696983
+Handshake creation,7503,1200387
+Handshake start,312,49932
+Read Message,471,75423
+Write message,44469,7114924
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,397095,23617272
+Handshake creation,7511,1201711
+Handshake start,297,47436
+Read Message,476,76099
+Write message,44477,7116224
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401972,23790416
+Handshake creation,7513,1202059
+Handshake start,298,47776
+Read Message,494,79014
+Write message,44479,7116536
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,402050,23683691
+Handshake creation,7511,1201639
+Handshake start,296,47436
+Read Message,479,76691
+Write message,44468,7114748
+Zigbee Packet TX,175,28091
+Handshake split,465,74462
+Handshake,401958,23639467
+Handshake creation,7511,1201747
+Handshake start,297,47436
+Read Message,484,77434
+Write message,44474,7115736
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,409505,23697018
+Handshake creation,7505,1200723
+Handshake start,296,47436
+Read Message,480,76875
+Write message,44467,7114576
+Zigbee Packet TX,176,28091
+Handshake split,465,74462
+Handshake,404314,23650991
+Handshake creation,7514,1202379
+Handshake start,327,52364
+Read Message,480,76775
+Write message,44593,7134768
+Zigbee Packet TX,175,28091
+Handshake split,483,77282
+Handshake,412031,23867303
+Handshake creation,7506,1200983
+Handshake start,294,46980
+Read Message,476,76099
+Write message,44475,7115852
+Zigbee Packet TX,175,28091
+Handshake split,466,74462
+Handshake,401799,23640555
+Handshake creation,7510,1201619
+Handshake start,297,47436
+Read Message,482,77215
+Write message,44471,7115104
+Zigbee Packet TX,176,28091
+Handshake split,466,74462
+Handshake,402022,23800022

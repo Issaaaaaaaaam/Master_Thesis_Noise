@@ -1,0 +1,270 @@
+W (24305) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (24315) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (24405) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (24765) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (24765) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (24775) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (24775) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (24795) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (24795) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (24795) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (24805) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (24805) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (24895) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (25035) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (25035) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (25045) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (25045) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (25055) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (25055) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (25065) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (25085) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (25085) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (25085) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (25095) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (25095) BENCH: [Handshake] Took 785427 us and 40312229 cycles
+W (25105) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 9
+I (25115) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (25115) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (25125) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (25225) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (25565) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (25565) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (25565) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (25575) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (25595) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (25595) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (25595) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (25605) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (25605) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (25695) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (25835) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (25835) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (25835) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (25845) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (25845) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (25855) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (25855) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (25875) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (25875) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (25875) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (25885) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (25895) BENCH: [Handshake] Took 765925 us and 40332886 cycles
+W (25895) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 8
+I (25905) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (25915) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (25925) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (26015) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (26355) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (26355) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (26365) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (26365) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (26385) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (26385) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (26385) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (26395) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (26395) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (26485) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (26625) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (26625) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (26625) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (26635) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (26645) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (26645) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (26655) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (26665) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (26665) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (26675) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (26675) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (26685) BENCH: [Handshake] Took 767678 us and 40353888 cycles
+W (26695) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 7
+I (26705) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (26705) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (26715) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (26805) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (27155) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (27155) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (27155) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (27165) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (27185) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (27185) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (27185) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (27195) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (27195) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (27285) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (27435) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (27435) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (27435) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (27435) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (27445) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (27445) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (27455) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (27475) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (27475) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (27475) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (27485) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (27485) BENCH: [Handshake] Took 774050 us and 40710987 cycles
+W (27495) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 6
+I (27505) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (27505) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (27515) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (27615) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (27955) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (27955) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (27955) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (27965) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (27985) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (27985) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (27985) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (27995) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (27995) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (28095) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (28225) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (28235) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (28235) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (28235) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (28245) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (28245) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (28255) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (28275) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (28275) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (28275) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (28285) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (28285) BENCH: [Handshake] Took 771708 us and 40227590 cycles
+W (28295) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 5
+I (28305) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (28305) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (28315) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (28405) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (28755) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (28755) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (28765) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (28765) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (28785) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (28785) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (28785) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (28795) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (28795) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (28885) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (29025) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (29025) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (29025) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (29035) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (29045) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (29045) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (29055) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (29065) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (29065) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (29065) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (29075) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (29085) BENCH: [Handshake] Took 768226 us and 40234868 cycles
+W (29085) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 4
+I (29095) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (29105) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (29115) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (29205) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (29555) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (29555) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (29555) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (29555) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (29575) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (29575) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (29575) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (29595) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (29595) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (29675) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (29815) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (29815) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (29815) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (29825) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (29835) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (29835) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (29845) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (29855) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (29855) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (29865) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (29865) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (29875) BENCH: [Handshake] Took 763480 us and 40462063 cycles
+W (29885) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 3
+I (29895) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (29895) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (29905) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (29995) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (30335) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (30335) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (30335) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (30345) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (30365) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (30365) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (30365) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (30375) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (30375) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (30465) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (30605) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (30605) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (30605) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (30615) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (30625) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (30625) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (30635) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (30645) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (30645) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (30655) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (30655) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (30665) BENCH: [Handshake] Took 763261 us and 40432965 cycles
+W (30675) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 2
+I (30685) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (30685) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (30695) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (30785) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (31135) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (31135) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (31135) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (31145) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (31165) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (31165) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (31165) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (31175) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (31175) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (31265) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (31405) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (31405) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (31405) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (31415) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (31415) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (31425) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (31425) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (31445) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (31445) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (31445) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (31455) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (31465) BENCH: [Handshake] Took 767889 us and 40271577 cycles
+W (31465) LOOP: Remaining handshakes for current pattern (Noise_KEMXK_Kyber512_ChaChaPoly_SHA256): 1
+I (31475) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (31485) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXK_Kyber512_ChaChaPoly_SHA256
+I (31495) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (31585) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (31935) ESP32_NOISE_RECEIVER: Received APS fragment of length: 1584
+I (31935) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (31935) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (31935) ESP32_NOISE_RECEIVER: Received APS Message Length: 1584
+I (31955) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (31955) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (31955) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (31975) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (31975) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (32065) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (32205) ESP32_NOISE_RECEIVER: Received APS fragment of length: 832
+I (32205) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (32205) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (32215) ESP32_NOISE_RECEIVER: Received APS Message Length: 832
+I (32215) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (32225) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (32225) ESP32_NOISE_RECEIVER: Sending handshake response...
+I (32245) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (32245) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (32245) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+I (32255) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (32265) BENCH: [Handshake] Took 772443 us and 40269888 cycles
+W (32265) BENCH: Switching to next pattern: Noise_KEMKN_Kyber512_ChaChaPoly_SHA256
+I (32275) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...

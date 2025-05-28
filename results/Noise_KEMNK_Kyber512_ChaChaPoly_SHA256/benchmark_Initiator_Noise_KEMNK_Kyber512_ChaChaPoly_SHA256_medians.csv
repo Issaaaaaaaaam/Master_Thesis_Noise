@@ -1,8 +1,8 @@
 label,count,median_time_us,median_cycles
-Handshake creation,100,434.0,69270.0
-Handshake start,100,580.0,92614.0
-Write message,100,17070.0,2731120.0
-Zigbee Packet TX,100,275.0,43926.0
-Read message,100,11629.0,1860552.0
-Handshake split,100,680.0,108868.0
-Handshake,100,504088.5,37089422.0
+Handshake creation,88,459.0,73438.0
+Handshake start,88,475.0,76124.0
+Write message,88,16551.0,2648075.5
+Zigbee Packet TX,88,175.0,28051.0
+Read message,88,10465.0,1674393.0
+Handshake split,88,513.0,82086.0
+Handshake,88,469725.5,28692533.0

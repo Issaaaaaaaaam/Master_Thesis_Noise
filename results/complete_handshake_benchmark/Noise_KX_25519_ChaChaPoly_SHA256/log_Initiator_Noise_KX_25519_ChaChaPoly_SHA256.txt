@@ -1,0 +1,170 @@
+W (32878) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (32898) ESP32_NOISE_TEST: Handshake message size: 32
+I (32898) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (32898) ESP32_NOISE_TEST: Sent first handshake message.
+I (33058) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (33078) ESP32_NOISE_TEST: Received APS Data Indication
+I (33078) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (33078) ESP32_NOISE_TEST: Processing handshake response...
+I (33088) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (33088) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (33148) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (33148) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (33148) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (33158) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (33158) BENCH: [Handshake] Took 281733 us and 19120149 cycles
+W (33168) LOOP COUNTER: Remaining handshakes for current pattern: 9
+I (33288) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (33288) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (33308) ESP32_NOISE_TEST: Handshake message size: 32
+I (33308) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (33308) ESP32_NOISE_TEST: Sent first handshake message.
+I (33468) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (33488) ESP32_NOISE_TEST: Received APS Data Indication
+I (33488) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (33488) ESP32_NOISE_TEST: Processing handshake response...
+I (33498) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (33498) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (33558) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (33558) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (33558) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (33568) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (33568) BENCH: [Handshake] Took 282244 us and 19112455 cycles
+W (33578) LOOP COUNTER: Remaining handshakes for current pattern: 8
+I (33698) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (33698) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (33718) ESP32_NOISE_TEST: Handshake message size: 32
+I (33718) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (33718) ESP32_NOISE_TEST: Sent first handshake message.
+I (33878) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (33898) ESP32_NOISE_TEST: Received APS Data Indication
+I (33898) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (33898) ESP32_NOISE_TEST: Processing handshake response...
+I (33908) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (33908) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (33968) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (33968) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (33968) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (33978) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (33978) BENCH: [Handshake] Took 281841 us and 19077223 cycles
+W (33988) LOOP COUNTER: Remaining handshakes for current pattern: 7
+I (34108) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (34108) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (34128) ESP32_NOISE_TEST: Handshake message size: 32
+I (34128) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (34128) ESP32_NOISE_TEST: Sent first handshake message.
+I (34288) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (34308) ESP32_NOISE_TEST: Received APS Data Indication
+I (34308) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (34308) ESP32_NOISE_TEST: Processing handshake response...
+I (34318) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (34318) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (34378) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (34378) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (34378) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (34388) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (34388) BENCH: [Handshake] Took 281741 us and 19074431 cycles
+W (34398) LOOP COUNTER: Remaining handshakes for current pattern: 6
+I (34518) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (34518) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (34538) ESP32_NOISE_TEST: Handshake message size: 32
+I (34538) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (34538) ESP32_NOISE_TEST: Sent first handshake message.
+I (34698) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (34718) ESP32_NOISE_TEST: Received APS Data Indication
+I (34718) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (34718) ESP32_NOISE_TEST: Processing handshake response...
+I (34728) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (34728) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (34788) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (34788) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (34788) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (34798) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (34798) BENCH: [Handshake] Took 282034 us and 19144967 cycles
+W (34808) LOOP COUNTER: Remaining handshakes for current pattern: 5
+I (34928) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (34928) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (34948) ESP32_NOISE_TEST: Handshake message size: 32
+I (34948) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (34948) ESP32_NOISE_TEST: Sent first handshake message.
+I (35108) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (35128) ESP32_NOISE_TEST: Received APS Data Indication
+I (35128) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (35128) ESP32_NOISE_TEST: Processing handshake response...
+I (35138) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (35138) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (35198) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (35198) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (35198) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (35208) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (35208) BENCH: [Handshake] Took 281831 us and 19109621 cycles
+W (35218) LOOP COUNTER: Remaining handshakes for current pattern: 4
+I (35338) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (35338) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (35358) ESP32_NOISE_TEST: Handshake message size: 32
+I (35358) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (35358) ESP32_NOISE_TEST: Sent first handshake message.
+I (35518) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (35538) ESP32_NOISE_TEST: Received APS Data Indication
+I (35538) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (35538) ESP32_NOISE_TEST: Processing handshake response...
+I (35548) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (35548) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (35608) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (35608) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (35608) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (35618) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (35618) BENCH: [Handshake] Took 281822 us and 19106137 cycles
+W (35628) LOOP COUNTER: Remaining handshakes for current pattern: 3
+I (35748) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (35748) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (35768) ESP32_NOISE_TEST: Handshake message size: 32
+I (35768) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (35768) ESP32_NOISE_TEST: Sent first handshake message.
+I (35928) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (35948) ESP32_NOISE_TEST: Received APS Data Indication
+I (35948) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (35948) ESP32_NOISE_TEST: Processing handshake response...
+I (35958) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (35958) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (36018) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (36018) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (36018) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (36028) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (36028) BENCH: [Handshake] Took 281753 us and 19076679 cycles
+W (36038) LOOP COUNTER: Remaining handshakes for current pattern: 2
+I (36158) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (36158) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (36178) ESP32_NOISE_TEST: Handshake message size: 32
+I (36178) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (36178) ESP32_NOISE_TEST: Sent first handshake message.
+I (36338) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (36358) ESP32_NOISE_TEST: Received APS Data Indication
+I (36358) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (36358) ESP32_NOISE_TEST: Processing handshake response...
+I (36368) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (36368) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (36428) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (36428) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (36428) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (36438) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (36438) BENCH: [Handshake] Took 281828 us and 19075571 cycles
+W (36448) LOOP COUNTER: Remaining handshakes for current pattern: 1
+I (36568) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (36568) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KX_25519_ChaChaPoly_SHA256
+I (36588) ESP32_NOISE_TEST: Handshake message size: 32
+I (36588) ESP32_NOISE_TEST: Sending APS data of length: 32
+I (36588) ESP32_NOISE_TEST: Sent first handshake message.
+I (36748) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (36768) ESP32_NOISE_TEST: Received APS Data Indication
+I (36768) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (36768) ESP32_NOISE_TEST: Processing handshake response...
+I (36768) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+I (36778) ESP32_NOISE_TEST: Received APS Message Length: 96
+I (36828) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (36828) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (36828) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (36838) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (36848) BENCH: [Handshake] Took 276799 us and 19110724 cycles
+W (36848) BENCH: Switching to next pattern: Noise_IN_25519_ChaChaPoly_SHA256
+I (36968) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...

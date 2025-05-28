@@ -1,0 +1,3 @@
+label,count,median_time_us,median_cycles
+ED25519_scalar_mult_base,1,10208,1633411
+ED25519_scalar_mult,1,16470,2635156

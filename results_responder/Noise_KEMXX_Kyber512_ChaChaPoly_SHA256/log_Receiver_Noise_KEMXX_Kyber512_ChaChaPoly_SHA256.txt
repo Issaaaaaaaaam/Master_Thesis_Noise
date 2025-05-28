@@ -1,0 +1,1793 @@
+W (687036) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (687046) BENCH: [Handshake creation] Took 8261 us and 1321703 cycles
+W (687056) BENCH: [Handshake start] Took 103 us and 16492 cycles
+I (687056) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (687226) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (687536) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (687536) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (687536) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (687546) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (687556) BENCH: [Read Message] Took 847 us and 135622 cycles
+I (687556) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (687566) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (687566) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (687586) BENCH: [Write message] Took 10064 us and 1610216 cycles
+W (687586) BENCH: [Zigbee Packet TX] Took 165 us and 26360 cycles
+I (687586) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (687596) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (687756) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (687936) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (687936) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (687936) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (687946) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (688026) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (688026) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (688026) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (688036) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (688046) BENCH: [Read Message] Took 11572 us and 1851462 cycles
+I (688046) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (688056) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (688056) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (688076) BENCH: [Write message] Took 8761 us and 1401816 cycles
+W (688076) BENCH: [Zigbee Packet TX] Took 168 us and 26769 cycles
+I (688076) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (688076) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (688086) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (688096) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (688096) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (688106) BENCH: [Handshake] Took 1060579 us and 60200981 cycles
+W (688116) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 99
+I (688126) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (688126) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (688136) BENCH: [Handshake creation] Took 8216 us and 1314599 cycles
+W (688146) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (688146) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (688246) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (688536) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (688536) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (688536) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (688546) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (688556) BENCH: [Read Message] Took 839 us and 134258 cycles
+I (688556) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (688566) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (688566) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (688586) BENCH: [Write message] Took 10069 us and 1610996 cycles
+W (688586) BENCH: [Zigbee Packet TX] Took 174 us and 27852 cycles
+I (688586) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (688596) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (688766) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (688936) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (688936) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (688946) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (688946) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (689026) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (689026) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (689026) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (689036) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (689056) BENCH: [Read Message] Took 11578 us and 1852450 cycles
+I (689056) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (689056) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (689066) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (689076) BENCH: [Write message] Took 8762 us and 1401948 cycles
+W (689076) BENCH: [Zigbee Packet TX] Took 172 us and 27436 cycles
+I (689076) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (689086) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (689096) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (689096) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (689106) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (689116) BENCH: [Handshake] Took 976113 us and 56253495 cycles
+W (689116) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 98
+I (689126) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (689136) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (689146) BENCH: [Handshake creation] Took 8216 us and 1314591 cycles
+W (689146) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (689156) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (689246) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (689546) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (689546) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (689546) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (689556) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (689566) BENCH: [Read Message] Took 845 us and 135306 cycles
+I (689566) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (689576) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (689576) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (689596) BENCH: [Write message] Took 10061 us and 1609668 cycles
+W (689596) BENCH: [Zigbee Packet TX] Took 172 us and 27437 cycles
+I (689596) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (689606) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (689766) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (689946) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (689956) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (689956) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (689956) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (690036) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (690036) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (690046) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (690046) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (690066) BENCH: [Read Message] Took 11578 us and 1852474 cycles
+I (690066) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (690066) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (690076) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (690086) BENCH: [Write message] Took 8763 us and 1402156 cycles
+W (690086) BENCH: [Zigbee Packet TX] Took 169 us and 27065 cycles
+I (690086) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (690096) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (690106) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (690106) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (690116) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (690126) BENCH: [Handshake] Took 981835 us and 56432418 cycles
+W (690126) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 97
+I (690136) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (690146) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (690156) BENCH: [Handshake creation] Took 8217 us and 1314611 cycles
+W (690156) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (690166) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (690256) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (690556) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (690556) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (690566) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (690566) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (690576) BENCH: [Read Message] Took 839 us and 134150 cycles
+I (690576) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (690586) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (690596) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (690606) BENCH: [Write message] Took 10069 us and 1611052 cycles
+W (690606) BENCH: [Zigbee Packet TX] Took 176 us and 28172 cycles
+I (690606) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (690616) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (690786) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (690956) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (690966) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (690966) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (690966) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (691046) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (691046) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (691056) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (691056) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (691076) BENCH: [Read Message] Took 11578 us and 1852454 cycles
+I (691076) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (691076) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (691086) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (691096) BENCH: [Write message] Took 8769 us and 1402972 cycles
+W (691096) BENCH: [Zigbee Packet TX] Took 167 us and 26721 cycles
+I (691096) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (691106) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (691116) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (691126) BENCH: [Handshake split] Took 461 us and 73757 cycles
+I (691126) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (691136) BENCH: [Handshake] Took 981503 us and 56654954 cycles
+W (691136) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 96
+I (691146) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (691156) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (691166) BENCH: [Handshake creation] Took 8214 us and 1314259 cycles
+W (691166) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (691176) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (691266) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (691576) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (691576) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (691576) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (691576) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (691586) BENCH: [Read Message] Took 834 us and 133498 cycles
+I (691586) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (691596) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (691606) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (691616) BENCH: [Write message] Took 10069 us and 1611052 cycles
+W (691616) BENCH: [Zigbee Packet TX] Took 180 us and 28885 cycles
+I (691616) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (691626) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (691796) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (691976) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (691976) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (691976) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (691976) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (692066) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (692066) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (692066) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (692076) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (692096) BENCH: [Read Message] Took 11578 us and 1852478 cycles
+I (692096) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (692096) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (692096) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (692116) BENCH: [Write message] Took 8773 us and 1403640 cycles
+W (692116) BENCH: [Zigbee Packet TX] Took 171 us and 27388 cycles
+I (692116) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (692126) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (692126) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (692136) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (692146) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (692156) BENCH: [Handshake] Took 988711 us and 56270019 cycles
+W (692156) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 95
+I (692166) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (692176) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (692176) BENCH: [Handshake creation] Took 8210 us and 1313575 cycles
+W (692186) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (692196) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (692286) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (692586) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (692586) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (692586) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (692596) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (692606) BENCH: [Read Message] Took 837 us and 133810 cycles
+I (692606) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (692616) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (692616) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (692636) BENCH: [Write message] Took 10067 us and 1610668 cycles
+W (692636) BENCH: [Zigbee Packet TX] Took 170 us and 27116 cycles
+I (692636) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (692646) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (692806) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (692986) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (692986) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (692996) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (692996) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (693076) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (693076) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (693076) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (693086) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (693106) BENCH: [Read Message] Took 11578 us and 1852462 cycles
+I (693106) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (693106) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (693116) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (693126) BENCH: [Write message] Took 8764 us and 1402148 cycles
+W (693126) BENCH: [Zigbee Packet TX] Took 169 us and 27064 cycles
+I (693126) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (693136) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (693146) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (693146) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (693156) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (693166) BENCH: [Handshake] Took 982881 us and 56404803 cycles
+W (693166) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 94
+I (693176) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (693186) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (693196) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (693196) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (693206) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (693296) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (693596) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (693596) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (693596) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (693606) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (693616) BENCH: [Read Message] Took 839 us and 134270 cycles
+I (693616) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (693626) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (693626) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (693646) BENCH: [Write message] Took 10069 us and 1611056 cycles
+W (693646) BENCH: [Zigbee Packet TX] Took 178 us and 28536 cycles
+I (693646) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (693656) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (693816) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (693996) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (693996) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (694006) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (694006) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (694086) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (694086) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (694086) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (694096) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (694116) BENCH: [Read Message] Took 11578 us and 1852482 cycles
+I (694116) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (694116) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (694126) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (694136) BENCH: [Write message] Took 8772 us and 1403624 cycles
+W (694136) BENCH: [Zigbee Packet TX] Took 169 us and 27044 cycles
+I (694136) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (694146) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (694156) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (694156) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (694166) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (694176) BENCH: [Handshake] Took 981031 us and 56264889 cycles
+W (694176) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 93
+I (694186) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (694196) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (694206) BENCH: [Handshake creation] Took 8210 us and 1313583 cycles
+W (694206) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (694216) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (694306) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (694606) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (694606) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (694606) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (694616) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (694626) BENCH: [Read Message] Took 838 us and 134094 cycles
+I (694626) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (694636) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (694636) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (694656) BENCH: [Write message] Took 10071 us and 1611392 cycles
+W (694656) BENCH: [Zigbee Packet TX] Took 178 us and 28556 cycles
+I (694656) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (694666) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (694826) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (695006) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (695006) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (695006) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (695016) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (695096) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (695096) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (695096) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (695106) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (695126) BENCH: [Read Message] Took 11578 us and 1852458 cycles
+I (695126) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (695126) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (695136) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (695146) BENCH: [Write message] Took 8767 us and 1402632 cycles
+W (695146) BENCH: [Zigbee Packet TX] Took 170 us and 27065 cycles
+I (695146) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (695156) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (695166) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (695166) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (695176) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (695186) BENCH: [Handshake] Took 981043 us and 56309217 cycles
+W (695186) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 92
+I (695196) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (695206) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (695216) BENCH: [Handshake creation] Took 8214 us and 1314271 cycles
+W (695216) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (695226) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (695316) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (695616) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (695616) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (695616) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (695626) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (695636) BENCH: [Read Message] Took 845 us and 135290 cycles
+I (695636) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (695646) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (695646) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (695666) BENCH: [Write message] Took 10066 us and 1610600 cycles
+W (695666) BENCH: [Zigbee Packet TX] Took 176 us and 28177 cycles
+I (695666) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (695676) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (695836) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (696016) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (696016) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (696016) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (696026) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (696106) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (696106) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (696106) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (696116) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (696126) BENCH: [Read Message] Took 11578 us and 1852474 cycles
+I (696126) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (696136) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (696136) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (696156) BENCH: [Write message] Took 8770 us and 1403196 cycles
+W (696156) BENCH: [Zigbee Packet TX] Took 165 us and 26376 cycles
+I (696156) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (696156) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (696166) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (696176) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (696186) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (696186) BENCH: [Handshake] Took 977606 us and 56510741 cycles
+W (696196) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 91
+I (696206) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (696206) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (696216) BENCH: [Handshake creation] Took 8210 us and 1313583 cycles
+W (696226) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (696226) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (696326) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (696616) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (696616) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (696616) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (696626) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (696636) BENCH: [Read Message] Took 838 us and 134126 cycles
+I (696636) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (696646) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (696646) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (696666) BENCH: [Write message] Took 10070 us and 1611268 cycles
+W (696666) BENCH: [Zigbee Packet TX] Took 176 us and 28165 cycles
+I (696666) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (696676) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (696836) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (697016) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (697016) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (697016) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (697026) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (697106) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (697106) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (697106) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (697116) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (697136) BENCH: [Read Message] Took 11577 us and 1852454 cycles
+I (697136) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (697136) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (697146) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (697156) BENCH: [Write message] Took 8766 us and 1402608 cycles
+W (697156) BENCH: [Zigbee Packet TX] Took 169 us and 27113 cycles
+I (697156) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (697166) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (697176) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (697176) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (697186) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (697196) BENCH: [Handshake] Took 976050 us and 56241819 cycles
+W (697196) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 90
+I (697206) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (697216) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (697226) BENCH: [Handshake creation] Took 8214 us and 1314271 cycles
+W (697226) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (697236) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (697326) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (697626) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (697626) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (697626) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (697636) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (697646) BENCH: [Read Message] Took 841 us and 134486 cycles
+I (697646) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (697656) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (697656) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (697676) BENCH: [Write message] Took 10066 us and 1610612 cycles
+W (697676) BENCH: [Zigbee Packet TX] Took 178 us and 28488 cycles
+I (697676) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (697686) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (697846) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (698026) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (698026) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (698026) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (698036) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (698116) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (698116) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (698116) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (698126) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (698146) BENCH: [Read Message] Took 11585 us and 1853598 cycles
+I (698146) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (698146) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (698146) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (698166) BENCH: [Write message] Took 8773 us and 1403628 cycles
+W (698166) BENCH: [Zigbee Packet TX] Took 169 us and 27092 cycles
+I (698166) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (698176) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (698176) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (698186) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (698196) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (698196) BENCH: [Handshake] Took 978531 us and 56227024 cycles
+W (698206) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 89
+I (698216) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (698226) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (698226) BENCH: [Handshake creation] Took 8210 us and 1313591 cycles
+W (698236) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (698246) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (698336) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (698636) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (698636) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (698636) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (698646) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (698656) BENCH: [Read Message] Took 841 us and 134582 cycles
+I (698656) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (698666) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (698666) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (698686) BENCH: [Write message] Took 10066 us and 1610684 cycles
+W (698686) BENCH: [Zigbee Packet TX] Took 176 us and 28161 cycles
+I (698686) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (698696) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (698856) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (699036) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (699036) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (699036) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (699046) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (699126) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (699126) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (699126) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (699136) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (699156) BENCH: [Read Message] Took 11585 us and 1853678 cycles
+I (699156) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (699156) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (699156) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (699176) BENCH: [Write message] Took 8764 us and 1402148 cycles
+W (699176) BENCH: [Zigbee Packet TX] Took 165 us and 26372 cycles
+I (699176) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (699186) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (699186) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (699196) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (699206) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (699206) BENCH: [Handshake] Took 980899 us and 56325940 cycles
+W (699216) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 88
+I (699226) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (699236) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (699236) BENCH: [Handshake creation] Took 8214 us and 1314263 cycles
+W (699246) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (699246) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (699346) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (699636) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (699636) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (699636) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (699646) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (699656) BENCH: [Read Message] Took 841 us and 134614 cycles
+I (699656) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (699666) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (699666) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (699686) BENCH: [Write message] Took 10068 us and 1610940 cycles
+W (699686) BENCH: [Zigbee Packet TX] Took 176 us and 28164 cycles
+I (699686) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (699696) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (699856) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (700036) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (700036) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (700036) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (700046) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (700126) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (700126) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (700126) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (700136) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (700156) BENCH: [Read Message] Took 11578 us and 1852486 cycles
+I (700156) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (700156) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (700166) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (700176) BENCH: [Write message] Took 8778 us and 1404544 cycles
+W (700176) BENCH: [Zigbee Packet TX] Took 169 us and 27044 cycles
+I (700176) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (700186) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (700196) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (700196) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (700206) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (700216) BENCH: [Handshake] Took 973994 us and 56266670 cycles
+W (700216) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 87
+I (700226) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (700236) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (700246) BENCH: [Handshake creation] Took 8210 us and 1313587 cycles
+W (700246) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (700256) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (700346) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (700646) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (700646) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (700656) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (700656) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (700666) BENCH: [Read Message] Took 832 us and 133138 cycles
+I (700666) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (700676) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (700686) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (700696) BENCH: [Write message] Took 10073 us and 1611704 cycles
+W (700696) BENCH: [Zigbee Packet TX] Took 178 us and 28556 cycles
+I (700696) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (700706) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (700866) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (701056) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (701056) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (701056) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (701066) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (701146) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (701146) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (701146) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (701156) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (701176) BENCH: [Read Message] Took 11585 us and 1853570 cycles
+I (701176) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (701176) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (701176) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (701196) BENCH: [Write message] Took 8766 us and 1402624 cycles
+W (701196) BENCH: [Zigbee Packet TX] Took 169 us and 27065 cycles
+I (701196) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (701206) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (701206) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (701216) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (701226) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (701226) BENCH: [Handshake] Took 988388 us and 56310299 cycles
+W (701236) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 86
+I (701246) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (701246) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (701256) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (701266) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (701266) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (701366) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (701656) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (701656) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (701656) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (701666) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (701676) BENCH: [Read Message] Took 846 us and 135286 cycles
+I (701676) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (701686) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (701686) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (701706) BENCH: [Write message] Took 10063 us and 1610192 cycles
+W (701706) BENCH: [Zigbee Packet TX] Took 178 us and 28464 cycles
+I (701706) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (701716) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (701876) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (702056) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (702056) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (702056) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (702066) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (702146) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (702146) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (702146) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (702156) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (702166) BENCH: [Read Message] Took 11578 us and 1852470 cycles
+I (702166) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (702176) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (702176) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (702196) BENCH: [Write message] Took 8769 us and 1403140 cycles
+W (702196) BENCH: [Zigbee Packet TX] Took 167 us and 26748 cycles
+I (702196) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (702196) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (702206) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (702216) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (702216) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (702226) BENCH: [Handshake] Took 969996 us and 56358717 cycles
+W (702236) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 85
+I (702246) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (702246) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (702256) BENCH: [Handshake creation] Took 8210 us and 1313587 cycles
+W (702266) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (702266) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (702366) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (702656) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (702656) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (702656) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (702666) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (702676) BENCH: [Read Message] Took 838 us and 134154 cycles
+I (702676) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (702686) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (702686) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (702706) BENCH: [Write message] Took 10071 us and 1611324 cycles
+W (702706) BENCH: [Zigbee Packet TX] Took 178 us and 28508 cycles
+I (702706) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (702716) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (702876) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (703056) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (703056) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (703056) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (703066) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (703146) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (703146) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (703146) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (703156) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (703166) BENCH: [Read Message] Took 11578 us and 1852454 cycles
+I (703166) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (703176) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (703176) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (703196) BENCH: [Write message] Took 8767 us and 1402604 cycles
+W (703196) BENCH: [Zigbee Packet TX] Took 170 us and 27113 cycles
+I (703196) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (703196) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (703206) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (703216) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (703216) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (703226) BENCH: [Handshake] Took 971367 us and 56307822 cycles
+W (703236) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 84
+I (703246) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (703246) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (703256) BENCH: [Handshake creation] Took 8214 us and 1314271 cycles
+W (703266) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (703266) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (703366) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (703656) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (703656) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (703656) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (703666) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (703676) BENCH: [Read Message] Took 841 us and 134614 cycles
+I (703676) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (703686) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (703686) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (703706) BENCH: [Write message] Took 10066 us and 1610652 cycles
+W (703706) BENCH: [Zigbee Packet TX] Took 174 us and 27801 cycles
+I (703706) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (703716) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (703876) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (704056) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (704056) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (704056) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (704066) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (704146) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (704146) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (704146) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (704156) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (704176) BENCH: [Read Message] Took 11584 us and 1853402 cycles
+I (704176) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (704176) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (704176) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (704196) BENCH: [Write message] Took 8773 us and 1403632 cycles
+W (704196) BENCH: [Zigbee Packet TX] Took 169 us and 27097 cycles
+I (704196) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (704206) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (704206) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (704216) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (704226) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (704226) BENCH: [Handshake] Took 973542 us and 56294900 cycles
+W (704236) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 83
+I (704246) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (704256) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (704256) BENCH: [Handshake creation] Took 8210 us and 1313575 cycles
+W (704266) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (704276) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (704366) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (704676) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (704676) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (704676) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (704676) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (704686) BENCH: [Read Message] Took 836 us and 133810 cycles
+I (704686) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (704696) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (704706) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (704716) BENCH: [Write message] Took 10069 us and 1610940 cycles
+W (704716) BENCH: [Zigbee Packet TX] Took 175 us and 28141 cycles
+I (704716) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (704726) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (704896) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (705066) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (705066) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (705076) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (705076) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (705156) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (705156) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (705166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (705166) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (705186) BENCH: [Read Message] Took 11578 us and 1852450 cycles
+I (705186) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (705186) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (705196) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (705206) BENCH: [Write message] Took 8764 us and 1402168 cycles
+W (705206) BENCH: [Zigbee Packet TX] Took 169 us and 27065 cycles
+I (705206) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (705216) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (705226) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (705236) BENCH: [Handshake split] Took 461 us and 73753 cycles
+I (705236) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (705246) BENCH: [Handshake] Took 984626 us and 56319016 cycles
+W (705246) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 82
+I (705256) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (705266) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (705276) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (705276) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (705286) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (705376) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (705676) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (705676) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (705676) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (705686) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (705696) BENCH: [Read Message] Took 842 us and 134614 cycles
+I (705696) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (705706) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (705706) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (705726) BENCH: [Write message] Took 10068 us and 1610912 cycles
+W (705726) BENCH: [Zigbee Packet TX] Took 174 us and 27821 cycles
+I (705726) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (705736) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (705896) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (706076) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (706076) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (706076) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (706086) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (706176) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (706176) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (706176) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (706186) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (706206) BENCH: [Read Message] Took 11582 us and 1853106 cycles
+I (706206) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (706206) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (706206) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (706226) BENCH: [Write message] Took 8773 us and 1403644 cycles
+W (706226) BENCH: [Zigbee Packet TX] Took 171 us and 27393 cycles
+I (706226) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (706236) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (706236) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (706246) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (706256) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (706256) BENCH: [Handshake] Took 987232 us and 56432387 cycles
+W (706266) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 81
+I (706276) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (706286) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (706286) BENCH: [Handshake creation] Took 8202 us and 1312316 cycles
+W (706296) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (706296) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (706396) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (706686) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (706686) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (706686) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (706696) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (706706) BENCH: [Read Message] Took 839 us and 134254 cycles
+I (706706) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (706716) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (706716) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (706736) BENCH: [Write message] Took 10070 us and 1611296 cycles
+W (706736) BENCH: [Zigbee Packet TX] Took 176 us and 28213 cycles
+I (706736) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (706746) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (706906) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (707086) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (707086) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (707086) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (707096) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (707176) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (707176) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (707176) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (707186) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (707196) BENCH: [Read Message] Took 11578 us and 1852454 cycles
+I (707196) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (707206) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (707206) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (707226) BENCH: [Write message] Took 8767 us and 1402636 cycles
+W (707226) BENCH: [Zigbee Packet TX] Took 172 us and 27408 cycles
+I (707226) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (707226) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (707236) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (707246) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (707256) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (707256) BENCH: [Handshake] Took 970258 us and 56241136 cycles
+W (707266) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 80
+I (707276) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (707276) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (707286) BENCH: [Handshake creation] Took 8214 us and 1314259 cycles
+W (707296) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (707296) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (707396) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (707686) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (707686) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (707686) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (707696) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (707706) BENCH: [Read Message] Took 846 us and 135290 cycles
+I (707706) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (707716) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (707716) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (707736) BENCH: [Write message] Took 10062 us and 1610056 cycles
+W (707736) BENCH: [Zigbee Packet TX] Took 176 us and 28121 cycles
+I (707736) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (707746) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (707906) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (708086) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (708086) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (708086) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (708096) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (708176) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (708176) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (708186) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (708186) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (708206) BENCH: [Read Message] Took 11578 us and 1852470 cycles
+I (708206) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (708206) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (708216) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (708226) BENCH: [Write message] Took 8770 us and 1403172 cycles
+W (708226) BENCH: [Zigbee Packet TX] Took 170 us and 27097 cycles
+I (708226) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (708236) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (708246) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (708256) BENCH: [Handshake split] Took 461 us and 73757 cycles
+I (708256) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (708266) BENCH: [Handshake] Took 976488 us and 56399787 cycles
+W (708266) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 79
+I (708276) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (708286) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (708296) BENCH: [Handshake creation] Took 8210 us and 1313583 cycles
+W (708296) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (708306) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (708396) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (708696) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (708696) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (708696) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (708706) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (708716) BENCH: [Read Message] Took 839 us and 134254 cycles
+I (708716) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (708726) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (708726) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (708746) BENCH: [Write message] Took 10070 us and 1611284 cycles
+W (708746) BENCH: [Zigbee Packet TX] Took 176 us and 28165 cycles
+I (708746) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (708756) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (708916) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (709096) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (709096) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (709096) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (709106) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (709186) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (709186) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (709186) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (709196) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (709206) BENCH: [Read Message] Took 11578 us and 1852454 cycles
+I (709206) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (709216) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (709216) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (709236) BENCH: [Write message] Took 8767 us and 1402604 cycles
+W (709236) BENCH: [Zigbee Packet TX] Took 171 us and 27456 cycles
+I (709236) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (709236) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (709246) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (709256) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (709256) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (709266) BENCH: [Handshake] Took 975867 us and 56358323 cycles
+W (709276) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 78
+I (709286) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (709286) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (709296) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (709306) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (709306) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (709406) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (709706) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (709706) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (709706) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (709706) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (709716) BENCH: [Read Message] Took 834 us and 133498 cycles
+I (709716) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (709726) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (709736) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (709746) BENCH: [Write message] Took 10068 us and 1610956 cycles
+W (709746) BENCH: [Zigbee Packet TX] Took 176 us and 28145 cycles
+I (709746) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (709756) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (709926) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (710106) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (710106) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (710106) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (710116) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (710196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (710196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (710196) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (710196) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (710216) BENCH: [Read Message] Took 11578 us and 1852478 cycles
+I (710216) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (710216) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (710226) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (710246) BENCH: [Write message] Took 8773 us and 1403636 cycles
+W (710246) BENCH: [Zigbee Packet TX] Took 171 us and 27441 cycles
+I (710246) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (710246) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (710256) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (710266) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (710266) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (710276) BENCH: [Handshake] Took 980302 us and 56314279 cycles
+W (710286) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 77
+I (710296) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (710296) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (710306) BENCH: [Handshake creation] Took 8210 us and 1313583 cycles
+W (710316) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (710316) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (710416) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (710706) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (710706) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (710706) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (710716) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (710726) BENCH: [Read Message] Took 842 us and 134698 cycles
+I (710726) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (710736) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (710736) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (710756) BENCH: [Write message] Took 10070 us and 1611156 cycles
+W (710756) BENCH: [Zigbee Packet TX] Took 178 us and 28484 cycles
+I (710756) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (710766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (710926) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (711106) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (711106) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (711106) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (711116) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (711196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (711196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (711196) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (711206) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (711216) BENCH: [Read Message] Took 11578 us and 1852454 cycles
+I (711216) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (711226) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (711226) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (711246) BENCH: [Write message] Took 8764 us and 1402152 cycles
+W (711246) BENCH: [Zigbee Packet TX] Took 169 us and 27064 cycles
+I (711246) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (711246) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (711256) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (711266) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (711276) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (711276) BENCH: [Handshake] Took 972495 us and 56394915 cycles
+W (711286) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 76
+I (711296) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (711296) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (711306) BENCH: [Handshake creation] Took 8214 us and 1314259 cycles
+W (711316) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (711316) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (711416) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (711716) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (711716) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (711716) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (711726) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (711736) BENCH: [Read Message] Took 841 us and 134614 cycles
+I (711736) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (711746) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (711746) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (711766) BENCH: [Write message] Took 10070 us and 1611100 cycles
+W (711766) BENCH: [Zigbee Packet TX] Took 172 us and 27513 cycles
+I (711766) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (711776) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (711936) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (712116) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (712116) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (712116) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (712126) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (712216) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (712216) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (712216) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (712216) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (712236) BENCH: [Read Message] Took 11578 us and 1852474 cycles
+I (712236) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (712236) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (712246) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (712256) BENCH: [Write message] Took 8773 us and 1403652 cycles
+W (712256) BENCH: [Zigbee Packet TX] Took 169 us and 27044 cycles
+I (712266) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (712266) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (712276) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (712286) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (712286) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (712296) BENCH: [Handshake] Took 987861 us and 56307454 cycles
+W (712296) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 75
+I (712306) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (712316) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (712326) BENCH: [Handshake creation] Took 8210 us and 1313583 cycles
+W (712326) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (712336) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (712426) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (712726) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (712726) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (712726) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (712736) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (712746) BENCH: [Read Message] Took 839 us and 134254 cycles
+I (712746) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (712756) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (712756) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (712776) BENCH: [Write message] Took 10072 us and 1611624 cycles
+W (712776) BENCH: [Zigbee Packet TX] Took 174 us and 27821 cycles
+I (712776) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (712786) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (712946) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (713126) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (713126) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (713126) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (713136) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (713216) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (713216) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (713216) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (713226) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (713236) BENCH: [Read Message] Took 11578 us and 1852458 cycles
+I (713236) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (713246) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (713246) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (713266) BENCH: [Write message] Took 8766 us and 1402616 cycles
+W (713266) BENCH: [Zigbee Packet TX] Took 174 us and 27757 cycles
+I (713266) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (713266) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (713276) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (713286) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (713296) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (713296) BENCH: [Handshake] Took 974833 us and 56358174 cycles
+W (713306) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 74
+I (713316) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (713316) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (713326) BENCH: [Handshake creation] Took 8214 us and 1314259 cycles
+W (713336) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (713336) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (713436) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (713726) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (713726) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (713726) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (713736) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (713746) BENCH: [Read Message] Took 844 us and 134942 cycles
+I (713746) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (713756) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (713756) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (713776) BENCH: [Write message] Took 10063 us and 1610104 cycles
+W (713776) BENCH: [Zigbee Packet TX] Took 175 us and 27936 cycles
+I (713776) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (713786) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (713946) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (714126) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (714126) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (714126) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (714136) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (714216) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (714216) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (714216) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (714226) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (714246) BENCH: [Read Message] Took 11578 us and 1852470 cycles
+I (714246) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (714246) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (714256) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (714266) BENCH: [Write message] Took 8770 us and 1403172 cycles
+W (714266) BENCH: [Zigbee Packet TX] Took 168 us and 26749 cycles
+I (714266) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (714276) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (714286) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (714286) BENCH: [Handshake split] Took 452 us and 72305 cycles
+I (714296) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (714306) BENCH: [Handshake] Took 974455 us and 56407709 cycles
+W (714306) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 73
+I (714316) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (714326) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (714336) BENCH: [Handshake creation] Took 8219 us and 1314915 cycles
+W (714336) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (714346) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (714436) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (714736) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (714736) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (714736) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (714746) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (714756) BENCH: [Read Message] Took 839 us and 134186 cycles
+I (714756) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (714766) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (714766) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (714786) BENCH: [Write message] Took 10076 us and 1612132 cycles
+W (714786) BENCH: [Zigbee Packet TX] Took 179 us and 28629 cycles
+I (714786) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (714796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (714956) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (715136) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (715136) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (715136) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (715146) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (715226) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (715226) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (715226) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (715236) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (715246) BENCH: [Read Message] Took 11578 us and 1852458 cycles
+I (715246) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (715256) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (715256) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (715276) BENCH: [Write message] Took 8767 us and 1402636 cycles
+W (715276) BENCH: [Zigbee Packet TX] Took 171 us and 27457 cycles
+I (715276) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (715276) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (715286) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (715296) BENCH: [Handshake split] Took 452 us and 72305 cycles
+I (715306) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (715306) BENCH: [Handshake] Took 978115 us and 56353825 cycles
+W (715316) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 72
+I (715326) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (715326) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (715336) BENCH: [Handshake creation] Took 8216 us and 1314595 cycles
+W (715346) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (715346) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (715446) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (715736) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (715736) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (715746) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (715746) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (715756) BENCH: [Read Message] Took 839 us and 134174 cycles
+I (715756) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (715766) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (715776) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (715786) BENCH: [Write message] Took 10065 us and 1610364 cycles
+W (715786) BENCH: [Zigbee Packet TX] Took 180 us and 28653 cycles
+I (715786) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (715796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (715966) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (716136) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (716136) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (716136) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (716146) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (716226) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (716226) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (716226) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (716236) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (716256) BENCH: [Read Message] Took 11580 us and 1852814 cycles
+I (716256) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (716256) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (716266) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (716276) BENCH: [Write message] Took 8769 us and 1402968 cycles
+W (716276) BENCH: [Zigbee Packet TX] Took 169 us and 27092 cycles
+I (716276) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (716286) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (716296) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (716296) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (716306) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (716316) BENCH: [Handshake] Took 974227 us and 56359826 cycles
+W (716316) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 71
+I (716326) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (716336) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (716336) BENCH: [Handshake creation] Took 8212 us and 1313931 cycles
+W (716346) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (716356) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (716446) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (716746) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (716746) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (716746) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (716756) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (716766) BENCH: [Read Message] Took 844 us and 134926 cycles
+I (716766) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (716776) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (716776) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (716796) BENCH: [Write message] Took 10067 us and 1610748 cycles
+W (716796) BENCH: [Zigbee Packet TX] Took 173 us and 27677 cycles
+I (716796) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (716806) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (716966) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (717146) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (717146) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (717146) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (717156) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (717236) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (717236) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (717236) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (717246) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (717266) BENCH: [Read Message] Took 11585 us and 1853698 cycles
+I (717266) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (717266) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (717266) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (717286) BENCH: [Write message] Took 8762 us and 1401816 cycles
+W (717286) BENCH: [Zigbee Packet TX] Took 167 us and 26721 cycles
+I (717286) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (717296) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (717296) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (717306) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (717316) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (717316) BENCH: [Handshake] Took 980772 us and 56393295 cycles
+W (717326) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 70
+I (717336) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (717346) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (717346) BENCH: [Handshake creation] Took 8216 us and 1314595 cycles
+W (717356) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (717366) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (717466) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (717756) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (717756) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (717756) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (717766) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (717776) BENCH: [Read Message] Took 837 us and 133834 cycles
+I (717776) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (717786) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (717786) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (717806) BENCH: [Write message] Took 10067 us and 1610816 cycles
+W (717806) BENCH: [Zigbee Packet TX] Took 177 us and 28280 cycles
+I (717806) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (717816) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (717976) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (718156) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (718166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (718166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (718166) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (718246) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (718246) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (718256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (718256) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (718276) BENCH: [Read Message] Took 11580 us and 1852814 cycles
+I (718276) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (718276) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (718286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (718296) BENCH: [Write message] Took 8771 us and 1403292 cycles
+W (718296) BENCH: [Zigbee Packet TX] Took 171 us and 27393 cycles
+I (718296) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (718306) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (718316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (718326) BENCH: [Handshake split] Took 461 us and 73757 cycles
+I (718326) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (718336) BENCH: [Handshake] Took 984542 us and 56346693 cycles
+W (718336) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 69
+I (718346) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (718356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (718366) BENCH: [Handshake creation] Took 8212 us and 1313923 cycles
+W (718366) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (718376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (718466) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (718766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (718766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (718766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (718776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (718786) BENCH: [Read Message] Took 839 us and 134254 cycles
+I (718786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (718796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (718796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (718816) BENCH: [Write message] Took 10070 us and 1611268 cycles
+W (718816) BENCH: [Zigbee Packet TX] Took 175 us and 28029 cycles
+I (718816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (718826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (718986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (719166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (719166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (719166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (719176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (719256) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (719256) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (719256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (719266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (719286) BENCH: [Read Message] Took 11586 us and 1853686 cycles
+I (719286) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (719286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (719286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (719306) BENCH: [Write message] Took 8773 us and 1403648 cycles
+W (719306) BENCH: [Zigbee Packet TX] Took 172 us and 27408 cycles
+I (719306) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (719316) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (719316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (719326) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (719336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (719336) BENCH: [Handshake] Took 976747 us and 56410014 cycles
+W (719346) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 68
+I (719356) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (719356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (719366) BENCH: [Handshake creation] Took 8213 us and 1313931 cycles
+W (719376) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (719376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (719476) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (719766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (719766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (719766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (719776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (719786) BENCH: [Read Message] Took 850 us and 135962 cycles
+I (719786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (719796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (719796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (719816) BENCH: [Write message] Took 10061 us and 1609832 cycles
+W (719816) BENCH: [Zigbee Packet TX] Took 175 us and 27980 cycles
+I (719816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (719826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (719986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (720166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (720166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (720166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (720176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (720256) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (720256) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (720256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (720266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (720286) BENCH: [Read Message] Took 11587 us and 1853926 cycles
+I (720286) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (720286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (720286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (720306) BENCH: [Write message] Took 8766 us and 1402508 cycles
+W (720306) BENCH: [Zigbee Packet TX] Took 170 us and 27097 cycles
+I (720306) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (720316) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (720316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (720326) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (720336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (720336) BENCH: [Handshake] Took 971399 us and 56280492 cycles
+W (720346) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 67
+I (720356) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (720356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (720366) BENCH: [Handshake creation] Took 8214 us and 1314263 cycles
+W (720376) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (720376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (720476) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (720766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (720766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (720766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (720776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (720786) BENCH: [Read Message] Took 837 us and 133918 cycles
+I (720786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (720796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (720796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (720816) BENCH: [Write message] Took 10072 us and 1611456 cycles
+W (720816) BENCH: [Zigbee Packet TX] Took 175 us and 27981 cycles
+I (720816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (720826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (720986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (721166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (721166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (721166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (721176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (721256) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (721256) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (721256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (721266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (721276) BENCH: [Read Message] Took 11580 us and 1852786 cycles
+I (721276) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (721286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (721286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (721306) BENCH: [Write message] Took 8767 us and 1402620 cycles
+W (721306) BENCH: [Zigbee Packet TX] Took 175 us and 28128 cycles
+I (721306) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (721306) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (721316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (721326) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (721336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (721336) BENCH: [Handshake] Took 970721 us and 56351379 cycles
+W (721346) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 66
+I (721356) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (721356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (721366) BENCH: [Handshake creation] Took 8214 us and 1314251 cycles
+W (721376) BENCH: [Handshake start] Took 105 us and 16668 cycles
+I (721376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (721476) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (721766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (721766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (721766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (721776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (721786) BENCH: [Read Message] Took 844 us and 134946 cycles
+I (721786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (721796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (721796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (721816) BENCH: [Write message] Took 10068 us and 1610880 cycles
+W (721816) BENCH: [Zigbee Packet TX] Took 174 us and 27981 cycles
+I (721816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (721826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (721986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (722166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (722166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (722166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (722176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (722256) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (722256) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (722256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (722266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (722276) BENCH: [Read Message] Took 11580 us and 1852814 cycles
+I (722276) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (722286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (722286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (722306) BENCH: [Write message] Took 8769 us and 1402964 cycles
+W (722306) BENCH: [Zigbee Packet TX] Took 169 us and 27112 cycles
+I (722306) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (722306) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (722316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (722326) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (722336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (722336) BENCH: [Handshake] Took 971008 us and 56262700 cycles
+W (722346) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 65
+I (722356) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (722356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (722366) BENCH: [Handshake creation] Took 8214 us and 1314259 cycles
+W (722376) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (722376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (722476) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (722766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (722766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (722766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (722776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (722786) BENCH: [Read Message] Took 841 us and 134598 cycles
+I (722786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (722796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (722796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (722816) BENCH: [Write message] Took 10067 us and 1610768 cycles
+W (722816) BENCH: [Zigbee Packet TX] Took 174 us and 27949 cycles
+I (722816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (722826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (722986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (723166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (723166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (723166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (723176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (723256) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (723256) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (723256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (723266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (723276) BENCH: [Read Message] Took 11579 us and 1852790 cycles
+I (723276) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (723286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (723286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (723306) BENCH: [Write message] Took 8763 us and 1402160 cycles
+W (723306) BENCH: [Zigbee Packet TX] Took 171 us and 27441 cycles
+I (723306) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (723306) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (723316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (723326) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (723336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (723336) BENCH: [Handshake] Took 971352 us and 56380515 cycles
+W (723346) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 64
+I (723356) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (723356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (723366) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (723376) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (723376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (723476) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (723766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (723766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (723766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (723776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (723786) BENCH: [Read Message] Took 844 us and 134950 cycles
+I (723786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (723796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (723796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (723816) BENCH: [Write message] Took 10066 us and 1610564 cycles
+W (723816) BENCH: [Zigbee Packet TX] Took 173 us and 27632 cycles
+I (723816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (723826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (723986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (724166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (724166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (724166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (724176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (724256) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (724256) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (724256) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (724266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (724276) BENCH: [Read Message] Took 11581 us and 1852814 cycles
+I (724276) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (724286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (724286) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (724306) BENCH: [Write message] Took 8768 us and 1402956 cycles
+W (724306) BENCH: [Zigbee Packet TX] Took 172 us and 27461 cycles
+I (724306) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (724306) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (724316) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (724326) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (724336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (724336) BENCH: [Handshake] Took 971337 us and 56260309 cycles
+W (724346) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 63
+I (724356) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (724356) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (724366) BENCH: [Handshake creation] Took 8215 us and 1314259 cycles
+W (724376) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (724376) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (724476) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (724766) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (724766) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (724766) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (724776) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (724786) BENCH: [Read Message] Took 837 us and 133922 cycles
+I (724786) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (724796) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (724796) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (724816) BENCH: [Write message] Took 10073 us and 1611712 cycles
+W (724816) BENCH: [Zigbee Packet TX] Took 179 us and 28653 cycles
+I (724816) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (724826) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (724986) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (725166) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (725166) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (725166) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (725176) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (725266) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (725266) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (725266) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (725266) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (725286) BENCH: [Read Message] Took 11580 us and 1852790 cycles
+I (725286) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (725286) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (725296) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (725306) BENCH: [Write message] Took 8759 us and 1401496 cycles
+W (725306) BENCH: [Zigbee Packet TX] Took 174 us and 27785 cycles
+I (725316) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (725316) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (725326) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (725336) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (725336) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (725346) BENCH: [Handshake] Took 978640 us and 56278421 cycles
+W (725356) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 62
+I (725366) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (725366) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (725376) BENCH: [Handshake creation] Took 8214 us and 1314251 cycles
+W (725386) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (725386) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (725486) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (725776) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (725776) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (725776) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (725786) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (725796) BENCH: [Read Message] Took 841 us and 134506 cycles
+I (725796) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (725806) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (725816) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (725826) BENCH: [Write message] Took 10065 us and 1610396 cycles
+W (725826) BENCH: [Zigbee Packet TX] Took 177 us and 28269 cycles
+I (725826) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (725836) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (725996) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (726186) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (726186) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (726186) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (726186) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (726276) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (726276) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (726276) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (726286) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (726306) BENCH: [Read Message] Took 11580 us and 1852814 cycles
+I (726306) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (726306) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (726316) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (726326) BENCH: [Write message] Took 8765 us and 1402516 cycles
+W (726326) BENCH: [Zigbee Packet TX] Took 167 us and 26769 cycles
+I (726326) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (726336) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (726346) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (726346) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (726356) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (726366) BENCH: [Handshake] Took 988273 us and 56451355 cycles
+W (726366) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 61
+I (726376) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (726386) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (726396) BENCH: [Handshake creation] Took 8214 us and 1314259 cycles
+W (726396) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (726406) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (726496) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (726796) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (726796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (726796) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (726806) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (726816) BENCH: [Read Message] Took 837 us and 133918 cycles
+I (726816) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (726826) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (726826) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (726846) BENCH: [Write message] Took 10071 us and 1611376 cycles
+W (726846) BENCH: [Zigbee Packet TX] Took 175 us and 27917 cycles
+I (726846) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (726856) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (727016) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (727196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (727196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (727196) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (727206) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (727286) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (727286) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (727286) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (727296) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (727306) BENCH: [Read Message] Took 11579 us and 1852790 cycles
+I (727306) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (727316) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (727316) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (727336) BENCH: [Write message] Took 8766 us and 1402608 cycles
+W (727336) BENCH: [Zigbee Packet TX] Took 173 us and 27785 cycles
+I (727336) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (727336) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (727346) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (727356) BENCH: [Handshake split] Took 452 us and 72305 cycles
+I (727366) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (727366) BENCH: [Handshake] Took 976975 us and 56227014 cycles
+W (727376) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 60
+I (727386) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (727386) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (727396) BENCH: [Handshake creation] Took 8216 us and 1314595 cycles
+W (727406) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (727406) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (727506) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (727796) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (727796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (727796) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (727806) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (727816) BENCH: [Read Message] Took 845 us and 135286 cycles
+I (727816) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (727826) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (727826) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (727846) BENCH: [Write message] Took 10065 us and 1610296 cycles
+W (727846) BENCH: [Zigbee Packet TX] Took 179 us and 28624 cycles
+I (727846) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (727856) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (728016) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (728196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (728196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (728196) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (728206) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (728286) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (728286) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (728286) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (728296) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (728306) BENCH: [Read Message] Took 11578 us and 1852478 cycles
+I (728306) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (728316) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (728316) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (728336) BENCH: [Write message] Took 8768 us and 1402964 cycles
+W (728336) BENCH: [Zigbee Packet TX] Took 172 us and 27456 cycles
+I (728336) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (728336) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (728346) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (728356) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (728366) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (728366) BENCH: [Handshake] Took 971324 us and 56197836 cycles
+W (728376) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 59
+I (728386) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (728386) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (728396) BENCH: [Handshake creation] Took 8212 us and 1313919 cycles
+W (728406) BENCH: [Handshake start] Took 108 us and 17344 cycles
+I (728406) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (728506) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (728796) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (728796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (728796) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (728806) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (728816) BENCH: [Read Message] Took 841 us and 134594 cycles
+I (728816) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (728826) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (728826) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (728846) BENCH: [Write message] Took 10070 us and 1611264 cycles
+W (728846) BENCH: [Zigbee Packet TX] Took 170 us and 27269 cycles
+I (728846) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (728856) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (729016) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (729196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (729196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (729196) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (729206) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (729286) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (729286) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (729286) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (729296) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (729306) BENCH: [Read Message] Took 11577 us and 1852454 cycles
+I (729306) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (729316) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (729316) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (729336) BENCH: [Write message] Took 8765 us and 1402512 cycles
+W (729336) BENCH: [Zigbee Packet TX] Took 171 us and 27393 cycles
+I (729336) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (729336) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (729346) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (729356) BENCH: [Handshake split] Took 452 us and 72305 cycles
+I (729366) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (729366) BENCH: [Handshake] Took 971340 us and 56316904 cycles
+W (729376) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 58
+I (729386) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (729386) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (729396) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (729406) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (729406) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (729506) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (729796) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (729796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (729796) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (729806) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (729816) BENCH: [Read Message] Took 843 us and 134950 cycles
+I (729816) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (729826) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (729826) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (729846) BENCH: [Write message] Took 10069 us and 1611164 cycles
+W (729846) BENCH: [Zigbee Packet TX] Took 175 us and 28000 cycles
+I (729846) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (729856) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (730016) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (730196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (730196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (730196) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (730206) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (730286) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (730286) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (730286) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (730296) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (730306) BENCH: [Read Message] Took 11578 us and 1852478 cycles
+I (730306) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (730316) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (730316) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (730336) BENCH: [Write message] Took 8771 us and 1403308 cycles
+W (730336) BENCH: [Zigbee Packet TX] Took 171 us and 27408 cycles
+I (730336) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (730336) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (730346) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (730356) BENCH: [Handshake split] Took 454 us and 72641 cycles
+I (730366) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (730366) BENCH: [Handshake] Took 971363 us and 56203700 cycles
+W (730376) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 57
+I (730386) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (730386) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (730396) BENCH: [Handshake creation] Took 8212 us and 1313919 cycles
+W (730406) BENCH: [Handshake start] Took 109 us and 17344 cycles
+I (730406) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (730506) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (730796) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (730796) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (730796) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (730806) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (730816) BENCH: [Read Message] Took 837 us and 133922 cycles
+I (730816) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (730826) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (730826) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (730846) BENCH: [Write message] Took 10074 us and 1611912 cycles
+W (730846) BENCH: [Zigbee Packet TX] Took 172 us and 27616 cycles
+I (730846) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (730856) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (731016) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (731196) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (731196) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (731206) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (731206) ESP32_NOISE_RECEIVER: Received First Part APS Message Length: 808
+I (731286) ESP32_NOISE_RECEIVER: Received APS fragment of length: 808
+I (731286) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (731286) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (731296) ESP32_NOISE_RECEIVER: Received Final Part APS Message Length: 808
+W (731316) BENCH: [Read Message] Took 11578 us and 1852462 cycles
+I (731316) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (731316) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (731326) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (731336) BENCH: [Write message] Took 8769 us and 1402952 cycles
+W (731336) BENCH: [Zigbee Packet TX] Took 175 us and 28080 cycles
+I (731336) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (731346) ESP32_NOISE_RECEIVER: Responder handshake state: SPLIT (Handshake Complete)
+I (731356) ESP32_NOISE_RECEIVER: Handshake complete! Switching to encrypted mode.
+W (731356) BENCH: [Handshake split] Took 452 us and 72305 cycles
+I (731366) ESP32_NOISE_RECEIVER: Cipher states created. Secure communication ready.
+W (731376) BENCH: [Handshake] Took 975501 us and 56172491 cycles
+W (731376) LOOP: Remaining handshakes for current pattern (Noise_KEMXX_Kyber512_ChaChaPoly_SHA256): 56
+I (731386) ESP32_NOISE_RECEIVER: Starting Noise handshake as Responder...
+W (731396) ESP32_NOISE_RECEIVER: SETUP: Receiver_Noise_KEMXX_Kyber512_ChaChaPoly_SHA256
+W (731406) BENCH: [Handshake creation] Took 8214 us and 1314255 cycles
+W (731406) BENCH: [Handshake start] Took 104 us and 16668 cycles
+I (731416) ESP32_NOISE_RECEIVER: Responder is ready to process incoming handshake messages.
+I (731506) ESP32_NOISE_RECEIVER: APS Confirm received for last message.
+I (731806) ESP32_NOISE_RECEIVER: Received APS fragment of length: 800
+I (731806) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (731806) ESP32_NOISE_RECEIVER: Processing handshake message...
+I (731816) ESP32_NOISE_RECEIVER: Received APS Message Length: 800
+W (731826) BENCH: [Read Message] Took 848 us and 135626 cycles
+I (731826) ESP32_NOISE_RECEIVER: Processed handshake message successfully.
+I (731836) ESP32_NOISE_RECEIVER: Responder handshake state: WRITE MESSAGE
+I (731836) ESP32_NOISE_RECEIVER: Sending handshake response...
+W (731856) BENCH: [Write message] Took 10065 us and 1610384 cycles
+W (731856) BENCH: [Zigbee Packet TX] Took 175 us and 27952 cycles
+I (731856) ESP32_NOISE_RECEIVER: Sent handshake response.
+I (731866) ESP32_NOISE_RECEIVER: Responder handshake state: READ MESSAGE
+I (731906) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (731936) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (731956) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (731986) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (732016) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (732046) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (732066) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (734906) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (734926) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (734956) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (734986) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (735006) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (735036) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (735066) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+I (735096) ESP32_NOISE_RECEIVER: ZDO signal: NLME Status Indication (0x32), status: ESP_OK
+W (737446) ESP32_NOISE_RECEIVER: Failed to initialize Zigbee stack (status: ESP_FAIL)

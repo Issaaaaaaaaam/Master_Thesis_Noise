@@ -1,0 +1,3 @@
+label,count,avg_time_us,median_time_us,min_time_us,max_time_us,avg_cycles,median_cycles,min_cycles,max_cycles
+ED25519_scalar_mult_base,2,10056.5,10056.5,9915,10198,1609075.5,1609075.5,1586463,1631688
+ED25519_scalar_mult,3,15987.666666666666,15814,15676,16473,2557986.6666666665,2530264,2508036,2635660

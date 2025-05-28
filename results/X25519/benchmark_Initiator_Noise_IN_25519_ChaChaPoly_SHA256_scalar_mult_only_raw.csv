@@ -1,0 +1,5 @@
+label,time_us,cycles
+ED25519_scalar_mult_base,10169,1627088
+ED25519_scalar_mult_base,9935,1589627
+ED25519_scalar_mult,16474,2635833
+ED25519_scalar_mult,15642,2502668
