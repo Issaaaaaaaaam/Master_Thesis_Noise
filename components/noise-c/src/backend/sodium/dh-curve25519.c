@@ -45,7 +45,9 @@ static int noise_curve25519_generate_keypair
     noise_rand_bytes(st->private_key, 32);
     st->private_key[0] &= 0xF8;
     st->private_key[31] = (st->private_key[31] & 0x7F) | 0x40;
+    bench_start_ed25519("ED25519_scalar_mult_base"); 
     crypto_scalarmult_curve25519_base(st->public_key, st->private_key);
+    bench_end_ed25519("ED25519_scalar_mult_base");
     return NOISE_ERROR_NONE;
 }
 
@@ -57,7 +59,9 @@ static int noise_curve25519_set_keypair
     NoiseCurve25519State *st = (NoiseCurve25519State *)state;
     uint8_t temp[32];
     int equal;
+    bench_start_ed25519("ED25519_scalar_mult_base"); 
     crypto_scalarmult_curve25519_base(temp, private_key);
+    bench_end_ed25519("ED25519_scalar_mult_base");
     equal = noise_is_equal(temp, public_key, 32);
     memcpy(st->private_key, private_key, 32);
     memcpy(st->public_key, public_key, 32);
@@ -69,7 +73,9 @@ static int noise_curve25519_set_keypair_private
 {
     NoiseCurve25519State *st = (NoiseCurve25519State *)state;
     memcpy(st->private_key, private_key, 32);
+    bench_start_ed25519("ED25519_scalar_mult_base"); 
     crypto_scalarmult_curve25519_base(st->public_key, st->private_key);
+    bench_end_ed25519("ED25519_scalar_mult_base");
     return NOISE_ERROR_NONE;
 }
 
