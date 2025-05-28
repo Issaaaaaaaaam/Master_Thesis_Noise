@@ -16,6 +16,10 @@
 
 #ifndef ENABLE_NOISE_BENCHMARK
 #define ENABLE_NOISE_BENCHMARK   1
+#endif
+
+#ifndef ENABLE_NOISE_STEPS_BENCHMARK
+#define ENABLE_NOISE_STEPS_BENCHMARK 0
 #endif 
 
 #ifndef ENABLE_ED25519_BENCHMARK
@@ -30,6 +34,9 @@
 #define PQ_BENCHMARK 1 
 #endif 
 
+#ifndef MAC_BENCHMARK
+#define MAC_BENCHMARK 1 
+#endif 
 
 
 // ─────────────────────────────────────────────────────────────
@@ -56,7 +63,7 @@
 // ─────────────────────────────────────────────────────────────
 
 
-#if ENABLE_NOISE_BENCHMARK || ENABLE_ED25519_BENCHMARK
+#if ENABLE_NOISE_STEPS_BENCHMARK || ENABLE_ED25519_BENCHMARK
     typedef struct {
         uint64_t start_us;
         uint32_t start_cycles;
@@ -65,7 +72,7 @@
     static noise_benchmark_t __bench;
 #endif 
 
-#if ENABLE_NOISE_BENCHMARK
+#if ENABLE_NOISE_STEPS_BENCHMARK
     #define bench_start(label) do { \
         __bench.start_us = esp_timer_get_time(); \
         __bench.start_cycles = esp_cpu_get_cycle_count(); \

@@ -18,12 +18,6 @@
 #error Define ZB_COORDINATOR_ROLE in idf.py menuconfig to compile light switch source code.
 #endif
 
-
-///////////////////////////////// Noise parameters /////////////////////////////////////
-#define HANDSHAKE_PATTERN "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
-#define MAX_NOISE_MESSAGE_SIZE 4096
-////////////////////////////////////Benchmark parameters///////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define TAG "ESP32_NOISE_TEST"
 static NoiseHandshakeState *initiator = NULL;
 static NoiseCipherState *initiator_send_cipher = NULL;
@@ -34,30 +28,35 @@ static uint64_t benchmark_start_time_us = 0;
 static uint64_t benchmark_end_time_us = 0;
 static uint32_t benchmark_start_cycles = 0;
 static uint32_t benchmark_end_cycles = 0;
-static uint8_t flex_buffer[MAX_NOISE_MESSAGE_SIZE]; 
 static bool handshake_complete = false;
-
+static bool fst = false;
+static uint32_t benchmark_mac_start_cycles = 0;
+static uint32_t benchmark_mac_end_cycles = 0; 
+static bool secnd = false; 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////Benchmark parameters////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 #if ENABLE_NOISE_BENCHMARK
-    #define LOOP_AMOUNT_BENCHMARK 100
+    #define LOOP_AMOUNT_BENCHMARK 1
     #if PQ_BENCHMARK
         #define MAX_NOISE_MESSAGE_SIZE 4096
-        #define NUM_PATTERNS 1
-        #define USE_KYBER_KEYS 1
-        static bool frag_step = false; 
-        static size_t reassembly_offset = 0; 
+        #define NUM_PATTERNS 11
+        #define USE_KYBER_KEYS 1 
             static const char *noise_patterns[NUM_PATTERNS] = {
-                //"Noise_KEMNN_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMNK_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMNX_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMXN_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMXK_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMKN_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMKK_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMKX_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMIN_Kyber512_ChaChaPoly_SHA256",
-                //"Noise_KEMIK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMNK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMNX_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMXN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMXK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMKN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMKK_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMIN_Kyber512_ChaChaPoly_SHA256",
+                "Noise_KEMIK_Kyber512_ChaChaPoly_SHA256",
                 "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
             };
+        static bool frag_step = false; 
+        static size_t reassembly_offset = 0;
     #endif 
     #if REG_BENCHMARK
         #define MAX_NOISE_MESSAGE_SIZE 2056
@@ -94,8 +93,18 @@ static bool handshake_complete = false;
         }
         handshake_complete = false;
     }
+#elif PQ_BENCHMARK
+    #define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
+    #define MAX_NOISE_MESSAGE_SIZE 4096
+    #define USE_KYBER_KEYS 1
+    static bool frag_step = false; 
+    static size_t reassembly_offset = 0;
+#else 
+    #define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
+    #define MAX_NOISE_MESSAGE_SIZE 2056
+    #define USE_KYBER_KEYS 0
 #endif
-
+static uint8_t flex_buffer[MAX_NOISE_MESSAGE_SIZE]; 
 
 const char* noise_action_to_string(int action)
 {
@@ -133,6 +142,7 @@ static switch_func_pair_t button_func_pair[] = {
 void start_noise_handshake()
 {
     NOISE_LOGI(TAG, "Starting Noise handshake as Initiator...");
+    secnd = true; 
     benchmark_start_cycles = esp_cpu_get_cycle_count();
     benchmark_start_time_us = esp_timer_get_time();
     int err;
@@ -147,7 +157,7 @@ void start_noise_handshake()
     }
     // **Create initiator handshake state (Global)** 
     #if ENABLE_NOISE_BENCHMARK
-        NOISE_LOGI(TAG, "SETUP: Initiator_%s", noise_patterns[pattern_index]);
+        NOISE_LOGW(TAG, "SETUP: Initiator_%s", noise_patterns[pattern_index]);
         bench_start("Handshake creation");
         err = noise_handshakestate_new_by_name(&initiator, noise_patterns[pattern_index], NOISE_ROLE_INITIATOR);
     #else
@@ -222,7 +232,7 @@ void start_noise_handshake()
     NOISE_LOGI(TAG, "Handshake message size: %zu", message_buf.size);
 
     if (message_buf.size > 1603) {
-        NOISE_LOGW(TAG, "Message too large for APS, splitting and sending in 2 parts...");
+        NOISE_LOGI(TAG, "Message too large for APS, splitting and sending in 2 parts...");
 
         size_t half = message_buf.size / 2;
         size_t remaining = message_buf.size - half;
@@ -381,9 +391,17 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             NOISE_LOGE(TAG, "Invalid APS message");
             return false;
         }
+        #if MAC_BENCHMARK
+        if (secnd == true) {
+            benchmark_mac_end_cycles = esp_cpu_get_cycle_count();
+            benchmark_mac_end_cycles = benchmark_mac_end_cycles - benchmark_mac_start_cycles;
+            NOISE_LOGW("BENCH", "[mac] took %" PRIu32 " cycles", benchmark_mac_end_cycles);
+            fst = false;
+            secnd = false; 
+        }
+        #endif 
         int handshake_state = noise_handshakestate_get_action(initiator);
         NOISE_LOGI(TAG, "Current handshake state: %s", noise_action_to_string(handshake_state));
-
         NoiseBuffer message_buf;
         int err;
 
@@ -411,8 +429,8 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                         noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
                         NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
                     }
-                #else
-                    if (strcmp(HANDSHAKE_PATTERN, "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0 || strcmp(HANDSHAKE_PATTERN, "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256") == 0){
+                #elif PQ_BENCHMARK
+                    if (strcmp(HANDSHAKE_PATTERN, "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0){
                         if (!frag_step) {
                             NOISE_LOGI(TAG, "Received First Part APS Message Length: %d", (int)data_ind.asdu_length);
                             memcpy(flex_buffer, data_ind.asdu, data_ind.asdu_length);
@@ -430,6 +448,9 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                         noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
                         NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
                     }
+                #else
+                    noise_buffer_set_input(message_buf, data_ind.asdu, data_ind.asdu_length);
+                    NOISE_LOGI(TAG, "Received APS Message Length: %d", (int)data_ind.asdu_length);
                 #endif
                 //NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
                 bench_start("Read message");
@@ -460,7 +481,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 
                 // **Send handshake message over Zigbee**
                 if (message_buf.size > 1603) {
-                    NOISE_LOGW(TAG, "Message too large for APS, splitting and sending in 2 parts...");
+                    NOISE_LOGI(TAG, "Message too large for APS, splitting and sending in 2 parts...");
 
                     size_t half = message_buf.size / 2;
                     size_t remaining = message_buf.size - half;
@@ -531,7 +552,7 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                     esp_zb_aps_data_request(&req);
                     esp_zb_lock_release();
                     bench_end("Zigbee Packet TX");
-                    ESP_LOGI(TAG, "Sent handshake response.");
+                    NOISE_LOGI(TAG, "Sent handshake response.");
                 }
                 handshake_state = noise_handshakestate_get_action(initiator);
                 log_handshake_state(initiator, "Initiator");
@@ -574,9 +595,11 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                             return true; 
                         }
                     }
+                    #if PQ_BENCHMARK
                     if (strcmp(noise_patterns[pattern_index], "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0) {
                         frag_step = false; 
                     }
+                    #endif
                     esp_zb_scheduler_alarm((esp_zb_callback_t)start_noise_handshake, 0, 100);  // 10 ms delay
                 #endif
             }
@@ -776,6 +799,13 @@ void esp_zb_app_signal_handler(esp_zb_app_signal_t *signal_struct)
         break;
     }
 }
+bool zb_mac_raw_frame_callback (const unsigned char *frame, const esp_ieee802154_frame_info_t *info){
+    if (!fst && secnd){
+        benchmark_mac_start_cycles = esp_cpu_get_cycle_count();
+        fst = true; 
+    }
+    return ESP_OK; 
+}
 
 // ────────────────────────────────────────────────────────────────────────────────
 // 5) Main Zigbee Task
@@ -797,6 +827,10 @@ static void esp_zb_task(void *pvParameters)
     esp_zb_aps_data_confirm_handler_register(zb_apsde_data_confirm_handler);
     // Register APS receiving callback
     esp_zb_aps_data_indication_handler_register(zb_apsde_data_indication_handler_switch);
+    #if MAC_BENCHMARK
+    // Register mac frame 
+    esp_zb_mac_raw_frame_handler_register(zb_mac_raw_frame_callback);
+    #endif 
     // Choose channel(s) and start
     esp_zb_set_primary_network_channel_set(ESP_ZB_PRIMARY_CHANNEL_MASK);
     ESP_ERROR_CHECK(esp_zb_start(false));
