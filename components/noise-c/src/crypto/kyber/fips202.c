@@ -12,6 +12,9 @@
 
 #include "fips202.h"
 
+#include "esp_cpu.h"
+#include <noise_log.h>
+
 #define NROUNDS 24
 #define ROL(a, offset) (((a) << (offset)) ^ ((a) >> (64 - (offset))))
 
@@ -360,8 +363,9 @@ static void keccak_absorb(uint64_t *s, uint32_t r, const uint8_t *m,
         for (i = 0; i < r / 8; ++i) {
             s[i] ^= load64(m + 8 * i);
         }
-
+        bench_start_keccak_f1600("Keccak F1600 permutation 1");
         KeccakF1600_StatePermute(s);
+        bench_end_keccak_f1600("Keccak F1600 permutation 1");
         mlen -= r;
         m += r;
     }
@@ -395,7 +399,9 @@ static void keccak_absorb(uint64_t *s, uint32_t r, const uint8_t *m,
 static void keccak_squeezeblocks(uint8_t *h, size_t nblocks,
                                  uint64_t *s, uint32_t r) {
     while (nblocks > 0) {
+        bench_start_keccak_f1600("Keccak F1600 permutation 2");
         KeccakF1600_StatePermute(s);
+        bench_end_keccak_f1600("Keccak F1600 permutation 2");
         for (size_t i = 0; i < (r >> 3); i++) {
             store64(h + 8 * i, s[i]);
         }
@@ -452,7 +458,9 @@ static void keccak_inc_absorb(uint64_t *s_inc, uint32_t r, const uint8_t *m,
         m += r - s_inc[25];
         s_inc[25] = 0;
 
+        bench_start_keccak_f1600("Keccak F1600 permutation 3");
         KeccakF1600_StatePermute(s_inc);
+        bench_end_keccak_f1600("Keccak F1600 permutation 3");
     }
 
     for (i = 0; i < mlen; i++) {
@@ -511,8 +519,10 @@ static void keccak_inc_squeeze(uint8_t *h, size_t outlen,
 
     /* Then squeeze the remaining necessary blocks */
     while (outlen > 0) {
+        bench_start_keccak_f1600("Keccak F1600 permutation 4");
         KeccakF1600_StatePermute(s_inc);
-
+        bench_end_keccak_f1600("Keccak F1600 permutation 4");
+        
         for (i = 0; i < outlen && i < r; i++) {
             h[i] = (uint8_t)(s_inc[i >> 3] >> (8 * (i & 0x07)));
         }

@@ -26,6 +26,14 @@
 #define ENABLE_ED25519_BENCHMARK 0 
 #endif
 
+#ifndef ENABLE_KYBER_BENCHMARK
+#define ENABLE_KYBER_BENCHMARK 0 
+#endif
+
+#ifndef ENABLE_KECCAKF1600_BENCHMARK
+#define ENABLE_KECCAKF1600_BENCHMARK 1 
+#endif
+
 #ifndef REG_BENCHMARK 
 #define REG_BENCHMARK 0 
 #endif 
@@ -63,7 +71,7 @@
 // ─────────────────────────────────────────────────────────────
 
 
-#if ENABLE_NOISE_STEPS_BENCHMARK || ENABLE_ED25519_BENCHMARK
+#if ENABLE_NOISE_STEPS_BENCHMARK || ENABLE_ED25519_BENCHMARK || ENABLE_KYBER_BENCHMARK || ENABLE_KECCAKF1600_BENCHMARK
     typedef struct {
         uint64_t start_us;
         uint32_t start_cycles;
@@ -90,8 +98,6 @@
     #define bench_end(label)
 #endif
 
-
-
 #if ENABLE_ED25519_BENCHMARK
     #define bench_start_ed25519(label) do { \
         __bench.start_us = esp_timer_get_time(); \
@@ -109,3 +115,40 @@
     #define bench_start_ed25519(label)
     #define bench_end_ed25519(label)
 #endif
+
+#if ENABLE_KYBER_BENCHMARK
+    #define bench_start_kyber(label) do { \
+        __bench.start_us = esp_timer_get_time(); \
+        __bench.start_cycles = esp_cpu_get_cycle_count(); \
+        ESP_LOGD("BENCH", "[%s] Benchmark started", label); \
+    } while(0)
+
+    #define bench_end_kyber(label) do { \
+        uint64_t end_us = esp_timer_get_time(); \
+        uint32_t end_cycles = esp_cpu_get_cycle_count(); \
+        ESP_LOGW("BENCH", "[%s] Took %" PRIu64 " us and %" PRIu32 " cycles", \
+                    label, end_us - __bench.start_us, end_cycles - __bench.start_cycles); \
+    } while(0)
+#else
+    #define bench_start_kyber(label)
+    #define bench_end_kyber(label)
+#endif
+
+#if ENABLE_KECCAKF1600_BENCHMARK
+    #define bench_start_keccak_f1600(label) do { \
+        __bench.start_us = esp_timer_get_time(); \
+        __bench.start_cycles = esp_cpu_get_cycle_count(); \
+        ESP_LOGD("BENCH", "[%s] Benchmark started", label); \
+    } while(0)
+
+    #define bench_end_keccak_f1600(label) do { \
+        uint64_t end_us = esp_timer_get_time(); \
+        uint32_t end_cycles = esp_cpu_get_cycle_count(); \
+        ESP_LOGW("BENCH", "[%s] Took %" PRIu64 " us and %" PRIu32 " cycles", \
+                    label, end_us - __bench.start_us, end_cycles - __bench.start_cycles); \
+    } while(0)
+#else
+    #define bench_start_keccak_f1600(label)
+    #define bench_end_keccak_f1600(label)
+#endif
+

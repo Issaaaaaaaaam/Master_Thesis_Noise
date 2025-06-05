@@ -10,6 +10,9 @@ Code taken from https://github.com/JoshuaRenckens/PQNoise_Master_Thesis
 #include "crypto/kyber/api.h"
 #include <time.h>
 
+#include "esp_cpu.h"
+#include <noise_log.h>
+
 /*
  * Currently missing the SEEC scheme when generating, only to be used in conjunction with the PQNoise patterns
 */
@@ -76,13 +79,17 @@ static int noise_kyber_calculate
 
 static int noise_kyber_encapsulate(const NoiseDHState *state, uint8_t *ct, uint8_t *ss) {
     const NoiseKyberState *st = (const NoiseKyberState *)state;
+    bench_start_kyber("Kyber512 Encapsulation");
     PQCLEAN_MLKEM512_CLEAN_crypto_kem_enc(ct, ss, st->public_key);
+    bench_end_kyber("Kyber512 Encapsulation");
     return NOISE_ERROR_NONE;
 }
 
 static int noise_kyber_decapsulate(const NoiseDHState *state, const uint8_t *ct, uint8_t *ss) {
     const NoiseKyberState *st = (const NoiseKyberState *)state;
+    bench_start_kyber("Kyber512 Decapsulation");
     PQCLEAN_MLKEM512_CLEAN_crypto_kem_dec(ss, ct, st->private_key);
+    bench_end_kyber("Kyber512 Decapsulation");
     return NOISE_ERROR_NONE;
 }
 NoiseDHState *pqnoise_kyber_new(void)
