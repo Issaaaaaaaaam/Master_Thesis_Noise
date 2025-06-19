@@ -23,7 +23,6 @@
 #include "protocol/internal.h"
 #include <string.h>
 #include <stdlib.h>
-
 /**
  * \file handshakestate.h
  * \brief HandshakeState interface
@@ -1995,5 +1994,82 @@ int noise_handshakestate_get_handshake_hash
     }
     return NOISE_ERROR_NONE;
 }
+
+
+/*
+
+Function to calculate expected message length using the tokens. 
+
+*/
+size_t noise_expected_read_length(NoiseHandshakeState *state)
+{
+    const uint8_t *tok = state->tokens;
+    size_t total = 0;
+    size_t mac_len;
+
+    for (;;) {
+        uint8_t token = *tok;
+
+        // exactly the same end‐of‐message checks
+        if (token == NOISE_TOKEN_END) {
+            break;
+        } else if (token == NOISE_TOKEN_FLIP_DIR) {
+            tok++;
+            break;
+        }
+
+        switch (token) {
+            case NOISE_TOKEN_E:
+                // “E”: remote ephemeral public key
+                total += state->dh_remote_ephemeral->public_key_len;
+                break;
+
+            case NOISE_TOKEN_S:
+                // “S”: remote static public key + MAC
+                mac_len = noise_symmetricstate_get_mac_length(state->symmetric);
+                total += state->dh_remote_static->public_key_len + mac_len;
+                break;
+
+            case NOISE_TOKEN_EE:
+            case NOISE_TOKEN_ES:
+            case NOISE_TOKEN_SE:
+            case NOISE_TOKEN_SS:
+            case NOISE_TOKEN_PSK:
+                // hash/DH or PSK mixing, but no wire‐bytes
+                break;
+
+            case NOISE_TOKEN_F:
+                // “F”: PQ-hybrid remote public + MAC
+                mac_len = noise_symmetricstate_get_mac_length(state->symmetric);
+                total += state->dh_remote_hybrid->public_key_len + mac_len;
+                break;
+
+            case NOISE_TOKEN_FF:
+                // “FF”: hybrid DH only, no wire‐bytes
+                break;
+
+            case NOISE_TOKEN_EKEM:
+                // “EKEM”: encapsulated KEM using *local* ephemeral’s cipher_len
+                total += state->dh_local_ephemeral->cipher_len;
+                break;
+
+            case NOISE_TOKEN_SKEM:
+                // “SKEM”: static-KEM cipher + MAC using *local* static
+                mac_len = noise_symmetricstate_get_mac_length(state->symmetric);
+                total += state->dh_local_static->cipher_len + mac_len;
+                break;
+
+            default:
+                // any unknown token—treat as zero
+                break;
+        }
+
+        // advance exactly as the library does
+        tok++;
+    }
+
+    return total;
+}
+
 
 /**@}*/
