@@ -54,10 +54,13 @@
 #define NOISE_USE_CUSTOM_RAND 1
 #endif
 
-#ifndef NOISE_USE_KYBER 
-#define NOISE_USE_KYBER 1 
+#ifndef NOISE_USE_KYBER_512 
+#define NOISE_USE_KYBER_512 1 
 #endif
 
+#ifndef NOISE_USE_KYBER_768 
+#define NOISE_USE_KYBER_768 1 
+#endif
 
 
 #if NOISE_USE_REFERENCE_BACKEND

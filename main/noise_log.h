@@ -31,7 +31,7 @@
 #endif
 
 #ifndef ENABLE_KECCAKF1600_BENCHMARK
-#define ENABLE_KECCAKF1600_BENCHMARK 1 
+#define ENABLE_KECCAKF1600_BENCHMARK 0 
 #endif
 
 #ifndef REG_BENCHMARK 
@@ -42,8 +42,12 @@
 #define PQ_BENCHMARK 1 
 #endif 
 
+#ifndef KYBER_768 
+#define KYBER_768 1 
+#endif 
+
 #ifndef MAC_BENCHMARK
-#define MAC_BENCHMARK 1 
+#define MAC_BENCHMARK 0 
 #endif 
 
 

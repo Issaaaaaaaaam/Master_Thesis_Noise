@@ -86,8 +86,12 @@ static NoiseIdMapping const algorithm_names[] = {
 #if NOISE_USE_NEWHOPE
     {NOISE_DH_NEWHOPE,          "NewHope",       7},
 #endif
-#if NOISE_USE_KYBER 
-    {NOISE_DH_KYBER,            "Kyber512",         8},
+#if NOISE_USE_KYBER_512 
+    {NOISE_DH_KYBER_512,            "Kyber512",         8},
+#endif
+
+#if NOISE_USE_KYBER_768 
+    {NOISE_DH_KYBER_768,            "Kyber768",         8},
 #endif
 
 

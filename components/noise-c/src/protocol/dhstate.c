@@ -91,9 +91,15 @@ int noise_dhstate_new_by_id(NoiseDHState **state, int id)
         break;
 #endif
 
-#if NOISE_USE_KYBER
-    case NOISE_DH_KYBER:
-        *state = pqnoise_kyber_new();
+#if NOISE_USE_KYBER_512
+    case NOISE_DH_KYBER_512:
+        *state = pqnoise_kyber_512_new();
+        break;
+#endif
+
+#if NOISE_USE_KYBER_768
+    case NOISE_DH_KYBER_768:
+        *state = pqnoise_kyber_768_new();
         break;
 #endif
 

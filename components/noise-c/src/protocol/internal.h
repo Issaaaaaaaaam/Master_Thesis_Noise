@@ -726,7 +726,8 @@ NoiseDHState *noise_curve25519_new(void);
 NoiseDHState *noise_curve448_new(void);
 NoiseDHState *noise_newhope_new(void);
 /*Working here to include PQNoise*/
-NoiseDHState *pqnoise_kyber_new(void);
+NoiseDHState *pqnoise_kyber_512_new(void);
+NoiseDHState *pqnoise_kyber_768_new(void);
 
 #if NOISE_USE_ED25519
 NoiseSignState *noise_ed25519_new(void);

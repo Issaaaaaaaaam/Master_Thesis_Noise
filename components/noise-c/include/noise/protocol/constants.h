@@ -71,8 +71,11 @@ extern "C" {
 #if NOISE_USE_NEWHOPE
 #define NOISE_DH_NEWHOPE                NOISE_ID('D', 3)
 #endif
-#if NOISE_USE_KYBER
-#define NOISE_DH_KYBER                  NOISE_ID('D', 4)
+#if NOISE_USE_KYBER_512
+#define NOISE_DH_KYBER_512                  NOISE_ID('D', 4)
+#endif
+#if NOISE_USE_KYBER_768
+#define NOISE_DH_KYBER_768                 NOISE_ID('D', 5)
 #endif
 
 
