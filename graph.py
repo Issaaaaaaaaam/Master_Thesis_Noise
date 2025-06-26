@@ -29,18 +29,12 @@ os.makedirs(TABLES_DIR, exist_ok=True)
 
 # --- Utilities ---
 def extract_pattern_key(proto):
-    """
-    Identify the handshake pattern code (e.g., NN, NK, NX, XK, IN, IK) by
-    extracting and normalizing the third underscore-separated field of the protocol ID.
-    Strips 'KEM' prefix for Kyber variants.
-    """
     parts = proto.split('_')
     if len(parts) >= 3:
         code = parts[2]
         if code.startswith('KEM'):
             code = code[3:]
         return code
-    return proto
     return proto
 
 # Accept either a DataFrame or a CSV path
@@ -65,21 +59,30 @@ def csv_to_table_image(img_path, title, csv_path=None, df=None):
     plt.close(fig)
     print(f"Saved table image: {img_path}")
 
+# Modified plot_grouped to differentiate Kyber512 vs Kyber768
+
 def plot_grouped(df, protocols, metric, ylabel, title, fname):
-    # Aggregate median values
     sub = df[df['protocol'].isin(protocols)]
     if sub.empty:
         print(f"No data for {title}")
         return
     agg = sub.groupby('protocol')[metric].median().sort_values(ascending=False)
-    # Derive short labels (pattern code) for each protocol
     labels_full = agg.index.tolist()
-    # Use the raw pattern code (with 'KEM' prefix when present) for clear differentiation
-    labels_short = [p.split('_')[2] for p in labels_full]
-    # Plot
+    # Create unique labels: pattern code plus algorithm
+    labels_short = []
+    for p in labels_full:
+        pattern = extract_pattern_key(p)
+        if 'Kyber512' in p:
+            alg = 'Kyber512'
+        elif 'Kyber768' in p:
+            alg = 'Kyber768'
+        elif '25519' in p:
+            alg = 'X25519'
+        else:
+            alg = p
+        labels_short.append(f"{pattern}-{alg}")
     plt.figure(figsize=(max(6, len(labels_short)*0.6), 4))
     bars = plt.bar(labels_short, agg.values)
-    # Annotate values
     for bar in bars:
         h = bar.get_height()
         plt.text(bar.get_x() + bar.get_width()/2, h, f"{h:.0f}", ha='center', va='bottom')
@@ -92,16 +95,14 @@ def plot_grouped(df, protocols, metric, ylabel, title, fname):
     plt.close()
     print(f"Saved plot: {out}")
 
-# --- Load all median CSVs by scanning each protocol directory ---
+# --- Load all median CSVs ---
 protocol_dfs = {}
 for proto_dir in os.listdir(BASE_DIR):
     dir_path = os.path.join(BASE_DIR, proto_dir)
     if not os.path.isdir(dir_path) or proto_dir == 'plots_comparison':
         continue
-    med_csvs = glob.glob(os.path.join(dir_path, '*_medians.csv'))
-    for csvf in med_csvs:
-        name = os.path.basename(csvf)
-        proto_id = name.replace('benchmark_','').replace('_medians.csv','')
+    for csvf in glob.glob(os.path.join(dir_path, '*_medians.csv')):
+        proto_id = os.path.basename(csvf).replace('benchmark_','').replace('_medians.csv','')
         df = pd.read_csv(csvf)
         if df.empty:
             continue
@@ -121,51 +122,55 @@ for proto_id, df in protocol_dfs.items():
     tbl_df = df[['label','count','median_time_us','median_cycles']]
     csv_to_table_image(img, f"Medians: {proto_id}", df=tbl_df)
 
-# Prepare protocol lists
-all_protos = sorted(protocol_dfs.keys())
-kyber = [p for p in all_protos if 'Kyber512' in p]
-x25519 = [p for p in all_protos if '25519' in p]
+# --- Prepare protocol groups ---
+all_protos  = sorted(protocol_dfs.keys())
+kyber512   = [p for p in all_protos if 'Kyber512' in p]
+kyber768   = [p for p in all_protos if 'Kyber768' in p]
+x25519     = [p for p in all_protos if '25519'    in p]
 
-# 2a) Kyber512
-plot_grouped(all_df, kyber, 'median_time_us', 'Median Time (us)', 'Kyber512: Median Time', 'kyber_time.png')
-plot_grouped(all_df, kyber, 'median_cycles', 'Median Cycles', 'Kyber512: Median Cycles', 'kyber_cycles.png')
-# 2b) X25519
-plot_grouped(all_df, x25519, 'median_time_us', 'Median Time (us)', 'X25519: Median Time', 'x25519_time.png')
-plot_grouped(all_df, x25519, 'median_cycles', 'Median Cycles', 'X25519: Median Cycles', 'x25519_cycles.png')
-# 2c) All protocols
-plot_grouped(all_df, all_protos, 'median_time_us', 'Median Time (us)', 'All Protocols: Median Time', 'all_time.png')
-plot_grouped(all_df, all_protos, 'median_cycles', 'Median Cycles', 'All Protocols: Median Cycles', 'all_cycles.png')
+# 2) Global bar plots
+plot_grouped(all_df, kyber512, 'median_time_us',  'Median Time (us)',   'Kyber512: Median Time',   'kyber512_time.png')
+plot_grouped(all_df, kyber512, 'median_cycles',  'Median Cycles',       'Kyber512: Median Cycles', 'kyber512_cycles.png')
+plot_grouped(all_df, kyber768, 'median_time_us',  'Median Time (us)',   'Kyber768: Median Time',   'kyber768_time.png')
+plot_grouped(all_df, kyber768, 'median_cycles',  'Median Cycles',       'Kyber768: Median Cycles', 'kyber768_cycles.png')
+plot_grouped(all_df, x25519,   'median_time_us',  'Median Time (us)',   'X25519: Median Time',     'x25519_time.png')
+plot_grouped(all_df, x25519,   'median_cycles',  'Median Cycles',       'X25519: Median Cycles',   'x25519_cycles.png')
+plot_grouped(all_df, all_protos,'median_time_us',  'Median Time (us)',   'All Protocols: Median Time', 'all_time.png')
+plot_grouped(all_df, all_protos,'median_cycles',  'Median Cycles',       'All Protocols: Median Cycles','all_cycles.png')
 
-# 3) Pairwise 1:1 comparisons per handshake pattern by pattern code
+# 3) Combined 3-way comparisons per handshake pattern
 pattern_map = defaultdict(list)
 for proto in all_protos:
     code = extract_pattern_key(proto)
     pattern_map[code].append(proto)
+
 for code, protos in pattern_map.items():
-    x_list = [p for p in protos if '25519' in p]
-    k_list = [p for p in protos if 'Kyber512' in p]
-    if len(x_list) != 1 or len(k_list) != 1:
-        continue
-    x_proto = x_list[0]
-    k_proto = k_list[0]
-    labels = ['X25519', 'Kyber512']
-    sub = all_df.set_index('protocol')
-    for metric, ylabel, suffix in [
-        ('median_time_us', 'Median Time (us)', 'time'),
-        ('median_cycles', 'Median Cycles', 'cycles')
-    ]:
-        vals = [sub.loc[x_proto, metric], sub.loc[k_proto, metric]]
-        plt.figure(figsize=(4,4))
-        bars = plt.bar(labels, vals)
-        for bar in bars:
-            h = bar.get_height()
-            plt.text(bar.get_x() + bar.get_width()/2, h, f"{h:.0f}", ha='center', va='bottom')
-        plt.ylabel(ylabel)
-        plt.title(f"Pattern {code}: X25519 vs Kyber512")
-        plt.tight_layout()
-        out = os.path.join(PLOTS_DIR, f"pair_{code}_{suffix}.png")
-        plt.savefig(out, dpi=300)
-        plt.close()
-        print(f"Saved pairwise plot: {out}")
+    x_list    = [p for p in protos if '25519'    in p]
+    k512_list = [p for p in protos if 'Kyber512' in p]
+    k768_list = [p for p in protos if 'Kyber768' in p]
+    if len(x_list)==1 and len(k512_list)==1 and len(k768_list)==1:
+        x_proto, k512_proto, k768_proto = x_list[0], k512_list[0], k768_list[0]
+        for metric, ylabel, suffix in [
+            ('median_time_us', 'Median Time (us)', 'time'),
+            ('median_cycles', 'Median Cycles',   'cycles')
+        ]:
+            vals = [
+                all_df.loc[all_df['protocol']==x_proto, metric].iat[0],
+                all_df.loc[all_df['protocol']==k512_proto, metric].iat[0],
+                all_df.loc[all_df['protocol']==k768_proto, metric].iat[0]
+            ]
+            labels = ['X25519','Kyber512','Kyber768']
+            plt.figure(figsize=(5,4))
+            bars = plt.bar(labels, vals)
+            for bar in bars:
+                h = bar.get_height()
+                plt.text(bar.get_x()+bar.get_width()/2, h, f"{h:.0f}", ha='center', va='bottom')
+            plt.ylabel(ylabel)
+            plt.title(f"Pattern {code}: All Variants")
+            plt.tight_layout()
+            out = os.path.join(PLOTS_DIR, f"pair_{code}_{suffix}.png")
+            plt.savefig(out, dpi=300)
+            plt.close()
+            print(f"Saved combined plot: {out}")
 
 print(f"Done. Comparison outputs under {PLOTS_DIR}")

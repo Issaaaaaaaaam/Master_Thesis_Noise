@@ -1,0 +1,290 @@
+W (78989) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (79019) ESP32_NOISE_TEST: Handshake message size: 3488
+I (79019) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (79019) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (79019) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (79029) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (79199) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (79369) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (79399) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (79709) ESP32_NOISE_TEST: Received APS Data Indication
+I (79709) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (79709) ESP32_NOISE_TEST: Processing handshake response...
+W (79719) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (79719) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (79729) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (79769) ESP32_NOISE_TEST: Received APS Data Indication
+I (79769) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (79769) ESP32_NOISE_TEST: Processing handshake response...
+W (79779) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (79779) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (79789) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (79789) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (79829) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (79829) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (79829) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (79839) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (79849) BENCH: [Handshake] Took 853983 us and 54040249 cycles
+W (79849) LOOP COUNTER: Remaining handshakes for current pattern: 9
+I (79969) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (79969) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (79999) ESP32_NOISE_TEST: Handshake message size: 3488
+I (79999) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (79999) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (79999) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (80009) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (80179) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (80339) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (80379) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (80679) ESP32_NOISE_TEST: Received APS Data Indication
+I (80679) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (80679) ESP32_NOISE_TEST: Processing handshake response...
+W (80689) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (80699) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (80699) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (80749) ESP32_NOISE_TEST: Received APS Data Indication
+I (80749) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (80749) ESP32_NOISE_TEST: Processing handshake response...
+W (80749) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (80759) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (80759) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (80769) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (80799) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (80799) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (80809) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (80809) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (80819) BENCH: [Handshake] Took 847465 us and 53991973 cycles
+W (80829) LOOP COUNTER: Remaining handshakes for current pattern: 8
+I (80939) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (80939) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (80969) ESP32_NOISE_TEST: Handshake message size: 3488
+I (80969) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (80969) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (80969) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (80979) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (81149) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (81309) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (81349) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (81649) ESP32_NOISE_TEST: Received APS Data Indication
+I (81649) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (81649) ESP32_NOISE_TEST: Processing handshake response...
+W (81659) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (81669) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (81669) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (81719) ESP32_NOISE_TEST: Received APS Data Indication
+I (81719) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (81719) ESP32_NOISE_TEST: Processing handshake response...
+W (81719) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (81729) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (81729) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (81739) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (81769) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (81769) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (81779) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (81779) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (81789) BENCH: [Handshake] Took 847173 us and 53896663 cycles
+W (81789) LOOP COUNTER: Remaining handshakes for current pattern: 7
+I (81909) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (81909) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (81939) ESP32_NOISE_TEST: Handshake message size: 3488
+I (81939) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (81939) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (81939) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (81949) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (82119) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (82279) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (82319) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (82619) ESP32_NOISE_TEST: Received APS Data Indication
+I (82629) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (82629) ESP32_NOISE_TEST: Processing handshake response...
+W (82629) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (82639) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (82639) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (82689) ESP32_NOISE_TEST: Received APS Data Indication
+I (82689) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (82689) ESP32_NOISE_TEST: Processing handshake response...
+W (82689) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (82699) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (82699) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (82709) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (82739) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (82739) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (82749) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (82749) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (82759) BENCH: [Handshake] Took 848090 us and 54039721 cycles
+W (82769) LOOP COUNTER: Remaining handshakes for current pattern: 6
+I (82879) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (82879) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (82909) ESP32_NOISE_TEST: Handshake message size: 3488
+I (82909) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (82909) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (82909) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (82919) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (83089) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (83249) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (83289) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (83599) ESP32_NOISE_TEST: Received APS Data Indication
+I (83599) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (83599) ESP32_NOISE_TEST: Processing handshake response...
+W (83599) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (83609) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (83609) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (83659) ESP32_NOISE_TEST: Received APS Data Indication
+I (83659) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (83659) ESP32_NOISE_TEST: Processing handshake response...
+W (83659) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (83669) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (83679) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (83679) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (83719) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (83719) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (83719) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (83729) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (83729) BENCH: [Handshake] Took 850093 us and 54286408 cycles
+W (83739) LOOP COUNTER: Remaining handshakes for current pattern: 5
+I (83849) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (83849) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (83879) ESP32_NOISE_TEST: Handshake message size: 3488
+I (83879) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (83879) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (83879) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (83889) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (84059) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (84219) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (84259) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (84559) ESP32_NOISE_TEST: Received APS Data Indication
+I (84559) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (84559) ESP32_NOISE_TEST: Processing handshake response...
+W (84569) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (84579) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (84579) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (84629) ESP32_NOISE_TEST: Received APS Data Indication
+I (84629) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (84629) ESP32_NOISE_TEST: Processing handshake response...
+W (84629) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (84639) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (84639) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (84649) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (84679) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (84679) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (84689) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (84689) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (84699) BENCH: [Handshake] Took 847273 us and 53904219 cycles
+W (84699) LOOP COUNTER: Remaining handshakes for current pattern: 4
+I (84819) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (84819) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (84849) ESP32_NOISE_TEST: Handshake message size: 3488
+I (84849) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (84849) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (84849) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (84859) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (85029) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (85189) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (85229) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (85529) ESP32_NOISE_TEST: Received APS Data Indication
+I (85529) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (85529) ESP32_NOISE_TEST: Processing handshake response...
+W (85539) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (85549) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (85549) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (85599) ESP32_NOISE_TEST: Received APS Data Indication
+I (85599) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (85599) ESP32_NOISE_TEST: Processing handshake response...
+W (85599) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (85609) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (85609) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (85619) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (85649) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (85649) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (85659) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (85659) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (85669) BENCH: [Handshake] Took 847226 us and 53972668 cycles
+W (85669) LOOP COUNTER: Remaining handshakes for current pattern: 3
+I (85789) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (85789) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (85819) ESP32_NOISE_TEST: Handshake message size: 3488
+I (85819) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (85819) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (85819) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (85829) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (85999) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (86159) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (86199) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (86509) ESP32_NOISE_TEST: Received APS Data Indication
+I (86509) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (86509) ESP32_NOISE_TEST: Processing handshake response...
+W (86509) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (86519) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (86519) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (86569) ESP32_NOISE_TEST: Received APS Data Indication
+I (86569) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (86569) ESP32_NOISE_TEST: Processing handshake response...
+W (86569) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (86579) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (86579) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (86589) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (86619) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (86629) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (86629) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (86629) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (86639) BENCH: [Handshake] Took 849262 us and 53944914 cycles
+W (86649) LOOP COUNTER: Remaining handshakes for current pattern: 2
+I (86759) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (86759) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (86789) ESP32_NOISE_TEST: Handshake message size: 3488
+I (86789) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (86789) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (86789) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (86799) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (86969) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (87129) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (87169) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (87469) ESP32_NOISE_TEST: Received APS Data Indication
+I (87469) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (87469) ESP32_NOISE_TEST: Processing handshake response...
+W (87479) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (87489) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (87489) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (87539) ESP32_NOISE_TEST: Received APS Data Indication
+I (87539) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (87539) ESP32_NOISE_TEST: Processing handshake response...
+W (87539) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (87549) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (87549) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (87559) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (87589) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (87589) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (87599) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (87599) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (87609) BENCH: [Handshake] Took 847278 us and 53860768 cycles
+W (87609) LOOP COUNTER: Remaining handshakes for current pattern: 1
+I (87729) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...
+W (87729) ESP32_NOISE_TEST: SETUP: Initiator_Noise_KEMIK_Kyber768_ChaChaPoly_SHA256
+I (87759) ESP32_NOISE_TEST: Handshake message size: 3488
+I (87759) ESP32_NOISE_TEST: Sending APS fragment at offset 0, length 1600
+I (87759) ESP32_NOISE_TEST: Sending APS fragment at offset 1600, length 1600
+I (87759) ESP32_NOISE_TEST: Sending APS fragment at offset 3200, length 288
+I (87769) ESP32_NOISE_TEST: Sent 3488 byte handshake message in 3 fragments
+I (87939) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (88099) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (88139) APSDE CONFIRM: Sent successfully from endpoint 1 (short=0x0000) to endpoint 10 (short=0x4e6a)
+I (88439) ESP32_NOISE_TEST: Received APS Data Indication
+I (88439) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (88439) ESP32_NOISE_TEST: Processing handshake response...
+W (88449) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (88449) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (88459) ESP32_NOISE_TEST: Buffered 1600/2192 bytes
+I (88499) ESP32_NOISE_TEST: Received APS Data Indication
+I (88499) ESP32_NOISE_TEST: Current handshake state: READ MESSAGE
+I (88499) ESP32_NOISE_TEST: Processing handshake response...
+W (88509) ESP32_NOISE_TEST: Expecting message length of: 2192 bytes
+I (88519) ESP32_NOISE_TEST: Initiator handshake state: READ MESSAGE
+W (88519) ESP32_NOISE_TEST: Buffered 2208/2192 bytes
+W (88529) ESP32_NOISE_TEST: Consuming 2208 bytes (expected 2192)
+I (88559) ESP32_NOISE_TEST: Processed handshake response successfully.
+I (88559) ESP32_NOISE_TEST: Initiator handshake state: SPLIT (Handshake Complete)
+I (88559) ESP32_NOISE_TEST: Handshake complete! Switching to encrypted mode.
+I (88569) ESP32_NOISE_TEST: Cipher states created. Secure communication ready.
+W (88579) BENCH: [Handshake] Took 845736 us and 53840585 cycles
+W (88579) BENCH: Switching to next pattern: Noise_KEMXX_Kyber768_ChaChaPoly_SHA256
+I (88699) ESP32_NOISE_TEST: Starting Noise handshake as Initiator...

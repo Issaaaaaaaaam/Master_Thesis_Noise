@@ -22,8 +22,6 @@
 static NoiseHandshakeState *initiator = NULL;
 static NoiseCipherState *initiator_send_cipher = NULL;
 static NoiseCipherState *initiator_recv_cipher = NULL;
-static volatile bool waiting_for_last_confirm = false;
-static volatile bool last_confirm_received = false;
 static uint64_t benchmark_start_time_us = 0;
 static uint64_t benchmark_end_time_us = 0;
 static uint32_t benchmark_start_cycles = 0;
@@ -37,7 +35,7 @@ static bool secnd = false;
 ////////////////////////////////////Benchmark parameters////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 #if ENABLE_NOISE_BENCHMARK
-    #define LOOP_AMOUNT_BENCHMARK 1
+    #define LOOP_AMOUNT_BENCHMARK 10
     #if PQ_BENCHMARK
         #if KYBER_768 
             #define MAX_NOISE_MESSAGE_SIZE 4096
@@ -56,8 +54,6 @@ static bool secnd = false;
                     "Noise_KEMIK_Kyber768_ChaChaPoly_SHA256",
                     "Noise_KEMXX_Kyber768_ChaChaPoly_SHA256"
                 };
-            static bool frag_step = false; 
-            static size_t reassembly_offset = 0;
         #else
             #define MAX_NOISE_MESSAGE_SIZE 4096
             #define NUM_PATTERNS 11
@@ -75,8 +71,6 @@ static bool secnd = false;
                     "Noise_KEMIK_Kyber512_ChaChaPoly_SHA256",
                     "Noise_KEMXX_Kyber512_ChaChaPoly_SHA256"
                 };
-            static bool frag_step = false; 
-            static size_t reassembly_offset = 0;
         #endif        
     #endif 
     #if REG_BENCHMARK
@@ -118,8 +112,6 @@ static bool secnd = false;
     #define HANDSHAKE_PATTERN "Noise_KEMNN_Kyber512_ChaChaPoly_SHA256"
     #define MAX_NOISE_MESSAGE_SIZE 4096
     #define USE_KYBER_KEYS 1
-    static bool frag_step = false; 
-    static size_t reassembly_offset = 0;
 #else 
     #define HANDSHAKE_PATTERN "Noise_NN_25519_ChaChaPoly_SHA256"
     #define MAX_NOISE_MESSAGE_SIZE 2056
@@ -522,11 +514,6 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
                             return true; 
                         }
                     }
-                    #if PQ_BENCHMARK
-                    if (strcmp(noise_patterns[pattern_index], "Noise_KEMKX_Kyber512_ChaChaPoly_SHA256") == 0 || strcmp(noise_patterns[pattern_index], "Noise_KEMKX_Kyber768_ChaChaPoly_SHA256") == 0) {
-                        frag_step = false; 
-                    }
-                    #endif
                     esp_zb_scheduler_alarm((esp_zb_callback_t)start_noise_handshake, 0, 100);  // 10 ms delay
                 #endif
             }
@@ -778,7 +765,7 @@ void app_main(void)
     } else {
         NOISE_LOGI(TAG, "Successfully set Zigbee IO buffer size");
     }
-    ret = esp_zb_scheduler_queue_size_set(160);
+    ret = esp_zb_scheduler_queue_size_set(254);
     if (ret != ESP_OK) {
         NOISE_LOGE(TAG, "Failed to set IO buffer size, error = %s", esp_err_to_name(ret));
     } else {
