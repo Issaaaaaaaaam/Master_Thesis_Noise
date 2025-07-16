@@ -2009,8 +2009,6 @@ size_t noise_expected_read_length(NoiseHandshakeState *state)
 
     for (;;) {
         uint8_t token = *tok;
-
-        // exactly the same end‐of‐message checks
         if (token == NOISE_TOKEN_END) {
             break;
         } else if (token == NOISE_TOKEN_FLIP_DIR) {
@@ -2064,7 +2062,6 @@ size_t noise_expected_read_length(NoiseHandshakeState *state)
                 break;
         }
 
-        // advance exactly as the library does
         tok++;
     }
 
