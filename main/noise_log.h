@@ -35,19 +35,19 @@
 #endif
 
 #ifndef REG_BENCHMARK 
-#define REG_BENCHMARK 0 
+#define REG_BENCHMARK 1
 #endif 
 
 #ifndef PQ_BENCHMARK 
-#define PQ_BENCHMARK 1 
+#define PQ_BENCHMARK 0
 #endif 
 
 #ifndef KYBER_768 
-#define KYBER_768 1 
+#define KYBER_768  0
 #endif 
 
 #ifndef MAC_BENCHMARK
-#define MAC_BENCHMARK 0 
+#define MAC_BENCHMARK 0
 #endif 
 
 

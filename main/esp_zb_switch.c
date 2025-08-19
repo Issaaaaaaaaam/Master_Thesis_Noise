@@ -35,8 +35,8 @@ static bool secnd = false;
 ////////////////////////////////////Benchmark parameters////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 #if ENABLE_NOISE_BENCHMARK
-    #define LOOP_AMOUNT_BENCHMARK 10
-    #if PQ_BENCHMARK
+    #define LOOP_AMOUNT_BENCHMARK 100
+    #if PQ_BENCHMARK 
         #if KYBER_768 
             #define MAX_NOISE_MESSAGE_SIZE 4096
             #define NUM_PATTERNS 11
@@ -88,6 +88,7 @@ static bool secnd = false;
             "Noise_KK_25519_ChaChaPoly_SHA256",
             "Noise_KX_25519_ChaChaPoly_SHA256",
             "Noise_IN_25519_ChaChaPoly_SHA256",
+            "Noise_IK_25519_ChaChaPoly_SHA256",
             "Noise_IK_25519_ChaChaPoly_SHA256"
         };
     #endif 
@@ -373,7 +374,7 @@ static void esp_zb_buttons_handler(switch_func_pair_t *button_func_pair)
 
 bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 {
-    NOISE_LOGI(TAG, "Received APS Data Indication");
+    //NOISE_LOGI(TAG, "Received APS Data Indication");
     if (data_ind.dst_endpoint == HA_ONOFF_SWITCH_ENDPOINT &&
         data_ind.profile_id == ESP_ZB_AF_HA_PROFILE_ID &&
         data_ind.cluster_id == 0xFFC0)
@@ -401,16 +402,16 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
             if (handshake_state == NOISE_ACTION_READ_MESSAGE) {
                 NOISE_LOGI(TAG, "Processing handshake response...");
                 unsigned expected = noise_expected_read_length(initiator);
-                NOISE_LOGW(TAG, "Expecting message length of: %u bytes", expected);
+                NOISE_LOGI(TAG, "Expecting message length of: %u bytes", expected);
                 log_handshake_state(initiator, "Initiator");
                 memcpy(reasm_buf + buf_len, data_ind.asdu, data_ind.asdu_length);
                 buf_len += data_ind.asdu_length; 
                 //NOISE_LOG_BUFFER_HEX_LEVEL("Received APS Message", data_ind.asdu, data_ind.asdu_length, ESP_LOG_INFO);
-                NOISE_LOGW(TAG, "Buffered %u/%u bytes", (unsigned)buf_len, expected);
+                NOISE_LOGI(TAG, "Buffered %u/%u bytes", (unsigned)buf_len, expected);
                 if (!envelope_ready(buf_len, expected)) {
                     return true;  // keep waiting for more fragments
                 }
-                NOISE_LOGW(TAG, "Consuming %u bytes (expected %u)", (unsigned)buf_len, (unsigned)expected);
+                NOISE_LOGI(TAG, "Consuming %u bytes (expected %u)", (unsigned)buf_len, (unsigned)expected);
                 noise_buffer_set_input(message_buf, reasm_buf, buf_len);
                 bench_start("Read message");
                 err = noise_handshakestate_read_message(initiator, &message_buf, NULL);
@@ -462,7 +463,6 @@ bool zb_apsde_data_indication_handler_switch(esp_zb_apsde_data_ind_t data_ind)
 
                     NOISE_LOGI(TAG, "Sending APS fragment at offset %u, length %u",
                                 (unsigned)offset, (unsigned)chunk_len);
-
                     bench_start("Zigbee Packet TX");
                     esp_zb_lock_acquire(portMAX_DELAY);
                     esp_zb_aps_data_request(&req);
